@@ -21,6 +21,7 @@ sdist/
 var/
 wheels/
 .idea/
+.vscode/
 share/python-wheels/
 *.egg-info/
 .installed.cfg

@@ -14,6 +14,32 @@ schools = {
             "Yazılım Mühendisliği (İngilizce)": 525.0,
         }
     },
+    "Beykent Üniversitesi": {
+        "Tıp Fakültesi": {
+            "Tıp": 785.185,
+        },
+        "Diş Hekimliği Fakültesi": {
+            "Tıp": 785.185,
+        },
+        "Mühendislik-Mimarlık Fakültesi": {
+            "Bilgisayar Mühendisliği": 592.593,
+            "Bilgisayar Mühendisliği (İngilizce)": 592.593,
+            "Elektrik-Elektronik Mühendisliği (İngilizce)": 362.963,
+            "Endüstri Mühendisliği (İngilizce)": 429.630 ,
+            "Endüstri Mühendisliği": 429.630 ,
+            "Makine Mühendisliği (İngilizce)": 325.926 ,
+            "Matematik (İngilizce)": 392.593,
+            "Yazılım Geliştirme": 474.074,
+            "Yazılım Mühendisliği": 592.593,
+            "Endüstriyel Tasarım": 422.222,
+            "Endüstriyel Tasarım (İngilizce)": 422.222,
+            "İç Mimarlık": 503.704 ,
+            "İç Mimarlık (İngilizce)": 503.704 ,
+            "İnşaat Mühendisliği (İngilizce)": 503.704 ,
+            "İnşaat Mühendisliği": 503.704 ,
+            
+        }
+    },
 }
 
 
