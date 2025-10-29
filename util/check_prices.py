@@ -1,5 +1,4 @@
 schools = {
-<<<<<<< Updated upstream
     # Örnek veri yapısı
     "İstinye Üniversitesi": {
         "Mühendislik Fakültesi": {
@@ -1033,7 +1032,7 @@ schools = {
             "Tıbbi Laboratuar Teknikleri": 183150,
             "Yaşlı Bakımı": 183150,
         }
-=======
+    },
     "İstanbul Esenyurt Üniversitesi":{
         "İşletme ve Yönetim Bilimleri Fakültesi":{
             "Ekonomi ve Finans (İngilizce) (%50 İndirimli)":275.000,
@@ -1823,27 +1822,6 @@ schools = {
             "Uçak Teknolojisi": 262.500,
         },
     },
-    "İzmir Ekonomi Üniversitesi":{
-        "Tıp Fakültesi":685.000,
-        "Mühendislik Fakültesi":447.500,
-        "Sağlık Bilimleri Fakültesi":447.500,
-        "Hukuk Fakültesi":447.500,
-        "Psikoloji":447.500,
-        "İngilizce Mütercim ve Tercümanlık":447.500,
-        "Mimarlık":447.500,
-        "İçmimarlık ve Çevre Tasarımı":447.500,
-        "Gastronomi ve Mutfak Sanatları":447.500,
-        "İşletme Fakültesi":414.000,
-        "İletişim Fakültesi":414.000,
-        "Matematik":414.000,
-        "Sosyoloji":414.000,
-        "Endüstriyel Tasarım":414.000, 
-        "Görsel İletişim Tasarımı":414.000,
-        "Tekstil ve Moda Tasarımı":414.000,
-        "Meslek Yüksekokulu":168.100,
-        "Sağlık Hizmetleri Meslek Yüksekokulu":168.100,
-        "İngilizce Hazırlık Sınıfı":447.500,
-    },
     "İzmir Tınaztepe Üniversitesi":{
         "Tıp Fakültesi":530.794,
         "Diş Hekimliği Fakültesi":556.094,
@@ -2006,24 +1984,6 @@ schools = {
         },
 
     },
-    "İstanbul Ticaret Üniversitesi":{
-        "İletişim Fakültesi":595.000,
-        "İnsan ve Toplum Bilimleri Fakültesi":595.000,
-        "İşletme Fakültesi":{
-            "Psikoloji (İngilizce)": 665.000,
-            "Siyaset Bilimi ve Uluslararası İlişkiler (İngilizce)": 665.000,
-            "Finans ve Bankacılık (İngilizce)": 665.000,
-            "İktisat (İngilizce)": 665.000,
-            "Havacılık Yönetimi": 665.000,
-            "Yönetim Bilişim Sistemleri": 665.000,
-            "Uluslararası Ticaret (İngilizce)":595.000,
-            "Uluslararası Ticaret ve Finasman (İngilizce)": 665.000,
-        },
-        "Mimarlık ve Tasarım Fakültesi ": 665.000,
-        "Mühendislik Fakültesi": 665.000,
-        "Hukuk Fakültesi":665.000,
-        "Meslek Yüksekokulu Programları": 332.000,
-    },
     "İstanbul Topkapı Üniversitesi":{
         "İletişim Fakültesi Programları": 300.000,
         "Mühendislik ve Doğa Bilimleri Fakültesi":{
@@ -2128,6 +2088,7 @@ schools = {
         },
     },
     "İstanbul Şişli Meslek Yüksekokulu":{
+        "Meslek Yüksekokulu Programları":{
         "Bankacılık Ve Sigortacılık": 225.000,
         "Turizm Ve Otel İşletmeciliği": 226.800,
         "Dış Ticaret": 230.000,
@@ -2149,31 +2110,64 @@ schools = {
         "Fizyoterapi": 350.000,
         "Tıbbi Görüntüleme Teknikleri": 378.000,
         "Anestezi": 400.000,
-        "İlk Ve Acil Yardım": 400.000,
+        "İlk Ve Acil Yardım": 400.000,}
     },
-    "İstanbul Rumeli Üniversitesi":{
-        "Spor Bilimleri Fakültesi Programları": 723.094,
-        "Mühendislik ve Doğa Bilimleri Fakültesi":{
-            "Yapay Zeka Ve Makine Öğrenmesi": 361.547,
-            "Bilgisayar Mühendisliği": 441.690,
-            "Bilgisayar Bilimleri": 361.547
+    "İstanbul Rumeli Üniversitesi": {
+        "Spor Bilimleri Fakültesi": {
+             "Spor Yöneticiliği": 361547 # 723094 / 2
         },
-        "Sağlık Bilimleri Fakültesi Programları": 815.695,
-        "Sanat, Tasarım Ve Mimarlık Fakültesi Programları": 815.695,
-        "İktisadi, İdari ve Sosyal Bilimler Fakültesi":{
+        "Mühendislik ve Doğa Bilimleri Fakültesi": {
+            "Bilgisayar Bilimleri": 361547,
+            "Bilgisayar Mühendisliği": 441690,
+            "Yapay Zeka Ve Makine Öğrenmesi": 361547
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Beslenme ve Diyetetik": 407848, # 815695 / 2
+            "Fizyoterapi ve Rehabilitasyon": 407848, # 815695 / 2
+            "Gerontoloji": 407848, # 815695 / 2
+            "Hemşirelik": 407848 # 815695 / 2
+        },
+        "Sanat, Tasarım ve Mimarlık Fakültesi": {
+            "Gastronomi ve Mutfak Sanatları": 407848, # 815695 / 2
+            "İç Mimarlık": 407848, # 815695 / 2
+            "Mimarlık": 407848, # 815695 / 2
+            "Radyo, Televizyon ve Sinema": 407848 # 815695 / 2
+        },
+        "İktisadi, İdari ve Sosyal Bilimler Fakültesi": {
             "Havacılık Yönetimi": 407848,
-            "İşletme": 407.848,
-            "Psikoloji": 441.690,
-            "Siyaset Bilimi Ve Kamu Yönetimi": 361.547,
-            "Uluslararası İlişkiler": 361.547,
+            "İşletme": 407848,
+            "Psikoloji (İngilizce)": 441690, # Ücretli fiyatın yarısı alındı (varsayılan %50)
+            "Siyaset Bilimi Ve Kamu Yönetimi": 361547,
+            "Uluslararası İlişkiler": 361547,
         },
-        "Sağlık Hizmetleri Meslek Yüksekokulu Programları": 467.877,
-        "Meslek Yüksekokulu":{
-            "Bilgisayar Programcılığı": 282.492,
-            "Uçak Teknolojisi": 282.492,
-            "Meslek Yüksekokulu Diğer Programları": 233.944,
+        "Sağlık Hizmetleri Meslek Yüksekokulu": {
+            "Ağız ve Diş Sağlığı": 233939, # 467877 / 2
+            "Ameliyathane Hizmetleri": 233939, # 467877 / 2
+            "Çocuk Gelişimi": 233939, # 467877 / 2
+            "Diş Protez Teknolojisi": 233939, # 467877 / 2
+            "Diyaliz": 233939, # 467877 / 2
+            "Elektronörofizyoloji": 233939, # 467877 / 2
+            "Evde Hasta Bakımı": 233939, # 467877 / 2
+            "Fizyoterapi": 233939, # 467877 / 2
+            "Odyometri": 233939, # 467877 / 2
+            "Patoloji Laboratuvar Teknikleri": 233939, # 467877 / 2
+            "Radyoterapi": 233939, # 467877 / 2
+            "Tıbbi Dokümantasyon ve Sekreterlik": 233939, # 467877 / 2
+            "Tıbbi Görüntüleme Teknikleri": 233939, # 467877 / 2
+            "Tıbbi Laboratuvar Teknikleri": 233939, # 467877 / 2
         },
->>>>>>> Stashed changes
+        "Meslek Yüksekokulu": {
+            "Aşçılık": 233944,
+            "Bilgisayar Programcılığı": 282492,
+            "Grafik Tasarımı": 233944,
+            "İç Mekan Tasarımı": 233944,
+            "Mahkeme Büro Hizmetleri": 233944,
+            "Pastacılık ve Ekmekçilik": 233944,
+            "Sivil Hava Ulaştırma İşletmeciliği": 233944,
+            "Sivil Havacılık Kabin Hizmetleri": 233944,
+            "Uçak Teknolojisi": 282492,
+            # "Meslek Yüksekokulu Diğer Programları" için genel ücret 233944
+        }
     },
     "Çağ Üniversitesi": {
         "Lisans Programları": {
@@ -3058,23 +3052,113 @@ schools = {
             "Elektrik": 300000,
             "Grafik Tasarımı": 300000,
         }
+    },
+     "İzmir Ekonomi Üniversitesi": {
+        "Sağlık Bilimleri Fakültesi": {
+            "Beslenme ve Diyetetik": 447500,
+            "Fizyoterapi ve Rehabilitasyon": 447500,
+            "Hemşirelik": 447500
+        },
+        "Mühendislik Fakültesi": {
+            "Bilgisayar Mühendisliği (İngilizce)": 447500,
+            "Biyomedikal Mühendisliği (İngilizce)": 447500,
+            "Elektrik-Elektronik Mühendisliği (İngilizce)": 447500,
+            "Endüstri Mühendisliği (İngilizce)": 447500,
+            "Genetik ve Biyomühendislik (İngilizce)": 447500,
+            "Havacılık ve Uzay Mühendisliği (İngilizce)": 447500,
+            "İnşaat Mühendisliği (İngilizce)": 447500,
+            "Makine Mühendisliği (İngilizce)": 447500,
+            "Mekatronik Mühendisliği (İngilizce)": 447500,
+            "Yazılım Mühendisliği (İngilizce)": 447500
+        },
+        "İşletme Fakültesi": {
+            "Ekonomi (İngilizce)": 414000,
+            "İşletme (İngilizce)": 414000,
+            "Lojistik Yönetimi (İngilizce)": 414000,
+            "Siyaset Bilimi ve Uluslararası İlişkiler (İngilizce)": 414000,
+            "Uluslararası Ticaret ve Finansman (İngilizce)": 414000
+        },
+        "Güzel Sanatlar ve Tasarım Fakültesi": {
+            "Endüstriyel Tasarım (İngilizce)": 414000,
+            "Görsel İletişim Tasarımı (İngilizce)": 414000,
+            "İç Mimarlık ve Çevre Tasarımı (İngilizce)": 447500,
+            "Mimarlık (İngilizce)": 447500,
+            "Tekstil ve Moda Tasarımı (İngilizce)": 414000
+        },
+        "Fen-Edebiyat Fakültesi": {
+            "İngilizce Mütercim ve Tercümanlık": 447500,
+            "Matematik (İngilizce)": 414000,
+            "Psikoloji (İngilizce)": 447500,
+            "Sosyoloji (İngilizce)": 414000
+        },
+        "Uygulamalı Yönetim Bilimleri Yüksekokulu": {
+            "Gastronomi ve Mutfak Sanatları (İngilizce)": 447500
+        },
+        "İletişim Fakültesi": {
+            "Halkla İlişkiler ve Reklamcılık (İngilizce)": 414000,
+            "Sinema ve Dijital Medya (İngilizce)": 414000,
+            "Yeni Medya ve İletişim (İngilizce)": 414000
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk": 447500
+        },
+        "Tıp Fakültesi": {
+            "Tıp (İngilizce)": 685000
+        }
+    },
+    "İstanbul Ticaret Üniversitesi": {
+        "Mühendislik Fakültesi": {
+            "Bilgisayar Mühendisliği": 665000,
+            "Elektrik-Elektronik Mühendisliği (İngilizce)": 665000,
+            "Endüstri Mühendisliği": 665000,
+            "Mekatronik Mühendisliği (İngilizce)": 665000,
+            "Yazılım Mühendisliği (İngilizce)": 665000
+        },
+        "Mimarlık ve Tasarım Fakültesi": {
+            "Endüstriyel Tasarım": 665000,
+            "İç Mimarlık ve Çevre Tasarımı": 665000,
+            "Mimarlık": 665000,
+            "Tekstil ve Moda Tasarımı": 665000
+        },
+        "İşletme Fakültesi": {
+            "Finans ve Bankacılık (İngilizce)": 665000,
+            "Havacılık Yönetimi": 665000,
+            "İktisat": 665000,
+            "İktisat (İngilizce)": 665000,
+            "İşletme": 665000,
+            "İşletme (İngilizce)": 665000,
+            "Lojistik Yönetimi": 665000,
+            "Uluslararası Ticaret (İngilizce)": 595000,
+            "Uluslararası Ticaret ve Finansman": 665000,
+            "Yönetim Bilişim Sistemleri (İngilizce)": 665000
+        },
+        "İletişim Fakültesi": {
+            "Görsel İletişim Tasarımı": 595000,
+            "Halkla İlişkiler ve Reklamcılık": 595000,
+            "Medya ve İletişim": 595000
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk": 665000
+        },
+        "İnsan ve Toplum Bilimleri Fakültesi": {
+            "İstatistik": 595000,
+            "Matematik": 595000,
+            "Siyaset Bilimi ve Uluslararası İlişkiler": 665000,
+            "Siyaset Bilimi ve Uluslararası İlişkiler (İngilizce)": 665000,
+            "Sosyoloji": 595000,
+        },
+        "Meslek Yüksekokulu": {
+            "Tüm Önlisans Programları": 332000
+        }
     }
 }
 
-
-<<<<<<< Updated upstream
-    
 def find_department_prices(
     dept_query: str = "",
     university: str = "",
     faculty: str = "",
     uncredit: bool = True
 ):
-=======
-
-
-def find_department_prices(dept_query: str):
->>>>>>> Stashed changes
     """
     dept_query, university ve faculty ile esnek arama yapar.
     Boş bırakılan parametreler için filtre uygulanmaz, tüm kayıtlar döner.
