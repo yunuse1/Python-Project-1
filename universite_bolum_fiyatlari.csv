@@ -1,30 +1,79 @@
 ﻿university;faculty;department;price;scholarship_info
-İstanbul Ticaret Üniversitesi;Mühendislik Fakültesi;Bilgisayar Mühendisliği;1330000;-
-İstanbul Ticaret Üniversitesi;Mühendislik Fakültesi;Elektrik-Elektronik Mühendisliği (İngilizce);1330000;-
-İstanbul Ticaret Üniversitesi;Mühendislik Fakültesi;Endüstri Mühendisliği;1330000;-
-İstanbul Ticaret Üniversitesi;Mühendislik Fakültesi;Mekatronik Mühendisliği (İngilizce);1330000;-
-İstanbul Ticaret Üniversitesi;Mühendislik Fakültesi;Yazılım Mühendisliği (İngilizce);1330000;-
-İstanbul Ticaret Üniversitesi;Mimarlık ve Tasarım Fakültesi;Endüstriyel Tasarım;1330000;-
-İstanbul Ticaret Üniversitesi;Mimarlık ve Tasarım Fakültesi;İç Mimarlık ve Çevre Tasarımı;1330000;-
-İstanbul Ticaret Üniversitesi;Mimarlık ve Tasarım Fakültesi;Mimarlık;1330000;-
-İstanbul Ticaret Üniversitesi;Mimarlık ve Tasarım Fakültesi;Tekstil ve Moda Tasarımı;1330000;-
-İstanbul Ticaret Üniversitesi;İşletme Fakültesi;Finans ve Bankacılık (İngilizce);1330000;-
-İstanbul Ticaret Üniversitesi;İşletme Fakültesi;Havacılık Yönetimi;1330000;-
-İstanbul Ticaret Üniversitesi;İşletme Fakültesi;İktisat;1330000;-
-İstanbul Ticaret Üniversitesi;İşletme Fakültesi;İktisat (İngilizce);1330000;-
-İstanbul Ticaret Üniversitesi;İşletme Fakültesi;İşletme;1330000;-
-İstanbul Ticaret Üniversitesi;İşletme Fakültesi;İşletme (İngilizce);1330000;-
-İstanbul Ticaret Üniversitesi;İşletme Fakültesi;Lojistik Yönetimi;1330000;-
-İstanbul Ticaret Üniversitesi;İşletme Fakültesi;Uluslararası Ticaret (İngilizce);1190000;-
-İstanbul Ticaret Üniversitesi;İşletme Fakültesi;Uluslararası Ticaret ve Finansman;1330000;-
-İstanbul Ticaret Üniversitesi;İşletme Fakültesi;Yönetim Bilişim Sistemleri (İngilizce);1330000;-
-İstanbul Ticaret Üniversitesi;İletişim Fakültesi;Görsel İletişim Tasarımı;1190000;-
-İstanbul Ticaret Üniversitesi;İletişim Fakültesi;Halkla İlişkiler ve Reklamcılık;1190000;-
-İstanbul Ticaret Üniversitesi;İletişim Fakültesi;Medya ve İletişim;1190000;-
-İstanbul Ticaret Üniversitesi;Hukuk Fakültesi;Hukuk;1330000;-
-İstanbul Ticaret Üniversitesi;İnsan ve Toplum Bilimleri Fakültesi;İstatistik;1190000;-
-İstanbul Ticaret Üniversitesi;İnsan ve Toplum Bilimleri Fakültesi;Matematik;1190000;-
-İstanbul Ticaret Üniversitesi;İnsan ve Toplum Bilimleri Fakültesi;Siyaset Bilimi ve Uluslararası İlişkiler;1330000;-
-İstanbul Ticaret Üniversitesi;İnsan ve Toplum Bilimleri Fakültesi;Siyaset Bilimi ve Uluslararası İlişkiler (İngilizce);1330000;-
-İstanbul Ticaret Üniversitesi;İnsan ve Toplum Bilimleri Fakültesi;Sosyoloji;1190000;-
-İstanbul Ticaret Üniversitesi;Meslek Yüksekokulu;Tüm Önlisans Programları;664000;-
+İstinye Üniversitesi;Tıp Fakültesi;Tıp (Türkçe);3750.0;-
+İstinye Üniversitesi;Tıp Fakültesi;Tıp (İngilizce);3750.0;-
+İstinye Üniversitesi;Diş Hekimliği Fakültesi;Diş Hekimliği (Türkçe);3150.0;-
+İstinye Üniversitesi;Diş Hekimliği Fakültesi;Diş Hekimliği (İngilizce);3150.0;-
+İstinye Üniversitesi;Eczacılık Fakültesi;Eczacılık (Türkçe);2275.0;-
+İstinye Üniversitesi;Eczacılık Fakültesi;Eczacılık (İngilizce);2275.0;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Bilgisayar Mühendisliği (Türkçe);2625.0;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Bilgisayar Mühendisliği (İngilizce);2625.0;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Biyomedikal Mühendisliği (İngilizce);2250.0;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Elektrik-Elektronik Mühendisliği (İngilizce);2250.0;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Endüstri Mühendisliği (İngilizce);2429.625;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Makine Mühendisliği (İngilizce);2250.0;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Matematik (İngilizce);1875.0;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Moleküler Biyoloji ve Genetik (İngilizce);2625.0;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Yazılım Geliştirme (Türkçe);2429.625;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Yazılım Mühendisliği (Türkçe);2429.625;-
+İstinye Üniversitesi;Mühendislik ve Doğa Bilimleri Fakültesi;Yazılım Mühendisliği (İngilizce);2429.625;-
+İstinye Üniversitesi;Güzel Sanatlar Tasarım ve Mimarlık Fakültesi;Dijital Oyun Tasarımı (İngilizce);2437.5;-
+İstinye Üniversitesi;Güzel Sanatlar Tasarım ve Mimarlık Fakültesi;Gastronomi ve Mutfak Sanatları (Türkçe);2250.0;-
+İstinye Üniversitesi;Güzel Sanatlar Tasarım ve Mimarlık Fakültesi;Gastronomi ve Mutfak Sanatları (İngilizce);2250.0;-
+İstinye Üniversitesi;Güzel Sanatlar Tasarım ve Mimarlık Fakültesi;İç Mimarlık ve Çevre Tasarımı (Türkçe);2437.5;-
+İstinye Üniversitesi;Güzel Sanatlar Tasarım ve Mimarlık Fakültesi;Mimarlık (İngilizce);2250.0;-
+İstinye Üniversitesi;Güzel Sanatlar Tasarım ve Mimarlık Fakültesi;Tekstil ve Moda Tasarımı;1750.0;-
+İstinye Üniversitesi;İktisadi, İdari ve Sosyal Bilimler Fakültesi;Ekonomi (İngilizce);1875.0;-
+İstinye Üniversitesi;İktisadi, İdari ve Sosyal Bilimler Fakültesi;İşletme (İngilizce);1875.0;-
+İstinye Üniversitesi;İktisadi, İdari ve Sosyal Bilimler Fakültesi;Lojistik Yönetimi (Türkçe);1500.0;-
+İstinye Üniversitesi;İktisadi, İdari ve Sosyal Bilimler Fakültesi;Sağlık Yönetimi (Türkçe);1500.0;-
+İstinye Üniversitesi;İktisadi, İdari ve Sosyal Bilimler Fakültesi;Siyaset Bilimi ve Kamu Yönetimi (Türkçe);1875.0;-
+İstinye Üniversitesi;İktisadi, İdari ve Sosyal Bilimler Fakültesi;Uluslararası İlişkiler (İngilizce);1875.0;-
+İstinye Üniversitesi;İktisadi, İdari ve Sosyal Bilimler Fakültesi;Uluslararası Ticaret ve İşletmecilik (İngilizce);1875.0;-
+İstinye Üniversitesi;İktisadi, İdari ve Sosyal Bilimler Fakültesi;Yönetim Bilişim Sistemleri (Türkçe);2437.5;-
+İstinye Üniversitesi;İktisadi, İdari ve Sosyal Bilimler Fakültesi;Yönetim Bilişim Sistemleri (İngilizce);2437.5;-
+İstinye Üniversitesi;İletişim Fakültesi;Görsel İletişim Tasarımı;1575.0;-
+İstinye Üniversitesi;İletişim Fakültesi;Halkla İlişkiler ve Reklamcılık;1575.0;-
+İstinye Üniversitesi;İletişim Fakültesi;Radyo, Televizyon ve Sinema (İngilizce);1575.0;-
+İstinye Üniversitesi;İletişim Fakültesi;Yeni Medya ve İletişim (İngilizce);1575.0;-
+İstinye Üniversitesi;İnsan ve Toplum Bilimleri Fakültesi;İngiliz Dili ve Edebiyatı (İngilizce);1875.0;-
+İstinye Üniversitesi;İnsan ve Toplum Bilimleri Fakültesi;İngilizce Mütercim ve Tercümanlık (Türkçe);1875.0;-
+İstinye Üniversitesi;İnsan ve Toplum Bilimleri Fakültesi;Psikoloji (Türkçe);2812.5;-
+İstinye Üniversitesi;İnsan ve Toplum Bilimleri Fakültesi;Psikoloji (İngilizce);2812.5;-
+İstinye Üniversitesi;İnsan ve Toplum Bilimleri Fakültesi;Türk Dili ve Edebiyatı;1350.0;-
+İstinye Üniversitesi;Sağlık Bilimleri Fakültesi;Beslenme ve Diyetetik;2250.0;-
+İstinye Üniversitesi;Sağlık Bilimleri Fakültesi;Çocuk Gelişimi;1875.0;-
+İstinye Üniversitesi;Sağlık Bilimleri Fakültesi;Dil ve Konuşma Terapisi;1875.0;-
+İstinye Üniversitesi;Sağlık Bilimleri Fakültesi;Ebelik;1875.0;-
+İstinye Üniversitesi;Sağlık Bilimleri Fakültesi;Fizyoterapi ve Rehabilitasyon (Türkçe);2250.0;-
+İstinye Üniversitesi;Sağlık Bilimleri Fakültesi;Fizyoterapi ve Rehabilitasyon (İngilizce);2250.0;-
+İstinye Üniversitesi;Sağlık Bilimleri Fakültesi;Hemşirelik (Türkçe);2250.0;-
+İstinye Üniversitesi;Sağlık Bilimleri Fakültesi;Hemşirelik (İngilizce);2250.0;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Ağız ve Diş Sağlığı;1312.5;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Ameliyathane Hizmetleri;1312.5;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Anestezi;1312.5;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Çocuk Gelişimi;1312.5;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Diyaliz;1125.0;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Eczane Hizmetleri;1125.0;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Fizyoterapi;1312.5;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;İlk ve Acil Yardım;1312.5;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Optisyenlik;1125.0;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Patoloji Laboratuvar Teknikleri;1312.5;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Radyoterapi;1125.0;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Tıbbi Görüntüleme Teknikleri;1312.5;-
+İstinye Üniversitesi;Sağlık Hizmetleri Meslek Yüksekokulu;Tıbbi Laboratuvar Teknikleri;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Aşçılık;1200.0;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Bilgisayar Destekli Tasarım ve Animasyon;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Bilgisayar Programcılığı;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Bilgisayar Teknolojisi;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Bilişim Güvenliği Teknolojisi;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Biyomedikal Cihaz Teknolojisi;1125.0;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Dış Ticaret;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Elektronik Teknolojisi;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;E-Ticaret ve Pazarlama;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Gıda Teknolojisi;1200.0;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Grafik Tasarımı;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;İç Mekan Tasarımı;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Lojistik;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Otomotiv Teknolojisi;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Sivil Havacılık Kabin Hizmetleri;1312.5;-
+İstinye Üniversitesi;Meslek Yüksekokulu;Uçak Teknolojisi;1312.5;-

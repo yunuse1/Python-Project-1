@@ -1,20 +1,4 @@
-schools = {
-    # Örnek veri yapısı
-    "İstinye Üniversitesi": {
-        "Mühendislik Fakültesi": {
-            "Bilgisayar Mühendisliği": 525000,
-            "Bilgisayar Mühendisliği (İngilizce)": 525000,
-            "Biyomedikal Mühendisliği (İngilizce)": 530000,
-            "Elektrik-Elektronik Mühendisliği (İngilizce)": 540000,
-            "Endüstri Mühendisliği (İngilizce)": 535000,
-            "Makine Mühendisliği (İngilizce)": 545000,
-            "Matematik (İngilizce)": 520000,
-            "Moleküler Biyoloji ve Genetik (İngilizce)": 530000,
-            "Yazılım Geliştirme": 525000,
-            "Yazılım Mühendisliği": 525000,
-            "Yazılım Mühendisliği (İngilizce)": 525000,
-        }
-    }, 
+schools = { 
     "Biruni Üniversitesi": {
         "Tıp Fakültesi": {
             "Tıp": 600000,
@@ -3537,39 +3521,45 @@ schools = {
             
             "Tele Sağlık Teknikerliği (%50 Burslu)": 250.000
         }
-    },
-    "PİRİ REİS ÜNİVERSİTESİ ": {
-        "Hazırlık ve Meslek Yüksekokulu": {
-            
-            "İngilizce Hazırlık (Ön Lisans) - %50 İndirimli": 233.750,
-            
-            
-
-            
-            "İngilizce Hazırlık (Lisans) - %50 İndirimli": 291.500,
-            
-            
-
-            
-            "Denizcilik Meslek Yüksek Okulu - %50 İndirimli": 233.750,
-           
-            
+    },"Piri Reis Üniversitesi": {
+        "Denizcilik Meslek Yüksekokulu": {
+            "Aşçılık (İngilizce)": 233750,
+            "Bilgisayar Programcılığı": 233750,
+            "Deniz Brokerliği": 233750,
+            "Deniz Ulaştırma ve İşletme": 233750,
+            "Deniz ve Liman İşletmeciliği": 233750,
+            "Gemi İnşaatı": 233750,
+            "Gemi Makineleri İşletmeciliği": 233750,
+            "Hibrid ve Elektrikli Taşıtlar Teknolojisi": 233750,
+            "Lojistik": 233750,
+            "Marina ve Yat İşletmeciliği": 233750,
+            "Mekatronik": 233750,
+            "Su Altı Teknolojisi (İngilizce)": 233750
         },
-        "Fakülteler": {
-           
-            "Denizcilik Fakültesi - %50 İndirimli": 357.500,
-            
-
-           
-            "Mühendislik Fakültesi - %50 İndirimli": 357.500,
-           
-
-            "İktisadi İdari Bilimler Fakültesi - %50 İndirimli": 357.500,
-           
-
-           
-            "Hukuk Fakültesi - %50 İndirimli": 357.500,
-         
+        "Mühendislik Fakültesi": {
+            "Bilgisayar Mühendisliği (İngilizce)": 357500,
+            "Elektrik-Elektronik Mühendisliği (İngilizce)": 357500,
+            "Endüstri Mühendisliği (İngilizce)": 357500,
+            "Gemi İnşaatı ve Gemi Makineleri Mühendisliği (İngilizce)": 357500,
+            "Makine Mühendisliği (İngilizce)": 357500
+        },
+        "Denizcilik Fakültesi": {
+            "Deniz Ulaştırma İşletme Mühendisliği (İngilizce)": 357500,
+            "Gemi Makineleri İşletme Mühendisliği (İngilizce)": 357500
+        },
+        "İktisadi ve İdari Bilimler Fakültesi": {
+            "Denizcilik İşletmeleri Yönetimi (İngilizce)": 357500,
+            "Ekonomi ve Finans (İngilizce)": 357500,
+            "Lojistik Yönetimi (İngilizce)": 357500,
+            "Uluslararası Ticaret ve İşletmecilik (İngilizce)": 357500,
+            "Yönetim Bilişim Sistemleri (İngilizce)": 357500
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk": 357500
+        },
+        "Yabancı Diller Yüksekokulu": {
+            "İngilizce Hazırlık (Lisans)": 291500,
+            "İngilizce Hazırlık (Ön Lisans)": 233750
         }
     },
     "OSTİM Teknik Üniversitesi": {
@@ -3693,35 +3683,40 @@ schools = {
     }
 }
 
+##%20 TERCİH BURSU BÖLÜMÜ DÜZENLENMELİ
+extra_credit = ["istinye Üniversitesi", "istanbul Aydın Üniversitesi", "istanbul Gelişim Üniversitesi", "istanbul Kültür Üniversitesi", "kadir Has Üniversitesi", "kocaeli Üniversitesi", "mef Üniversitesi", "ostim Teknik Üniversitesi", "piri Reis Üniversitesi", "özyeğin Üniversitesi"]
+
+def _normalize(s: str) -> str:
+    if not isinstance(s, str):
+        return ""
+    return s.replace('İ', 'i').replace('I', 'ı').lower().strip()
+
 def find_department_prices(
     dept_query: str = "",
     university: str = "",
-    faculty: str = "",
     uncredit: bool = True
 ):
     """
     dept_query, university ve faculty ile esnek arama yapar.
     Boş bırakılan parametreler için filtre uygulanmaz, tüm kayıtlar döner.
     """
-    query = dept_query.strip().replace('İ', 'i').lower() if dept_query else ""
-    university = university.strip().replace('İ', 'i').lower() if university else ""
-    faculty = faculty.strip().replace('İ', 'i').lower() if faculty else ""
+    query = _normalize(dept_query) if dept_query else ""
+    university_query = _normalize(university) if university else ""
     results = []
     for uni, faculties in schools.items():
-        if university and university not in uni.lower():
+        if university_query and university_query not in _normalize(uni):
             continue
         for fac, depts in faculties.items():
-            if faculty and faculty not in fac.lower():
-                continue
             for dept, price in depts.items():
-                if query and query not in dept.lower():
+                if query and query not in _normalize(dept):
                     continue
                 result_price = price * 2 if uncredit else price
+                extra = price * 5 if _normalize(uni) in [_normalize(u) for u in extra_credit] else result_price
                 results.append({
                     "university": uni,
                     "faculty": fac,
                     "department": dept,
-                    "price": result_price
+                    "price": extra
                 })
     return results
 
