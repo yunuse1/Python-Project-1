@@ -3150,6 +3150,546 @@ schools = {
         "Meslek Yüksekokulu": {
             "Tüm Önlisans Programları": 332000
         }
+    },
+     "Kocaeli Sağlık ve Teknoloji Üniversitesi": {
+        "Diş Hekimliği": {
+            "DİŞ HEKİMLİĞİ": 729.000,
+            "DİŞ HEKİMLİĞİ (İNGİLİZCE)": 648.000,
+        },
+        "Eczacılık": {
+            "ECZACILIK": 504.900,
+        },
+        "Mühendislik ve Doğa Bilimleri": {
+            "Yazılım Mühendisliği": 341.719,
+            "Bilgisayar Mühendisliği": 341.719,
+        },
+        "Sağlık Bilimleri": {
+            "hemşirelik": 410.063,
+            "fizyoterapi ve rehabilitsayon": 372.094,
+            "ebelik": 388.125 
+        },
+        "Sosyal ve Beşeri Bilimler": {
+            "pisikoloji": 464.738,
+            "işletme (%30 İNGİLİZCE)": 344.250,
+            "uluslararası ticaret ve finansman (%30 İNGİLİZCE)": 344.250,
+        }
+    },
+    "Konya Gıda Ve Tarım Üniversitesi": {
+        "Mühendislik ve Mimarlık Fakültesi": {
+            "Bilgisayar Mühendisliği (İngilizce) - %50 İndirimli": 231.000,
+            
+            "Yazılım Mühendisliği (Türkçe) - %50 İndirimli": 203.500,
+           
+            "İç Mimarlık (Türkçe) - %50 İndirimli": 222.750,
+            
+        },
+        "Sosyal ve Beşeri Bilimler Fakültesi": {
+            "Uluslararası Ticaret ve İşletmecilik (İngilizce) - %50 İndirimli": 195.250,
+            
+            "Yönetim Bilişim Sistemleri (İngilizce) - %50 İndirimli": 195.250,
+           
+            "Psikoloji (Türkçe) - %50 İndirimli": 313.500,
+            
+        },
+        "Tarım ve Doğa Bilimler Fakültesi": {
+            "Bitkisel Üretim ve Teknolojileri (İngilizce) - %50 İndirimli": 68.750,
+            
+            "Moleküler Biyoloji ve Genetik (İngilizce) - %50 İndirimli": 162.250,
+            
+        }
+    
+    
+},
+"Karatay Üniversitesi (KDV Hariç)": {
+        "Tıp Fakültesi": {
+            "Tıp Fakültesi (Ücretli)": 760.000,
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk Fakültesi (%50 İndirimli)": 265.000,
+            
+        },
+        "Uygulamalı Bilimler Yüksekokulu": {
+            "Pilotaj (Ücretli)": 660.000,
+        },
+        "Mühendislik ve Doğa Bilimleri Fakültesi": {
+            "Bilgisayar Mühendisliği (%50 İndirimli)": 240.000,
+            
+            "Elektrik- Elektronik Mühendisliği (%50 İndirimli)": 215.000,
+           
+            "İnşaat Mühendisliği (%50 İndirimli)": 240.000,
+            "Mekatronik Mühendisliği (%50 İndirimli)": 240.000,
+            "Makine Mühendisliği (%50 İndirimli)": 240.000,
+            "Endüstri Mühendisliği (%50 İndirimli)": 208.000,
+           
+        },
+        "İktisadi, İdari ve Sosyal Bilimler Fakültesi": {
+            "İşletme (%50 İndirimli)": 256.000,
+            "Enerji Yönetimi (%50 İndirimli)": 202.500,
+            
+            "Sigortacılık ve Sosyal Güvenlik (%50 İndirimli)": 202.500,
+            
+            "İslam İktisadı ve Finans (%50 İndirimli)": 196.500,
+            "Uluslararası Ticaret ve Lojistik (%50 İndirimli)": 202.500,
+           
+            "Uluslararası Ticaret ve Lojistik (İngilizce) (%50 İndirimli)": 232.000,
+            
+            "İngilizce Mütercim Tercümanlık (%50 İndirimli)": 223.000,
+            
+            "Arapça Mütercim ve Tercümanlık (%50 İndirimli)": 197.000,
+            "İletişim ve Tasarımı (%50 İndirimli)": 225.000,
+          
+            "Sosyal Hizmet (%50 İndirimli)": 202.500,
+            
+            "Psikoloji (%50 İndirimli)": 232.000,
+           
+            "Sosyoloji (%50 İndirimli)": 196.500,
+            "Tarih (%50 İndirimli)": 202.500,
+        },
+        "Güzel Sanatlar ve Tasarım Fakültesi": {
+            "Mimarlık (%50 İndirimli)": 225.000,
+            "İç Mimarlık (%50 İndirimli)": 231.000,
+            
+            "Grafik Tasarımı (%50 İndirimli)": 231.000,
+            
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Beslenme ve Diyetetik (%50 İndirimli)": 203.000,
+            
+            "Çocuk Gelişimi (%50 İndirimli)": 203.000,
+            
+            "Odyoloji (%50 İndirimli)": 203.000,
+          
+            "Hemşirelik (%50 İndirimli)": 203.000,
+            
+            "Fizyoterapi ve Rehabilitasyon (%50 İndirimli)": 203.000,
+          
+            "Ebelik (%50 İndirimli)": 203.000,
+            
+        },
+        "Diğer Programlar": {
+            "İngilizce Hazırlık Programı": 406.000,
+            "Arapça Hazırlık Programı": 394.000,
+        }
+    },
+    "Lokman Hekim Üniversitesi": {
+        "Tıp Fakültesi": {
+          
+           
+            "Tıp Fakültesi (İngilizce) - %50 İndirimli": 480.000
+        },
+        "Diş Hekimliği Fakültesi": {
+            
+            "Diş Hekimliği (İngilizce) - %50 İndirimli": 460.000
+        },
+        "Eczacılık Fakültesi": {
+            
+            "Eczacılık (İngilizce) - %50 İndirimli": 360.000
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Beslenme ve Diyetetik - %50 İndirimli": 260.064,
+           
+            "Fizyoterapi ve Rehabilitasyon - %50 İndirimli": 260.064,
+           
+            "Hemşirelik - %50 İndirimli": 260.064,
+            "Ebelik - %50 İndirimli": 260.064,
+            "Ergoterapi - %50 İndirimli": 260.064,
+            "Dil ve Konuşma Terapisi - %50 İndirimli": 260.064,
+            "Odyoloji - %50 İndirimli": 260.064
+        },
+        "Spor Bilimleri Fakültesi": {
+            "Antrenörlük - %50 İndirimli": 260.064,
+            "Spor Yöneticiliği - %50 İndirimli": 260.064
+        }
+    },
+   "Maltepe Üniversitesi (SADECE %50 ve ÜZERİ İNDİRİMLİ PROGRAMLAR)": {
+        "Eğitim Fakültesi": {
+            "İlköğretim Matematik Öğretmenliği (%50 İndirimli)": 434.500,
+            "İngilizce Öğretmenliği (%50 İndirimli)": 434.500,
+            "Okul Öncesi Öğretmenliği (%50 İndirimli)": 434.500,
+            "Özel Eğitim Öğretmenliği (%50 İndirimli)": 434.500
+        },
+        "Güzel Sanatlar Fakültesi": {
+            "Gastronomi ve Mutfak Sanatları (%50 İndirimli)": 440.000,
+            "Sahne Sanatları (%50 İndirimli)": 247.500
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk (%50 İndirimli)": 495.000
+        },
+        "İletişim Fakültesi": {
+            "Gazetecilik (%50 İndirimli)": 418.572,
+            "Görsel İletişim Tasarımı (%50 İndirimli)": 418.572,
+            "Halkla İlişkiler ve Tanıtım (%50 İndirimli)": 418.572,
+            "Radyo, Sinema ve Televizyon (%50 İndirimli)": 418.572
+        },
+        "İnsan ve Toplum Bilimleri Fakültesi": {
+            "Felsefe (%50 İndirimli)": 269.500,
+            "Sosyal Hizmet (%50 İndirimli)": 286.000,
+            "Sosyoloji (%50 İndirimli)": 319.000
+        },
+        "İşletme ve Yönetim Bilimleri Fakültesi": {
+            "İşletme (İngilizce) (%50 İndirimli)": 478.500,
+            "Siyaset Bilimi ve Uluslararası İlişkiler (%50 İndirimli)": 478.500,
+            "Uluslararası Ticaret ve Lojistik (%50 İndirimli)": 478.500,
+            "Uluslararası Ticaret ve Lojistik (İngilizce) (%50 İndirimli)": 478.500
+        },
+        "Konservatuvar": {
+            "Bestecilik ve Orkestra Şefliği (%50 İndirimli)": 231.000,
+            "Piyano, Arp ve Gitar (%50 İndirimli)": 231.000,
+            "Türk Halk Müziği (%50 İndirimli)": 231.000,
+            "Üflemeli ve Vurmalı Çalgılar (%50 İndirimli)": 231.000,
+            "Yaylı Çalgılar (%50 İndirimli)": 231.000
+        },
+        "Mimarlık ve Tasarım Fakültesi": {
+            "Gemi ve Yat Tasarımı (%50 İndirimli)": 478.500,
+            "İç Mimarlık (%50 İndirimli)": 478.500,
+            "Mimarlık (%50 İndirimli)": 478.500,
+            "Mimarlık (İngilizce) (%50 İndirim)": 478.500
+        },
+        "Mühendislik ve Doğa Bilimleri Fakültesi": {
+            "Bilgisayar Mühendisliği (İngilizce) (%50 İndirimli)": 495.000,
+            "Elektrik-Elektronik Mühendisliği (İngilizce) (%50 İndirimli)": 495.000,
+            "Endüstri Mühendisliği (İngilizce) (%50 İndirimli)": 495.000,
+            "Yazılım Mühendisliği (İngilizce) (%50 İndirimli)": 495.000
+        },
+        "Tıp Fakültesi": {
+            "Tıp (%50 İndirimli)": 728.750,
+            "Tıp (İngilizce) (%50 İndirimli)": 728.750
+        },
+        "Meslek Yüksekokulu": {
+            "Bankacılık ve Sigortacılık (%50 İndirimli)": 247.500,
+            "Çocuk Gelişimi (%50 İndirimli)": 247.500,
+            "Halkla İlişkiler ve Tanıtım (%50 İndirimli)": 247.500,
+            "İş Sağlığı ve Güvenliği (%50 İndirimli)": 247.500,
+            "Mahkeme Büro Hizmetleri (%50 İndirimli)": 247.500,
+            "Mimari Restorasyon (%50 İndirimli)": 247.500,
+            "Moda Tasarımı (%50 İndirimli)": 247.500,
+            "Sivil Hava Ulaştırma İşletmeciliği (%50 İndirimli)": 247.500,
+            "Turizm ve Otel İşletmeciliği (%50 İndirimli)": 247.500,
+            "Yapı Yalıtım Teknolojisi (%50 İndirimli)": 247.500
+        }
+    },
+   "MEF Üniversitesi (SADECE %50 ve ÜZERİ İNDİRİMLİ PROGRAMLAR)": {
+        "Hazırlık Programı": {
+            "İngilizce Hazırlık (60% İndirimli, Peşin)": 351.500,
+            "İngilizce Hazırlık (60% İndirimli, Taksitli)": 370.000,
+            "İngilizce Hazırlık (55% İndirimli, Peşin)": 395.438,
+            "İngilizce Hazırlık (55% İndirimli, Taksitli)": 416.250
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk (60% İndirimli, Peşin)": 385.700,
+            "Hukuk (60% İndirimli, Taksitli)": 406.000
+        },
+        "Mühendislik Fakültesi": {
+            "Bilgisayar Mühendisliği (55% İndirimli, Peşin)": 465.120,
+            "Bilgisayar Mühendisliği (55% İndirimli, Taksitli)": 489.600,
+            
+            "Endüstri Mühendisliği (55% İndirimli, Peşin)": 465.120,
+            "Endüstri Mühendisliği (55% İndirimli, Taksitli)": 489.600,
+            
+            "Elektrik-Elektronik Mühendisliği (55% İndirimli, Peşin)": 431.775,
+            "Elektrik-Elektronik Mühendisliği (55% İndirimli, Taksitli)": 454.500,
+
+            "İnşaat Mühendisliği (60% İndirimli, Peşin)": 383.800,
+            "İnşaat Mühendisliği (60% İndirimli, Taksitli)": 404.000,
+
+            "Makine Mühendisliği (60% İndirimli, Peşin)": 383.800,
+            "Makine Mühendisliği (60% İndirimli, Taksitli)": 404.000,
+
+            "Yapay Zeka Mühendisliği (55% İndirimli, Peşin)": 431.775,
+            "Yapay Zeka Mühendisliği (55% İndirimli, Taksitli)": 454.500
+        },
+        "İktisadi, İdari ve Sosyal Bilimler Fakültesi": {
+            "Ekonomi (55% İndirimli, Peşin)": 395.438,
+            "Ekonomi (55% İndirimli, Taksitli)": 416.250,
+
+            "İşletme (55% İndirimli, Peşin)": 395.438,
+            "İşletme (55% İndirimli, Taksitli)": 416.250,
+
+            "Siyaset Bilimi ve Uluslararası İlişkiler (55% İndirimli, Peşin)": 395.438,
+            "Siyaset Bilimi ve Uluslararası İlişkiler (55% İndirimli, Taksitli)": 416.250,
+
+            "Yönetim Bilişim Sistemleri (55% İndirimli, Peşin)": 395.438,
+            "Yönetim Bilişim Sistemleri (55% İndirimli, Taksitli)": 416.250
+        },
+        "Sanat Tasarım ve Mimarlık Fakültesi": {
+            "Mimarlık (60% İndirimli, Peşin)": 372.400,
+            "Mimarlık (60% İndirimli, Taksitli)": 392.000,
+
+            "Dijital Oyun Tasarımı (55% İndirimli, Peşin)": 418.950,
+            "Dijital Oyun Tasarımı (55% İndirimli, Taksitli)": 441.000
+        }
+    },
+    "Mudanya Üniversitesi": {
+        "Sağlık Bilimleri Fakültesi": {
+            "Çocuk Gelişimi (%50 Burslu)": 376.000,
+            "Fizyoterapi ve Rehabilitasyon (%50 Burslu)": 376.000,
+            "Hemşirelik (%50 Burslu)": 376.000,
+            "Beslenme ve Diyetetik (%50 Burslu)": 376.000,
+            "Dil ve Konuşma Terapisi (%50 Burslu)": 376.000,
+            "Ebelik (%50 Burslu)": 376.000
+        },
+        "Sanat ve Sosyal Bilimler Fakültesi": {
+            "Psikoloji (İngilizce) (%50 Burslu)": 498.500,
+            "Psikoloji (%50 Burslu)": 448.000,
+            "İngiliz Dili ve Edebiyatı (%50 Burslu)": 282.000,
+            "Ekonomi ve Finans (%50 Burslu)": 416.500,
+            "Görsel İletişim Tasarımı (%50 Burslu)": 416.500,
+            "İşletme (%50 Burslu)": 416.500,
+            "İşletme (İngilizce) (%50 Burslu)": 416.500,
+            "Lojistik Yönetimi (%50 Burslu)": 416.500,
+            "Yönetim Bilişim Sistemleri (%50 Burslu)": 416.500
+        },
+        "Mühendislik, Mimarlık ve Tasarım Fakültesi": {
+            "Bilgisayar Mühendisliği (%50 Burslu)": 448.000,
+            "Bilgisayar Mühendisliği ING (%50 Burslu)": 498.500,
+            "Elektrik- Elektronik Mühendisliği (İngilizce) (%50 Burslu)": 448.000,
+            "Endüstri Mühendisliği (İngilizce) (%50 Burslu)": 498.500,
+            "Endüstri Mühendisliği (%50 Burslu)": 448.000,
+            "Endüstriyel Tasarım (%50 Burslu)": 448.000
+        },
+        "Meslek Yüksekokulu": {
+            "Anestezi (%50 Burslu)": 250.000,
+            "İlk ve Acil Yardım (%50 Burslu)": 250.000,
+            "Fizyoterapi (%50 Burslu)": 250.000,
+            "Tıbbi Görüntüleme Teknikleri (%50 Burslu)": 250.000,
+            "Grafik Tasarım (%50 Burslu)": 250.000,
+            "Dış Ticaret (%50 Burslu)": 250.000,
+            "Bilgisayar Programcılığı (%50 Burslu)": 250.000,
+            "Otomotiv Teknolojisi (%50 Burslu)": 250.000,
+            "Ağız ve Diş Sağlığı (%50 Burslu)": 250.000,
+            "Elektronik Haberleşme Teknolojileri (%50 Burslu)": 250.000,
+            "Dijital Dönüşüm Elektroniği (%50 Burslu)": 250.000,
+            "Tele Sağlık Teknikerliği (%50 Burslu)": 250.000
+        }
+    },
+    "Nuh Naci Yazgan Üniversitesi": {
+        "Sağlık Bilimleri Fakültesi": {
+            
+            "Çocuk Gelişimi (%50 Burslu)": 376.000,
+            
+            "Fizyoterapi ve Rehabilitasyon (%50 Burslu)": 376.000,
+            
+            "Hemşirelik (%50 Burslu)": 376.000,
+            
+            "Beslenme ve Diyetetik (%50 Burslu)": 376.000,
+          
+            "Dil ve Konuşma Terapisi (%50 Burslu)": 376.000,
+            
+            "Ebelik (%50 Burslu)": 376.000
+        },
+        "Sanat ve Sosyal Bilimler Fakültesi": {
+           
+            "Psikoloji (İngilizce) (%50 Burslu)": 498.500,
+          
+            "Psikoloji (%50 Burslu)": 448.000,
+            
+            "İngiliz Dili ve Edebiyatı (%50 Burslu)": 282.000,
+            
+            "Ekonomi ve Finans (%50 Burslu)": 416.500,
+            
+            "Görsel İletişim Tasarımı (%50 Burslu)": 416.500,
+          
+            "İşletme (%50 Burslu)": 416.500,
+           
+            "İşletme (İngilizce) (%50 Burslu)": 416.500,
+            
+            "Lojistik Yönetimi (%50 Burslu)": 416.500,
+            
+            "Yönetim Bilişim Sistemleri (%50 Burslu)": 416.500
+        },
+        "Mühendislik, Mimarlık ve Tasarım Fakültesi": {
+           
+            "Bilgisayar Mühendisliği (%50 Burslu)": 448.000,
+            
+            "Bilgisayar Mühendisliği ING (%50 Burslu)": 498.500,
+           
+            "Elektrik- Elektronik Mühendisliği (İngilizce) (%50 Burslu)": 448.000,
+           
+            "Endüstri Mühendisliği (İngilizce) (%50 Burslu)": 498.500,
+           
+            "Endüstri Mühendisliği (%50 Burslu)": 448.000,
+           
+            "Endüstriyel Tasarım (%50 Burslu)": 448.000
+        },
+        "Meslek Yüksekokulu": {
+            "Anestezi (Ücretli)": 500.000,
+            "Anestezi (%50 Burslu)": 250.000,
+            
+            "İlk ve Acil Yardım (%50 Burslu)": 250.000,
+           
+            "Fizyoterapi (%50 Burslu)": 250.000,
+            
+            "Tıbbi Görüntüleme Teknikleri (%50 Burslu)": 250.000,
+            
+            "Grafik Tasarım (%50 Burslu)": 250.000,
+          
+            "Dış Ticaret (%50 Burslu)": 250.000,
+           
+            "Bilgisayar Programcılığı (%50 Burslu)": 250.000,
+           
+            "Otomotiv Teknolojisi (%50 Burslu)": 250.000,
+            
+            "Ağız ve Diş Sağlığı (%50 Burslu)": 250.000,
+            
+            "Elektronik Haberleşme Teknolojileri (%50 Burslu)": 250.000,
+          
+            "Dijital Dönüşüm Elektroniği (%50 Burslu)": 250.000,
+            
+            "Tele Sağlık Teknikerliği (%50 Burslu)": 250.000
+        }
+    },
+    "PİRİ REİS ÜNİVERSİTESİ ": {
+        "Hazırlık ve Meslek Yüksekokulu": {
+            
+            "İngilizce Hazırlık (Ön Lisans) - %50 İndirimli": 233.750,
+            
+            
+
+            
+            "İngilizce Hazırlık (Lisans) - %50 İndirimli": 291.500,
+            
+            
+
+            
+            "Denizcilik Meslek Yüksek Okulu - %50 İndirimli": 233.750,
+           
+            
+        },
+        "Fakülteler": {
+           
+            "Denizcilik Fakültesi - %50 İndirimli": 357.500,
+            
+
+           
+            "Mühendislik Fakültesi - %50 İndirimli": 357.500,
+           
+
+            "İktisadi İdari Bilimler Fakültesi - %50 İndirimli": 357.500,
+           
+
+           
+            "Hukuk Fakültesi - %50 İndirimli": 357.500,
+         
+        }
+    },
+    "OSTİM Teknik Üniversitesi": {
+        "Mühendislik Fakültesi": {
+            "Bilgisayar Mühendisliği (İngilizce) - %50 YKS İndirimli": 535.000,
+            "Bilgisayar Mühendisliği (İngilizce) - İndirimli Ücret": 440.000,
+            "Bilgisayar Mühendisliği (Türkçe) - %50 YKS İndirimli": 510.000,
+            "Bilgisayar Mühendisliği (Türkçe) - İndirimli Ücret": 440.000,
+            "Elektrik Elektronik Mühendisliği (İngilizce) - %50 YKS İndirimli": 465.000,
+            "Elektrik Elektronik Mühendisliği (Türkçe) - %50 YKS İndirimli": 440.000,
+            "Endüstri Mühendisliği (İngilizce) - %50 YKS İndirimli": 385.000,
+            "Endüstri Mühendisliği (Türkçe) - %50 YKS İndirimli": 365.000,
+            "Havacılık ve Uzay Mühendisliği (İngilizce) - %50 YKS İndirimli": 465.000,
+            "Havacılık ve Uzay Mühendisliği (İngilizce) - İndirimli Ücret": 402.000,
+            "Makine Mühendisliği (İngilizce) - %50 YKS İndirimli": 365.000,
+            "Nanoteknoloji Mühendisliği (İngilizce) - %50 YKS İndirimli": 350.000,
+            "Nanoteknoloji Mühendisliği (İngilizce) - İndirimli Ücret": 260.000,
+            "Yapay Zeka Mühendisliği (Türkçe) - %50 YKS İndirimli": 535.000,
+            "Yapay Zeka Mühendisliği (Türkçe) - İndirimli Ücret": 473.000,
+            "Yazılım Mühendisliği (İngilizce) - %50 YKS İndirimli": 535.000,
+            "Yazılım Mühendisliği (İngilizce) - İndirimli Ücret": 440.000,
+            "Yazılım Mühendisliği (Türkçe) - %50 YKS İndirimli": 510.000,
+            "Yazılım Mühendisliği (Türkçe) - İndirimli Ücret": 440.000
+        },
+        "İktisadi ve İdari Bilimler Fakültesi": {
+            "İşletme (Türkçe) - %50 YKS İndirimli": 350.000,
+            "İşletme (Türkçe) - İndirimli Ücret": 273.700,
+            "Uluslararası Ticaret ve Finans (İngilizce) - %50 YKS İndirimli": 350.000,
+            "Uluslararası Ticaret ve Finans (İngilizce) - İndirimli Ücret": 273.700,
+            "Ekonomi - %50 YKS İndirimli": 350.000,
+            "Ekonomi - İndirimli Ücret": 273.700,
+            "Siyaset Bilimi ve Uluslararası İlişkiler - %50 YKS İndirimli": 350.000,
+            "Siyaset Bilimi ve Uluslararası İlişkiler - İndirimli Ücret": 273.700,
+            "Yönetim Bilişim Sistemleri - %50 YKS İndirimli": 412.500,
+            "Psikoloji - %50 YKS İndirimli": 390.000
+        },
+        "Mimarlık ve Tasarım Fakültesi": {
+            "İç Mimarlık - %50 YKS İndirimli": 350.000,
+            "Mimarlık (İngilizce) - %50 YKS İndirimli": 412.500
+        },
+        "Meslek Yüksekokulu (%50 YKS İndirimli)": {
+            "Anestezi": 237.500,
+            "İlk ve Acil Yardım": 237.500,
+            "Tıbbi Görüntüleme Teknikleri": 237.500,
+            "Biyomedikal Cihaz Teknolojisi": 237.500,
+            "Ağız ve Diş Sağlığı": 237.500,
+            "Dış Ticaret": 237.500,
+            "Uçak Teknolojisi": 237.500,
+            "Sivil Hava Ulaştırma İşletmeciliği": 237.500,
+            "Bilgisayar Programcılığı": 237.500,
+            "Grafik Tasarımı": 237.500,
+            "Halkla İlişkiler ve Tanıtım": 237.500,
+            "Çocuk Gelişimi": 237.500,
+            "Sivil Havacılık Kabin Hizmetleri": 237.500,
+            "Elektrik": 237.500
+        },
+        "Yabancı Diller Yüksekokulu": {
+            "İngilizce Hazırlık Ücreti - İndirimli Ücret": 350.000
+        }
+    },
+    "Özyeğin Üniversitesi": {
+        "Havacılık ve Uzay Bilimleri Fakültesi": {
+            "Pilotaj (Yıllık Ücret)": 1385000.0,
+            "Pilotaj (Güz Dönemi Ücreti)": 692.500,
+            "Pilotaj (Bahar Dönemi Ücreti)": 796.375
+        },
+        "Fakülteler (Ortak Kategori)": {
+            "Gastronomi ve Mutfak Sanatları (Yıllık Ücret)": 991.400,
+            "Gastronomi ve Mutfak Sanatları (Güz Dönemi Ücreti)": 495.700,
+            "Gastronomi ve Mutfak Sanatları (Bahar Dönemi Ücreti)": 570.055,
+            "Havacılık Yönetimi (Yıllık Ücret)": 991.400,
+            "Havacılık Yönetimi (Güz Dönemi Ücreti)": 495.700,
+            "Havacılık Yönetimi (Bahar Dönemi Ücreti)": 570.055,
+            "Otel Yöneticiliği (Yıllık Ücret)": 845.600,
+            "Otel Yöneticiliği (Güz Dönemi Ücreti)": 422.800,
+            "Otel Yöneticiliği (Bahar Dönemi Ücreti)": 486.220
+        },
+        "Henüz Ücreti Belirtilmeyen Fakülteler": [
+            "İşletme Fakültesi",
+            "Mimarlık ve Tasarım Fakültesi",
+            "Mühendislik Fakültesi",
+            "Hukuk Fakültesi",
+            "Sosyal Bilimler Fakültesi"
+        ]
+    },
+    "SANKO Üniversitesi": {
+        "Lisans Bölümleri": {
+            "Tıp Bölümü": 1265000.0,
+            "Hemşirelik Bölümü": 546.000,
+            "Fizyoterapi ve Rehabilitasyon Bölümü": 546.000,
+            "Beslenme ve Diyetetik Bölümü": 546.000
+        },
+        "Ön Lisans Programları": {
+            "Ameliyathane Hizmetleri Programı": 350.000,
+            "Anestezi Programı": 350.000,
+            "İlk ve Acil Yardım Programı": 350.000,
+            "Tıbbi Görüntüleme Teknikleri Programı": 350.000
+        }
+    },
+    "TOBB Ekonomi ve Teknoloji Üniversitesi": {
+        "Tıp Fakültesi": {
+            "Tıp (%50 Burslu)": 651.000
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk (%50 Burslu)": 465.000
+        },
+        "Mühendislik Fakültesi": {
+            "Bilgisayar Mühendisliği (%50 Burslu)": 465.000,
+            "Endüstri Mühendisliği (%50 Burslu)": 465.000,
+            "Yazılım Mühendisliği (%50 Burslu)": 465.000
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Hemşirelik (%50 Burslu)": 465.000,
+            "Fizyoterapi ve Rehabilitasyon (%50 Burslu)": 465.000,
+            "Beslenme ve Diyetetik (%50 Burslu)": 465.000
+        },
+        "Sosyal Bilimler Fakültesi": {
+            "Psikoloji (%50 Burslu)": 465.000,
+            "İşletme (%50 Burslu)": 465.000
+        }
     }
 }
 
