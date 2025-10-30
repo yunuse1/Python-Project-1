@@ -3680,6 +3680,803 @@ schools = {
             "Psikoloji (%50 Burslu)": 465.000,
             "İşletme (%50 Burslu)": 465.000
         }
+    },
+
+    "Üsküdar Üniversitesi": {
+        "İletişim Fakültesi": {
+            "Çizgi Film ve Animasyon": 293600,
+            "Görsel İletişim Tasarımı": 311950,
+            "Halkla İlişkiler ve Tanıtım": 212750,
+            "Yeni Medya ve İletişim": 306375,
+            "Yeni Medya ve İletişim (İngilizce)": 306375,
+            "Radyo, Televizyon ve Sinema": 293600,
+            "Reklamcılık": 212750,
+            "Gazetecilik": 175625
+        },
+        "İnsan ve Toplum Bilimleri Fakültesi": {
+            "Felsefe": 140800,
+            "Sosyoloji": 234875,
+            "Siyaset Bilimi ve Uluslararası İlişkiler (İngilizce)": 245100,
+            "Siyaset Bilimi ve Uluslararası İlişkiler": 245100,
+            "Tarih": 165300,
+            "İngilizce Mütercim ve Tercümanlık": 359025,
+            "Yönetim Bilişim Sistemleri": 339075
+        },
+        "Mühendislik ve Doğa Bilimleri Fakültesi": {
+            "Adli Bilimler": 410625,
+            "Bilgisayar Mühendisliği (İngilizce)": 448200,
+            "Biyomühendislik (İngilizce)": 176800,
+            "Elektrik-Elektronik Mühendisliği (İngilizce)": 234875,
+            "Endüstri Mühendisliği (İngilizce)": 390475,
+            "Kimya Mühendisliği (İngilizce)": 247000,
+            "Moleküler Biyoloji ve Genetik": 439275,
+            "Moleküler Biyoloji ve Genetik (İngilizce)": 439275,
+            "Yazılım Mühendisliği (İngilizce)": 448200
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Beslenme ve Diyetetik": 359025,
+            "Çocuk Gelişimi": 359025,
+            "Dil ve Konuşma Terapisi": 330300,
+            "Ebelik": 359025,
+            "Ergoterapi": 330300,
+            "Fizyoterapi ve Rehabilitasyon": 359025,
+            "Hemşirelik": 359025,
+            "İş Sağlığı ve Güvenliği": 204550,
+            "Odyoloji": 287225,
+            "Perfüzyon": 206600,
+            "Sağlık Yönetimi": 204525,
+            "Sosyal Hizmet": 204525
+        },
+        "Tıp Fakültesi": {
+            "Tıp (Türkçe)": 723025,
+            "Tıp (İngilizce)": 723025
+        },
+        "Diş Hekimliği Fakültesi": {
+            "Diş Hekimliği (Türkçe)": 620555,
+            "Diş Hekimliği (İngilizce)": 620555
+        },
+        "Sağlık Hizmetleri Meslek Yüksekokulu": {
+            "Acil Durum ve Afet Yönetimi": 204525,
+            "Ağız ve Diş Sağlığı": 251135,
+            "Ameliyathane Hizmetleri": 251135,
+            "Anestezi": 251135,
+            "Biyomedikal Cihaz Teknolojisi": 204525,
+            "Çevre Sağlığı": 204525,
+            "Çocuk Gelişimi": 218800,
+            "Çocuk Koruma ve Bakım Hizmetleri": 123175,
+            "Diş Protez Teknolojisi": 251135,
+            "Diyaliz": 218800,
+            "Eczane Hizmetleri": 251135,
+            "Elektronörofizyoloji": 218800,
+            "Engelli Bakımı ve Rehabilitasyon": 123175,
+            "Evde Hasta Bakımı": 123175,
+            "Gıda Teknolojisi": 204525,
+            "İş Sağlığı ve Güvenliği": 204525,
+            "Laboratuvar Teknolojisi": 204525,
+            "Nükleer Teknoloji ve Radyasyon Güvenliği": 123175,
+            "Odyometri": 218800,
+            "Optisyenlik": 251135,
+            "Ortopedik Protez ve Ortez": 204525,
+            "Otopsi Yardımcılığı": 204525,
+            "Podoloji": 204525,
+            "Patoloji Laboratuvar Teknikleri": 218800,
+            "Radyoterapi": 218800,
+            "Saç Bakımı ve Güzellik Hizmetleri": 204525,
+            "Sağlık Bilgi Sistemleri Teknikerliği": 204525,
+            "Sağlık Kurumları İşletmeciliği": 204525,
+            "Sosyal Güvenlik": 204525,
+            "Sosyal Hizmetler": 204525,
+            "Tıbbi Dokümantasyon ve Sekreterlik": 237825,
+            "Tıbbi Görüntüleme Teknikleri": 251135,
+            "Tıbbi Laboratuvar Teknikleri": 251135,
+            "Tıbbi Tanıtım ve Pazarlama": 123175,
+            "Tıbbi ve Aromatik Bitkiler": 133875,
+            "Yaşlı Bakımı": 123175
+        },
+        "İngilizce Hazırlık": {
+            "İngilizce Hazırlık": 345600
+        }
+    },
+    
+    
+    "Acıbadem Üniversitesi": {
+        "Tıp Fakültesi": {
+            "Tıp (Türkçe)": 723025,
+            "Tıp (İngilizce)": 723025
+        },
+        "Diş Hekimliği Fakültesi": {
+            "Diş Hekimliği (Türkçe)": 620555,
+            "Diş Hekimliği (İngilizce)": 620555
+        },
+        "Eczacılık Fakültesi": {
+            "Eczacılık": 502270
+        },
+        "Mühendislik Fakültesi": {
+            "Bilgisayar Mühendisliği": 448200,
+            "Yazılım Mühendisliği": 448200,
+            "Biyomedikal Mühendislik": 410625,
+            "Moleküler Biyoloji ve Genetik": 439275
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Beslenme ve Diyetetik": 359025,
+            "Hemşirelik": 359025,
+            "Fizyoterapi ve Rehabilitasyon": 359025,
+            "Ergoterapi": 330300,
+            "Çocuk Gelişimi": 359025,
+            "Odyoloji": 287225,
+            "Sağlık Yönetimi": 204525
+        },
+        "Sağlık Hizmetleri MYO": {
+            "Anestezi": 251135,
+            "Ameliyathane Hizmetleri": 251135,
+            "Tıbbi Görüntüleme Teknikleri": 251135,
+            "Tıbbi Laboratuvar Teknikleri": 251135,
+            "Ağız ve Diş Sağlığı": 251135,
+            "Optisyenlik": 251135,
+            "Eczane Hizmetleri": 251135,
+            "Diş Protez Teknolojisi": 251135,
+            "Odyometri": 218800,
+            "Diyaliz": 218800,
+            "Elektronörofizyoloji": 218800,
+            "Patoloji Laboratuvar Teknikleri": 204525,
+            "Ortopedik Protez ve Ortez": 204525,
+            "İlk ve Acil Yardım": 204525,
+            "Sağlık Bilgi Sistemleri Teknikerliği": 204525,
+            "Sosyal Hizmetler": 204525,
+            "Tıbbi Tanıtım ve Pazarlama": 123175,
+            "Yaşlı Bakımı": 123175,
+            "Evde Hasta Bakımı": 123175,
+            "Nükleer Teknoloji ve Radyasyon Güvenliği": 123175,
+            "Engelli Bakımı ve Rehabilitasyon": 123175,
+            "Saç Bakımı ve Güzellik Hizmetleri": 204525
+        }
+    },
+
+    "Alanya Üniversitesi": {
+        "İktisadi, İdari ve Sosyal Bilimler Fakültesi": {
+            "İşletme (Türkçe)": 476000,
+            "İşletme (İngilizce)": 476000,
+            "Turizm İşletmeciliği (İngilizce)": 476000
+        },
+        "Mühendislik ve Doğa Bilimleri Fakültesi": {
+            "Bilgisayar Mühendisliği (İngilizce)": 500000,
+            "Mimarlık (İngilizce)": 500000,
+            "İç Mimarlık ve Çevre Tasarımı (Türkçe)": 527000
+        },
+        "Sanat ve Tasarım Fakültesi": {
+            "Gastronomi ve Mutfak Sanatları (İngilizce)": 595000,
+            "Gastronomi ve Mutfak Sanatları (Türkçe)": 595000,
+            "Çizgi Film ve Animasyon (Türkçe)": 476000,
+            "İletişim ve Tasarımı (İngilizce)": 476000
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Fizyoterapi ve Rehabilitasyon (Türkçe)": 527000
+        },
+        "Meslek Yüksekokulu": {
+            "Aşçılık (Türkçe)": 425000,
+            "Fizyoterapi (Türkçe)": 425000,
+            "Bilgisayar Programcılığı (Türkçe)": 425000,
+            "Turizm ve Otel İşletmeciliği (Türkçe)": 425000
+        },
+        "Yabancı Diller Meslek Yüksekokulu": {
+            "İngilizce Hazırlık": 425000
+        },
+        "Ekstra": {
+            "Yönetim Bilişim Sistemleri": 500000,
+            "İç Mimarlık ve Çevre Tasarımı": 527000
+        }
+    },
+
+    "Altınbaş Üniversitesi": {
+        "Tıp Fakültesi": {
+            "Tıp": 1290000
+        },
+        "Diş Hekimliği Fakültesi": {
+            "Diş Hekimliği": 1190000
+        },
+        "Eczacılık Fakültesi": {
+            "Eczacılık": 990000
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Ebelik": 790000,
+            "Hemşirelik": 790000,
+            "Sağlık Yönetimi": 690000,
+            "Psikoloji": 990000,
+            "Çocuk Gelişimi": 590000
+        },
+        "Sağlık Hizmetleri MYO": {
+            "Çevre Sağlığı ve Çevresel Risk Yönetimi Teknikerliği": 590000,
+            "Eczane Hizmetleri": 590000,
+            "Fizyoterapi": 590000,
+            "İlk ve Acil Yardım": 590000,
+            "Odyometri": 590000,
+            "Optisyenlik": 590000,
+            "Radyoterapi": 590000,
+            "Tele-Sağlık Teknikerliği": 590000,
+            "Tıbbi Dokümantasyon ve Sekreterlik": 590000,
+            "Tıbbi Görüntüleme Teknikleri": 590000,
+            "Tıbbi Laboratuvar Teknikleri": 590000
+        },
+        "Mühendislik Fakültesi": {
+            "Bilgisayar Mühendisliği": 790000,
+            "Elektrik-Elektronik Mühendisliği": 790000,
+            "Endüstri Mühendisliği": 790000,
+            "İnşaat Mühendisliği": 690000,
+            "Makine Mühendisliği": 690000,
+            "Yazılım Geliştirme": 890000,
+            "Yazılım Mühendisliği": 790000
+        },
+        "Mimarlık Fakültesi": {
+            "Mimarlık": 790000,
+            "İç Mimarlık ve Çevre Tasarımı": 890000
+        },
+        "İktisadi, İdari ve Sosyal Bilimler Fakültesi": {
+            "Ekonomi": 690000,
+            "İşletme": 790000,
+            "Lojistik Yönetimi": 690000,
+            "Pazarlama": 690000,
+            "Siyaset Bilimi ve Kamu Yönetimi": 690000,
+            "Sosyoloji": 690000,
+            "Uluslararası İlişkiler": 690000,
+            "Uluslararası Ticaret ve Finansman": 690000,
+            "Yönetim Bilişim Sistemleri": 890000
+        },
+        "Sanat ve Tasarım Fakültesi": {
+            "Gastronomi ve Mutfak Sanatları": 790000,
+            "Görsel İletişim Tasarımı": 690000,
+            "Halkla İlişkiler ve Reklamcılık": 690000,
+            "Kuyumculuk ve Mücevher Tasarımı": 690000,
+            "Radyo, Televizyon ve Sinema": 690000
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk": 790000
+        }
+    },
+
+    "Ankara Bilim Üniversitesi": {
+        "Hukuk Fakültesi": {
+            "Hukuk (Türkçe)": 464000
+        },
+        "Mühendislik ve Mimarlık Fakültesi": {
+            "Bilgisayar Mühendisliği (Türkçe)": 464000,
+            "Bilgisayar Mühendisliği (İngilizce)": 464000,
+            "Bilişim Sistemleri Mühendisliği (İngilizce)": 400000,
+            "Elektrik-Elektronik Mühendisliği (İngilizce)": 464000,
+            "Endüstri Mühendisliği (İngilizce)": 400000,
+            "Yazılım Mühendisliği (İngilizce)": 464000
+        },
+        "İnsan ve Toplum Bilimleri Fakültesi": {
+            "İşletme (İngilizce)": 400000,
+            "İngilizce Mütercim Tercümanlık": 400000,
+            "Psikoloji (İngilizce)": 464000,
+            "Psikoloji (Türkçe)": 464000,
+            "Siyaset Bilimi ve Kamu Yönetimi (İngilizce)": 400000,
+            "Yönetim Bilişim Sistemleri (İngilizce)": 400000,
+            "Yönetim Bilişim Sistemleri (Türkçe)": 400000
+        },
+        "Güzel Sanatlar ve Tasarım Fakültesi": {
+            "Film Tasarımı ve Yönetimi (İngilizce)": 400000,
+            "İç Mimarlık ve Çevre Tasarımı (İngilizce)": 400000,
+            "Yeni Medya ve İletişim (İngilizce)": 400000
+        },
+        "Meslek Yüksekokulu": {
+            "Bilgisayar Programcılığı (Türkçe)": 249600,
+            "Bilişim Güvenliği Teknolojisi (Türkçe)": 249600,
+            "İHA Teknolojisi ve Operatörlüğü (Türkçe)": 249600,
+            "Bilgisayar Destekli Tasarım ve Animasyon (Türkçe)": 249600,
+            "E-Ticaret ve Pazarlama (Türkçe)": 249600,
+            "Web Tasarımı ve Kodlama (Türkçe)": 249600
+        }
+    },
+
+    "Ankara Medipol Üniversitesi": {
+        "Tıp Fakültesi": {
+            "Tıp (Türkçe)": 925000,
+            "Tıp (İngilizce)": 925000
+        },
+        "Diş Hekimliği Fakültesi": {
+            "Diş Hekimliği (Türkçe)": 925000,
+            "Diş Hekimliği (İngilizce)": 925000
+        },
+        "Eczacılık Fakültesi": {
+            "Eczacılık (Türkçe)": 825000,
+            "Eczacılık (İngilizce)": 825000
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk": 540000
+        },
+        "Mühendislik ve Doğa Bilimleri Fakültesi": {
+            "Bilgisayar Mühendisliği (İngilizce)": 580000,
+            "Elektrik-Elektronik Mühendisliği (İngilizce)": 580000
+        },
+        "İktisadi, İdari ve Sosyal Bilimler Fakültesi": {
+            "Psikoloji (Türkçe)": 928000,
+            "Psikoloji (İngilizce)": 928000,
+            "Yönetim Bilişim Sistemleri (Türkçe)": 490000,
+            "Yönetim Bilişim Sistemleri (İngilizce)": 490000
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Beslenme ve Diyetetik": 640000,
+            "Dil ve Konuşma Terapisi": 490000,
+            "Ebelik": 540000,
+            "Ergoterapi": 490000,
+            "Fizyoterapi ve Rehabilitasyon (Türkçe)": 640000,
+            "Fizyoterapi ve Rehabilitasyon (İngilizce)": 640000,
+            "Hemşirelik (Türkçe)": 580000,
+            "Hemşirelik (İngilizce)": 580000,
+            "Odyoloji": 480000
+        },
+        "Güzel Sanatlar, Tasarım ve Mimarlık Fakültesi": {
+            "İç Mimarlık ve Çevre Tasarımı": 800000
+        },
+        "Sağlık Hizmetleri Meslek Yüksekokulu": {
+            "Ağız ve Diş Sağlığı (Türkçe)": 290000,
+            "Ağız ve Diş Sağlığı (İngilizce)": 290000,
+            "Ameliyathane Hizmetleri (Türkçe)": 290000,
+            "Ameliyathane Hizmetleri (İngilizce)": 290000,
+            "Anestezi (Türkçe)": 290000,
+            "Anestezi (İngilizce)": 290000,
+            "Biyomedikal Cihaz Teknolojisi": 290000,
+            "Diş Protez Teknolojisi (Türkçe)": 290000,
+            "Diş Protez Teknolojisi (İngilizce)": 290000,
+            "Diyaliz": 290000,
+            "Fizyoterapi (Türkçe)": 290000,
+            "Fizyoterapi (İngilizce)": 290000,
+            "İlk ve Acil Yardım (Türkçe)": 290000,
+            "İlk ve Acil Yardım (İngilizce)": 290000,
+            "Odyometri": 290000,
+            "Optisyenlik": 290000,
+            "Radyoterapi": 290000,
+            "Sağlık Turizmi İşletmeciliği": 290000,
+            "Tıbbi Görüntüleme Teknikleri": 290000,
+            "Tıbbi Laboratuvar Teknikleri (Türkçe)": 290000,
+            "Tıbbi Laboratuvar Teknikleri (İngilizce)": 290000
+        }
+    },
+
+    "Antalya Belek Üniversitesi": {
+        "İletişim Fakültesi": {
+            "İletişim ve Tasarımı": 340000,
+            "Radyo, Televizyon ve Sinema": 340000,
+            "Sosyoloji": 340000
+        },
+        "Güzel Sanatlar ve Tasarım Fakültesi": {
+            "İç Mimarlık ve Çevre Tasarımı": 400000,
+            "Gastronomi ve Mutfak Sanatları": 400000
+        },
+        "İktisadi ve İdari Bilimler Fakültesi": {
+            "Uluslararası Ticaret ve İşletmecilik": 400000,
+            "Yönetim Bilişim Sistemleri": 400000,
+            "Psikoloji": 475000
+        },
+        "Meslek Yüksekokulu": {
+            "Bankacılık ve Sigortacılık": 290000,
+            "Eczane Hizmetleri": 290000,
+            "İnşaat Teknolojisi": 290000,
+            "Mahkeme Büro Hizmetleri": 290000,
+            "Mimari Restorasyon": 290000,
+            "Turist Rehberliği": 290000,
+            "Aşçılık": 330000,
+            "Bilgisayar Destekli Tasarım ve Animasyon": 330000,
+            "Bilişim Güvenliği Teknolojisi": 330000,
+            "İç Mekan Tasarımı": 330000,
+            "Optisyenlik": 330000,
+            "Sivil Hava Ulaştırma İşletmeciliği": 330000,
+            "Sivil Havacılık Kabin Hizmetleri": 330000,
+            "Web Tasarımı ve Kodlama": 330000
+        },
+        "Mühendislik Fakültesi": {
+            "Yazılım Mühendisliği": 400000
+        }
+    },
+
+    "Antalya Bilim Üniversitesi": {
+        "Hazırlık Programı": {
+            "İngilizce Hazırlık": 175560
+        },
+        "Mühendislik Fakültesi": {
+            "Mühendislik Fakültesi": 267520
+        },
+        "İktisadi, İdari ve Sosyal Bilimler Fakültesi": {
+            "Ekonomi": 267520,
+            "İşletme": 267520,
+            "Siyaset Bilimi ve Uluslararası İlişkiler": 267520,
+            "Psikoloji": 225720,
+            "Turizm İşletmeciliği": 267520
+        },
+        "Gastronomi ve Mutfak Sanatları": {
+            "Gastronomi ve Mutfak Sanatları": 275880
+        },
+        "Güzel Sanatlar ve Mimarlık Fakültesi": {
+            "Güzel Sanatlar ve Mimarlık Fakültesi": 275880
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk": 334400
+        },
+        "Diş Hekimliği Fakültesi": {
+            "Diş Hekimliği": 440080
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Sağlık Bilimleri Fakültesi": 267520
+        },
+        "Meslek Yüksekokulu": {
+            "Adalet MYO": 200640,
+            "Sağlık Hizmetleri MYO": 200640,
+            "Meslek Yüksekokulu": 200640
+        },
+        "Sivil Havacılık Yüksekokulu": {
+            "Pilotaj": 375000
+        }
+    },
+
+    "Ataşehir Adıgüzel Üniversitesi": {
+        "Meslek Yüksekokulu": {
+            "İşletme Yönetimi": 176000,
+            "Aşçılık": 214500,
+            "Mekatronik": 229440,
+            "Optisyenlik": 257474,
+            "Bilgisayar Programcılığı": 280050,
+            "Sivil Havacılık Kabin Hizmetleri": 288903
+        }
+    },
+
+    "Atılım Üniversitesi": {
+        "Fen-Edebiyat Fakültesi": {
+            "İngiliz Dili ve Edebiyatı (İngilizce)": 425000,
+            "İngilizce Mütercim ve Tercümanlık (İngilizce)": 425000,
+            "Matematik (İngilizce)": 425000,
+            "Psikoloji (İngilizce)": 425000
+        },
+        "Güzel Sanatlar Tasarım ve Mimarlık Fakültesi": {
+            "Endüstriyel Tasarım": 425000,
+            "Grafik Tasarımı": 425000,
+            "İç Mimarlık ve Çevre Tasarımı": 425000,
+            "Mimarlık": 425000,
+            "Tekstil ve Moda Tasarımı": 412500
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk": 425000
+        },
+        "İşletme Fakültesi": {
+            "Halkla İlişkiler ve Reklamcılık (İngilizce)": 425000,
+            "İktisat (İngilizce)": 425000,
+            "İktisat": 425000,
+            "İşletme (İngilizce)": 425000,
+            "İşletme": 425000,
+            "Maliye": 425000,
+            "Siyaset Bilimi ve Kamu Yönetimi": 425000,
+            "Turizm İşletmeciliği (İngilizce)": 425000,
+            "Uluslararası İlişkiler (İngilizce)": 425000,
+            "Uluslararası Ticaret ve Lojistik (İngilizce)": 425000
+        },
+        "Mühendislik Fakültesi": {
+            "Bilgisayar Mühendisliği (İngilizce)": 425000,
+            "Bilişim Sistemleri Mühendisliği (İngilizce)": 425000,
+            "Elektrik-Elektronik Mühendisliği (İngilizce)": 425000,
+            "Endüstri Mühendisliği (İngilizce)": 425000,
+            "Enerji Sistemleri Mühendisliği (İngilizce)": 425000,
+            "Havacılık ve Uzay Mühendisliği (İngilizce)": 425000,
+            "İnşaat Mühendisliği (İngilizce)": 425000,
+            "Kimya Mühendisliği (İngilizce)": 425000,
+            "Makine Mühendisliği (İngilizce)": 425000,
+            "Mekatronik Mühendisliği (İngilizce)": 425000,
+            "Metalurji ve Malzeme Mühendisliği (İngilizce)": 425000,
+            "Otomotiv Mühendisliği (İngilizce)": 425000,
+            "Yazılım Mühendisliği (İngilizce)": 425000
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Beslenme ve Diyetetik (İngilizce)": 425000,
+            "Çocuk Gelişimi": 412500,
+            "Fizyoterapi ve Rehabilitasyon (İngilizce)": 425000,
+            "Hemşirelik (İngilizce)": 425000,
+            "Odyoloji (İngilizce)": 425000
+        },
+        "Sivil Havacılık Yüksekokulu": {
+            "Havacılık Yönetimi (İngilizce)": 425000,
+            "Pilotaj (İngilizce)": 425000,
+            "Uçak Elektrik ve Elektroniği (İngilizce)": 425000,
+            "Uçak Gövde ve Motor Bakımı (İngilizce)": 425000
+        },
+        "Tıp Fakültesi": {
+            "Tıp": 455000,
+            "Tıp - İngilizce Hazırlık Programı": 425000
+        },
+        "Atılım Meslek Yüksekokulu": {
+            "Mahkeme Büro Hizmetleri": 280000,
+            "E-Ticaret ve Pazarlama": 280000
+        },
+        "Sağlık Hizmetleri Meslek Yüksekokulu": {
+            "Ameliyathane Hizmetleri": 280000,
+            "Anestezi": 280000,
+            "Fizyoterapi": 280000,
+            "İlk ve Acil Yardım": 280000,
+            "Tıbbi Görüntüleme Teknikleri": 280000,
+            "Tıbbi Laboratuvar Teknikleri": 280000
+        }
+    },
+
+    "Avrasya Üniversitesi": {
+        "Spor Bilimleri Fakültesi": {
+            "Antrenörlük Eğitimi": 99000,
+            "Egzersiz ve Spor Bilimleri": 99000,
+            "Rekreasyon": 99000,
+            "Spor Yöneticiliği": 99000
+        },
+        "İletişim Fakültesi": {
+            "Görsel İletişim Tasarımı": 99000,
+            "Yeni Medya ve İletişim": 99000,
+            "Halkla İlişkiler ve Tanıtım": 77000
+        },
+        "Mühendislik-Mimarlık Fakültesi": {
+            "İnşaat Mühendisliği": 110000,
+            "Mimarlık": 110000,
+            "Bilgisayar Mühendisliği": 137500,
+            "İç Mimarlık ve Çevre Tasarımı": 154000,
+            "Moleküler Biyoloji ve Genetik": 154000,
+            "İnşaat Teknolojisi": 77000,
+            "Mimari Restorasyon": 99000,
+            "İç Mekan Tasarımı": 99000
+        },
+        "İktisadi ve İdari Bilimler Fakültesi": {
+            "İşletme": 110000,
+            "Yönetim Bilişim Sistemleri": 110000,
+            "Siyaset Bilimi ve Kamu Yönetimi": 137500,
+            "Dış Ticaret": 77000,
+            "E-Ticaret ve Pazarlama": 77000,
+            "Lojistik": 77000,
+            "Mahkeme Büro Hizmetleri": 77000
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Beslenme ve Diyetetik": 137500,
+            "Çocuk Gelişimi": 137500,
+            "Ergoterapi": 137500,
+            "Fizyoterapi ve Rehabilitasyon": 137500,
+            "Odyoloji": 137500,
+            "Ebelik": 154000,
+            "Hemşirelik": 154000,
+            "Psikoloji": 154000,
+            "Ağız ve Diş Sağlığı": 99000,
+            "Diş Protez Teknolojisi": 99000,
+            "Eczane Hizmetleri": 99000,
+            "Elektronörofizyoloji": 99000,
+            "Fizyoterapi": 99000,
+            "İş Sağlığı ve Güvenliği": 99000,
+            "İş ve Uğraşı Terapisi": 99000,
+            "Odyometri": 99000,
+            "Optisyenlik": 99000,
+            "Ortopedik Protez ve Ortez": 99000,
+            "Patoloji Laboratuvar Teknikleri": 99000,
+            "Tıbbi Laboratuvar Teknikleri": 99000,
+            "Ameliyathane Hizmetleri": 110000,
+            "Anestezi": 110000,
+            "Diyaliz": 110000,
+            "İlk ve Acil Yardım": 110000,
+            "Radyoterapi": 110000,
+            "Tıbbi Görüntüleme Teknikleri": 110000,
+            "Sosyal Hizmetler": 77000
+        },
+        "Sanat ve Tasarım Fakültesi": {
+            "Gastronomi ve Mutfak Sanatları": 137500,
+            "Moda Tasarımı": 77000
+        },
+        "Fen-Edebiyat Fakültesi": {
+            "İngiliz Dili ve Edebiyatı": 137500,
+            "İngilizce Mütercim ve Tercümanlık": 137500,
+            "Türk Dili ve Edebiyatı": 137500
+        },
+        "Bilgisayar ve Bilişim Fakültesi": {
+            "Bilgisayar Programcılığı": 99000,
+            "Bilişim Güvenliği Teknolojisi": 99000,
+            "Web Tasarımı ve Kodlama": 99000
+        },
+        "Havacılık Fakültesi": {
+            "Sivil Havacılık Kabin Hizmetleri": 99000
+        }
+    },
+
+    "Kocaeli Sağlık ve Teknoloji Üniversitesi": {
+        "Diş Hekimliği Fakültesi": {
+            "Diş Hekimliği": 972000,
+            "Diş Hekimliği (İngilizce)": 810000
+        },
+        "Eczacılık Fakültesi": {
+            "Eczacılık": 594000
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Hemşirelik": 455625,
+            "Fizyoterapi ve Rehabilitasyon": 413438,
+            "Psikoloji": 516375,
+            "Ebelik": 382500
+        },
+        "Mühendislik Fakültesi": {
+            "Yazılım Mühendisliği": 379688,
+            "Bilgisayar Mühendisliği": 379688
+        },
+        "İktisadi ve İdari Bilimler Fakültesi": {
+            "İşletme (%30 İngilizce)": 382500,
+            "Uluslararası Ticaret ve Finansman (%30 İngilizce)": 382500
+        },
+        "Yabancı Diller Fakültesi": {
+            "Zorunlu İngilizce Hazırlık": 516375
+        },
+        "Meslek Yüksekokulu": {
+            "Ağız ve Diş Sağlığı": 324000,
+            "Ameliyathane Hizmetleri": 324000,
+            "Anestezi": 324000,
+            "Bilgisayar Programcılığı": 324000,
+            "Bilgisayar Teknolojisi": 324000,
+            "Çocuk Gelişimi": 216000,
+            "Diyaliz": 252000,
+            "Fizyoterapi": 324000,
+            "Eczane Hizmetleri": 252000,
+            "Hibrit ve Elektrikli Araçlar Teknolojisi": 324000,
+            "İlk ve Acil Yardım": 324000,
+            "Odyometri": 252000,
+            "Optisyenlik": 252000,
+            "Tıbbi Dokümantasyon ve Sekreterlik": 216000,
+            "Tıbbi Görüntüleme Teknikleri": 234000,
+            "Tıbbi Laboratuvar Teknikleri": 252000,
+            "Web Tasarımı ve Kodlama": 281250,
+            "Deniz Liman İşletmeciliği": 281250,
+            "E-Ticaret ve Pazarlama": 281250,
+            "Dijital Sağlık Sistemleri Teknikerliği": 281250,
+            "Tele-Sağlık Teknikerliği": 281250,
+            "Tıbbi Yeni İşlem Teknikerliği": 281250
+        },
+        "Gebze Meslek Yüksekokulu": {
+            "Bilgisayar Programcılığı": 281250,
+            "Elektrik": 281250,
+            "Makine": 281250,
+            "Otomotiv Teknolojisi": 281250
+        }
+    },
+
+    "Bahçeşehir Kıbrıs Üniversitesi": {
+        "Hukuk Fakültesi": {
+            "Hukuk": 150000
+        },
+        "İktisadi İdari ve Sosyal Bilimler Fakültesi": {
+            "İşletme": 150000,
+            "Ekonomi": 150000,
+            "Psikoloji": 150000,
+            "Siyaset Bilimi ve Uluslararası İlişkiler": 150000
+        },
+        "Mühendislik ve Mimarlık Fakültesi": {
+            "Bilgisayar Mühendisliği": 150000,
+            "Elektrik-Elektronik Mühendisliği": 150000,
+            "Makine Mühendisliği": 150000,
+            "İnşaat Mühendisliği": 150000,
+            "Mimarlık": 150000,
+            "Yazılım Mühendisliği": 150000
+        },
+        "İletişim Fakültesi": {
+            "Yeni Medya ve İletişim": 150000,
+            "Radyo, Televizyon ve Sinema": 150000
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Beslenme ve Diyetetik": 150000,
+            "Hemşirelik": 150000,
+            "Fizyoterapi ve Rehabilitasyon": 150000
+        },
+        "Eğitim Fakültesi": {
+            "Rehberlik ve Psikolojik Danışmanlık": 150000,
+            "İngilizce Öğretmenliği": 150000
+        },
+        "Fen-Edebiyat Fakültesi": {
+            "İngiliz Dili ve Edebiyatı": 150000
+        },
+        "Hazırlık Programı": {
+            "İngilizce Hazırlık": 150000
+        }
+    },
+
+    "Başkent Üniversitesi": {
+        "Tıp Fakültesi": {
+            "Tıp": 740000
+        },
+        "Diş Hekimliği Fakültesi": {
+            "Diş Hekimliği": 740000
+        },
+        "Eczacılık Fakültesi": {
+            "Eczacılık": 600000
+        },
+        "Hukuk Fakültesi": {
+            "Hukuk": 495000
+        },
+        "Mühendislik Fakültesi": {
+            "Bilgisayar Mühendisliği": 495000,
+            "Elektrik-Elektronik Mühendisliği": 495000,
+            "Endüstri Mühendisliği": 495000,
+            "Makine Mühendisliği": 495000,
+            "Yazılım Mühendisliği": 495000,
+            "İnşaat Mühendisliği": 495000,
+            "Biyomedikal Mühendisliği": 495000,
+            "Enerji Sistemleri Mühendisliği": 495000
+        },
+        "Fen Edebiyat Fakültesi": {
+            "Psikoloji": 485000,
+            "Matematik": 455000,
+            "İngiliz Dili ve Edebiyatı": 455000,
+            "Türk Dili ve Edebiyatı": 455000,
+            "Moleküler Biyoloji ve Genetik": 455000,
+            "Sosyoloji": 455000,
+            "Tarih": 455000
+        },
+        "İktisadi ve İdari Bilimler Fakültesi": {
+            "İşletme": 470000,
+            "İktisat": 470000,
+            "Siyaset Bilimi ve Uluslararası İlişkiler": 470000,
+            "Uluslararası Ticaret": 470000,
+            "Uluslararası Lojistik ve Taşımacılık": 470000,
+            "Yönetim Bilişim Sistemleri": 470000,
+            "Finans ve Bankacılık": 470000
+        },
+        "Sağlık Bilimleri Fakültesi": {
+            "Hemşirelik": 470000,
+            "Fizyoterapi ve Rehabilitasyon": 470000,
+            "Beslenme ve Diyetetik": 470000,
+            "Odyoloji": 470000,
+            "Dil ve Konuşma Terapisi": 470000,
+            "Ergoterapi": 470000,
+            "Çocuk Gelişimi": 470000,
+            "Sağlık Yönetimi": 470000,
+            "Ebelik": 470000
+        },
+        "İletişim Fakültesi": {
+            "Radyo, Televizyon ve Sinema": 455000,
+            "Halkla İlişkiler ve Tanıtım": 455000,
+            "Yeni Medya ve İletişim": 455000,
+            "Görsel İletişim Tasarımı": 455000,
+            "Reklamcılık": 455000
+        },
+        "Eğitim Fakültesi": {
+            "İngilizce Öğretmenliği": 445000,
+            "Rehberlik ve Psikolojik Danışmanlık": 445000,
+            "Okul Öncesi Öğretmenliği": 445000,
+            "Özel Eğitim Öğretmenliği": 445000,
+            "Sınıf Öğretmenliği": 445000,
+            "Matematik Öğretmenliği": 445000,
+            "Fen Bilgisi Öğretmenliği": 445000,
+            "Türkçe Öğretmenliği": 445000
+        },
+        "Ticari Bilimler Fakültesi": {
+            "Uluslararası Ticaret ve Finans": 445000,
+            "Sigortacılık ve Risk Yönetimi": 445000,
+            "Havacılık Yönetimi": 445000,
+            "Lojistik Yönetimi": 445000
+        },
+        "Güzel Sanatlar Tasarım ve Mimarlık Fakültesi": {
+            "Mimarlık": 495000,
+            "İç Mimarlık ve Çevre Tasarımı": 455000,
+            "Grafik Tasarım": 455000,
+            "Endüstriyel Tasarım": 455000,
+            "Moda ve Tekstil Tasarımı": 455000
+        },
+        "Devlet Konservatuvarı": {
+            "Müzik": 390000,
+            "Tiyatro": 390000
+        },
+        "İngilizce Hazırlık Programı": {
+            "İngilizce Hazırlık": 425000
+        },
+        "Meslek Yüksekokulu": {
+            "Ağız ve Diş Sağlığı": 300000,
+            "Anestezi": 300000,
+            "Ameliyathane Hizmetleri": 300000,
+            "Fizyoterapi": 300000,
+            "İlk ve Acil Yardım": 300000,
+            "Tıbbi Görüntüleme Teknikleri": 300000,
+            "Tıbbi Laboratuvar Teknikleri": 300000,
+            "Optisyenlik": 300000,
+            "Diyaliz": 300000,
+            "Odyometri": 300000,
+            "Patoloji Laboratuvar Teknikleri": 300000,
+            "Sivil Havacılık Kabin Hizmetleri": 300000,
+            "Bilgisayar Programcılığı": 300000,
+            "Grafik Tasarımı (MYO)": 300000,
+            "Adalet": 300000,
+            "Çocuk Gelişimi": 300000
+        }
     }
 }
 
