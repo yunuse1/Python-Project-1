@@ -1,66 +1,72 @@
 import csv
-import util.check_prices
+import util.check_prices as check_prices
+import logging
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logger = logging.getLogger(__name__)
 
 def main():
-    print("🎓 Üniversite Bölüm Fiyat Sorgulama Aracı\n")
+    university = input("Would you like to see all universities or do you have a preferred university? (To see all universities, type “all.” For your preferred university, type the university name): ").strip().lower()
 
-    # 1️⃣ Tam mı Yarım mı?
     while True:
-        ucret_tipi = input("Tam fiyat mı, %50 burslu fiyat mı istiyorsunuz? (tam/yarım): ").strip().lower()
-        if ucret_tipi in ["tam", "yarım"]:
+        price_option = input("Would you like to see the full price of the university or the price with a half scholarship? (If you want to see the full price, write “full”; if you want to see the price with a half scholarship, write “half”): ").strip().lower()
+        if price_option in ["full", "half"]:
             break
-        print("⚠️ Lütfen sadece 'tam' veya 'yarım' yazın.")
+        
 
-    # 2️⃣ Üniversite seçimi
-    university = input("Hangi üniversiteyi görmek istiyorsunuz? (tüm üniversiteler için 'tüm' yazın): ").strip().lower()
+    department = input("Would you like to see all departments or do you have a preferred department? (To see all department, type “all.” For your preferred department, type the department name): ").strip().lower()
 
-    # 3️⃣ Bölüm seçimi
-    department = input("Hangi bölümü görmek istiyorsunuz? (tüm bölümler için 'tüm' yazın): ").strip().lower()
+    while True:
+        preference_discount_input = input("Should we also show the preference discount? (yes / no): ").strip().lower()
+        if preference_discount_input in ("yes", "y"):
+            apply_preference_discount = True
+            break
+        if preference_discount_input in ("no", "n"):
+            apply_preference_discount = False
+            break
+        logger.info("Please answer yes/no.")
 
-    # 4️⃣ Tercih bursu avantajı
-    bursu_goster = input("Tercih bursu avantajlarını da gösterelim mi? (evet/hayır): ").strip().lower()
-    show_burs = bursu_goster == "evet"
 
-    print("\n🔎 Veriler getiriliyor, lütfen bekleyin...\n")
+    dept_arg = None if department == "all" else department
+    univ_arg = None if university == "all" else university
 
-    # 5️⃣ Veri çekme
-    if university == "tüm":
-        schools_list = util.check_prices.find_department_prices()  # tüm üniversiteler
-    else:
-        schools_list = util.check_prices.find_department_prices(university=university)
+    schools_list = check_prices.find_department_prices(
+        department_name=dept_arg,
+        university_name=univ_arg,
+        apply_preference_discount=apply_preference_discount
+    )
 
-    # Filtreleme (örnek: yarım/tam fiyat ya da bölüm bazlı)
-    if department != "tüm":
+    if department != "all":
         schools_list = [s for s in schools_list if department.lower() in s["department"].lower()]
 
-    # Tercih bursu bilgisi eklenecekse
-    if show_burs:
-        for s in schools_list:
-            s["scholarship_info"] = "Tercih bursu avantajı mevcuttur."  # örnek bilgi
+    if apply_preference_discount:
+        for scholarship_info in schools_list:
+            scholarship_info["scholarship_info"] = "A preference discount is available." 
     else:
-        for s in schools_list:
-            s["scholarship_info"] = "-"
+        for scholarship_info in schools_list:
+            scholarship_info["scholarship_info"] = "A preference discount is not available."
 
-    # Ücret tipine göre (örnek bir filtre)
-    if ucret_tipi == "yarım":
-        for s in schools_list:
-            if isinstance(s["price"], (int, float)):
-                s["price"] = s["price"] / 2
+    if price_option == "half":
+        for scholarship_info in schools_list:
+            if isinstance(scholarship_info["price"], (int, float)):
+                scholarship_info["price"] = scholarship_info["price"]
 
-    # 6️⃣ CSV’ye yaz
-    csv_filename = "universite_bolum_fiyatlari.csv"
+    csv_filename = "university_department_prices.csv"
     with open(csv_filename, "w", newline='', encoding="utf-8-sig") as f:
         if schools_list:
             fieldnames = ["university", "faculty", "department", "price", "scholarship_info"]
             writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=';')
             writer.writeheader()
             writer.writerows(schools_list)
-            print(f"✅ {len(schools_list)} kayıt yazıldı: {csv_filename}")
+            logger.info(f" {len(schools_list)} recorded: {csv_filename}")
         else:
-            f.write("No results found.")
-            print("⚠️ Hiç kayıt bulunamadı.")
 
-    print("\n 📁 CSV dosyanız hazır!")
+            logger.error("Hiç kayıt bulunamadı.")
 
 if __name__ == "__main__":
     main()
