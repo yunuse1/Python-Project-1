@@ -1,7 +1,4 @@
-from util.school_list import schools
-
-##%20 TERCİH BURSU BÖLÜMÜ DÜZENLENMELİ
-extra_credit = ["İstinye Üniversitesi", "İstanbul Aydın Üniversitesi", "İstanbul Gelişim Üniversitesi", "İstanbul Kültür Üniversitesi", "Kadir Has Üniversitesi", "Kocaeli Sağlık ve Teknoloji Üniversitesi", "MEF Üniversitesi", "OSTİM Teknik Üniversitesi", "Piri Reis Üniversitesi", "Özyeğin Üniversitesi"]
+from util.school_list import schools, scholarship_rates
 
 def normalize_turkish_text(text: str) -> str:
     """Türkçe I/İ problemi ve genel normalize."""
@@ -10,7 +7,7 @@ def normalize_turkish_text(text: str) -> str:
     text = text.replace("İ", "i").replace("I", "ı")
     return text.lower().strip()
 
-_normalized_extra = { normalize_turkish_text(x) for x in extra_credit }
+_normalized_scholarships = {normalize_turkish_text(k): v for k, v in scholarship_rates}
 
 def find_department_prices(
     department_name: str = None,
@@ -20,17 +17,20 @@ def find_department_prices(
 ):
     """
     dept_query, university ile esnek arama yapar.
-    apply_pref_burs True ise extra_credit listesinde olan üniversitelere ek %20 indirim uygulanır.
+    apply_pref_burs True ise scholarship_rates'de tanımlı orana göre indirim uygulanır.
     """
     normalized_department = normalize_turkish_text(department_name) if department_name else ""
     normalized_university = normalize_turkish_text(university_name) if university_name else ""
     price_results = []
 
     for university, faculty_data in schools.items():
-        # üniversite filtrelemesi
         if normalized_university and normalized_university not in normalize_turkish_text(university):
             continue
 
+        normalized_uni_key = normalize_turkish_text(university)
+        pref_applicable = normalized_uni_key in _normalized_scholarships
+        scholarship_rate = _normalized_scholarships.get(normalized_uni_key, 0)
+        
         if isinstance(faculty_data, dict):
             for faculty_name, department_data in faculty_data.items():
                 if isinstance(department_data, dict):
@@ -46,19 +46,17 @@ def find_department_prices(
                             except Exception:
                                 continue
                         result_price = price_value * 2 if apply_double_credit else price_value
-                        
-                        if apply_preference_discount:
-                            normalized_uni_key = normalize_turkish_text(university)
-                            for simple_name in _normalized_extra:
-                                if simple_name in normalized_uni_key:
-                                    result_price = result_price * 0.8 
-                                    break
-                                
+
+                        if apply_preference_discount and scholarship_rate > 0:
+                            result_price = result_price * (1 - scholarship_rate/100)
+                            
                         price_results.append({
                             "university": university,
                             "faculty": faculty_name,
                             "department": dept_name,
-                            "price": result_price
+                            "price": result_price,
+                            "preference_applicable": pref_applicable,
+                            "scholarship_rate": scholarship_rate if pref_applicable else 0
                         })
                 else:
                     try:
@@ -72,19 +70,17 @@ def find_department_prices(
                     if normalized_department and normalized_department not in normalize_turkish_text(faculty_name):
                         continue
                     result_price = price_value * 2 if apply_double_credit else price_value
-                    
-                    if apply_preference_discount:
-                        normalized_uni_key = normalize_turkish_text(university)
-                        for simple_name in _normalized_extra:
-                            if simple_name in normalized_uni_key:
-                                result_price = result_price * 0.8
-                                break
+
+                    if apply_preference_discount and scholarship_rate > 0:
+                        result_price = result_price * (1 - scholarship_rate/100)
                                 
                     price_results.append({
                         "university": university,
                         "faculty": faculty_name,
                         "department": faculty_name,
-                        "price": result_price
+                        "price": result_price,
+                        "preference_applicable": pref_applicable,
+                        "scholarship_rate": scholarship_rate if pref_applicable else 0
                     })
         else:
             try:
@@ -98,19 +94,18 @@ def find_department_prices(
             if normalized_university and normalized_university not in normalize_turkish_text(university):
                 continue
             result_price = price_value * 2 if apply_double_credit else price_value
+
             
-            if apply_preference_discount:
-                normalized_uni_key = normalize_turkish_text(university)
-                for simple_name in _normalized_extra:
-                    if simple_name in normalized_uni_key:
-                        result_price = result_price * 0.8
-                        break
+            if apply_preference_discount and scholarship_rate > 0:
+                result_price = result_price * (1 - scholarship_rate/100)
                         
             price_results.append({
                 "university": university,
                 "faculty": "",
                 "department": university,
-                "price": result_price
+                "price": result_price,
+                "preference_applicable": pref_applicable,
+                "scholarship_rate": scholarship_rate if pref_applicable else 0
             })
 
     return price_results

@@ -12,15 +12,14 @@ logger = logging.getLogger(__name__)
 
 def main():
     university = input("Would you like to see all universities or do you have a preferred university? (To see all universities, type “all.” For your preferred university, type the university name): ").strip().lower()
+    department = input("Would you like to see all departments or do you have a preferred department? (To see all department, type “all.” For your preferred department, type the department name): ").strip().lower()
+
 
     while True:
         price_option = input("Would you like to see the full price of the university or the price with a half scholarship? (If you want to see the full price, write “full”; if you want to see the price with a half scholarship, write “half”): ").strip().lower()
         if price_option in ["full", "half"]:
             break
         
-
-    department = input("Would you like to see all departments or do you have a preferred department? (To see all department, type “all.” For your preferred department, type the department name): ").strip().lower()
-
     while True:
         preference_discount_input = input("Should we also show the preference discount? (yes / no): ").strip().lower()
         if preference_discount_input in ("yes", "y"):
@@ -44,11 +43,11 @@ def main():
     if department != "all":
         schools_list = [s for s in schools_list if department.lower() in s["department"].lower()]
 
-    if apply_preference_discount:
-        for scholarship_info in schools_list:
-            scholarship_info["scholarship_info"] = "A preference discount is available." 
-    else:
-        for scholarship_info in schools_list:
+    for scholarship_info in schools_list:
+        if scholarship_info.get("preference_applicable"):
+            rate = scholarship_info.get("scholarship_rate", 0)
+            scholarship_info["scholarship_info"] = f"A preference discount of {rate}% is available."
+        else:
             scholarship_info["scholarship_info"] = "A preference discount is not available."
 
     if price_option == "half":
@@ -57,6 +56,10 @@ def main():
                 scholarship_info["price"] = scholarship_info["price"]
 
     csv_filename = "university_department_prices.csv"
+    for rec in schools_list:
+        rec.pop("preference_applicable", None)
+        rec.pop("scholarship_rate", None)
+
     with open(csv_filename, "w", newline='', encoding="utf-8-sig") as f:
         if schools_list:
             fieldnames = ["university", "faculty", "department", "price", "scholarship_info"]
@@ -65,7 +68,6 @@ def main():
             writer.writerows(schools_list)
             logger.info(f" {len(schools_list)} recorded: {csv_filename}")
         else:
-
             logger.error("Hiç kayıt bulunamadı.")
 
 if __name__ == "__main__":

@@ -1,110 +1,66 @@
-# Check Universities Price Automation
+# University Price Check System
 
-This repository contains python-gauge tests for the Odepro project
+This application helps users check university prices in Turkey with various filtering options including scholarships and preference discounts.
 
-## Prerequest
+## Features
 
-* highest Python3.8.x (brew install python3)
-* pip (pip3)
+- Search universities by name or view all universities
+- Search departments by name or view all departments
+- View prices with or without half scholarship
+- Apply preference discounts for eligible universities
+- Export results to CSV file
 
-## Installing Gauge
+## Prerequisites
 
-### Install Using HomeBrew (Preferred)
+* Python 3.8 or higher
+* pip (Python package manager)
 
-Install [brew](https://brew.sh), and run the following command
+## Installation
 
+1. Clone the repository:
 ```bash
-brew install gauge
+git clone <repository-url>
+cd Python-Project-1
 ```
 
-### Install Using CURLgauge
-
-Install Gauge to `/usr/local/bin` by running
-
-```bash
-curl -Ssl https://downloads.gauge.org/stable | sh
-```
-
-## Create and Install Requirements
-
-Create a virtual environment:
-
+2. Create and activate a virtual environment (recommended):
 ```bash
 python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
 ```
 
-Enter the virtual environment:
-
-```bash
-source venv/bin/activate
-```
-
-Install dependencies:
-
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-Deactivate venv:
+## Usage
 
+Run the program:
 ```bash
-deactivate
+python main.py
 ```
 
-## Run specifications by using directory(s) as an argument
+Follow the prompts to:
+1. Select a university or view all universities
+2. Choose between full price or half scholarship price
+3. Select a department or view all departments
+4. Choose whether to apply preference discounts
 
-Specifications can be run from a single directory, sub-directories, or multiple directories. You can specify the directory(s) or path to sub-directory(s) with the gauge run command.
+The results will be saved to `university_department_prices.csv` in the current directory.
 
-To run all the specifications in the specs directory, use the following command:
+## Output Format
 
-```bash
-gauge run specs
-```
+The program generates a CSV file with the following columns:
+- University name
+- Faculty name
+- Department name
+- Price (with applied discounts if selected)
+- Scholarship information
 
-To run specifications at the sub-directory level, use the following command:
+## Notes
 
-```bash
-gauge run <path_dir>
-```
-
-## Run specifications by using spec file path as argument
-
-You can choose and run only certain specifications by providing the appropriate location of these specifications with the gauge run command.
-
-```bash
-gauge run <path_to_spec>
-```
-
-## Run a Gauge specification with an environment
-
-You can use the -env flag to load an environment when Gauge runs a specification. If -env is not specified, then the `default` environment is loaded during run time.
-
-```bash
-gauge run --env <test_environment> specs
-```
-
-For more execution options see [here](https://docs.gauge.org/execution.html)
-
-## PEP-80 Controlling
-
-To control where pep-80 pipeline fails please check
-```bash
-python3 -m pycodestyle step_impl
-```
-
-## Protofiles for grpc
-
-```bash
-git submodule update --init
-```
-
-## Generated grpc protofiles
-
-```bash
-buf generate
-```
-
-## Run a Gauge specification with HTTP or GRPC
-
-Change CLIENT from localhost.properties to HTTP or GRPC
+- Preference discounts (20%) are available for selected universities
+- Half scholarship option reduces the tuition fee by 50%
+- All prices are in Turkish Lira (TL)
 

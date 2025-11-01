@@ -4451,7 +4451,7 @@ schools = {
         }
     }
 }
-burs_listesi = [
+scholarship_rates = [
     ("Üsküdar Üniversitesi", 25),
     ("Alanya Üniversitesi", 20),
     ("Altınbaş Üniversitesi", 25),
