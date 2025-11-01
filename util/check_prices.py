@@ -1,7 +1,7 @@
 from util.school_list import schools, scholarship_rates
 
 def normalize_turkish_text(text: str) -> str:
-    """Türkçe I/İ problemi ve genel normalize."""
+    """Turkish I/İ problem and general normalization."""
     if not isinstance(text, str):
         return ""
     text = text.replace("İ", "i").replace("I", "ı")
@@ -16,8 +16,15 @@ def find_department_prices(
     apply_preference_discount: bool = False
 ):
     """
-    dept_query, university ile esnek arama yapar.
-    apply_pref_burs True ise scholarship_rates'de tanımlı orana göre indirim uygulanır.
+    Searches and calculates university department prices with flexible text matching.
+
+    Args:
+        department_name (str, optional): Department name to search for. Case-insensitive partial matching.
+        university_name (str, optional): University name to search for. Case-insensitive partial matching.
+        apply_double_credit (bool, default=False): If True, doubles the base price.
+        apply_preference_discount (bool, default=False): If True, applies scholarship discount rate
+            defined in scholarship_rates for eligible universities.
+
     """
     normalized_department = normalize_turkish_text(department_name) if department_name else ""
     normalized_university = normalize_turkish_text(university_name) if university_name else ""
