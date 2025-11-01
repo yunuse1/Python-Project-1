@@ -41,12 +41,19 @@ def find_department_prices(
                             price_value = float(price)
                         except Exception:
                             try:
-                                price_value = float(str(price).replace(".", "").replace(",", "."))
+                                cleaned_price_str = str(price).replace(".", "").replace(",", "")
+                                price_value = float(cleaned_price_str)
                             except Exception:
                                 continue
                         result_price = price_value * 2 if apply_double_credit else price_value
-                        if apply_preference_discount and normalize_turkish_text(university) in _normalized_extra:
-                            result_price = result_price * 0.8 
+                        
+                        if apply_preference_discount:
+                            normalized_uni_key = normalize_turkish_text(university)
+                            for simple_name in _normalized_extra:
+                                if simple_name in normalized_uni_key:
+                                    result_price = result_price * 0.8 
+                                    break
+                                
                         price_results.append({
                             "university": university,
                             "faculty": faculty_name,
@@ -58,14 +65,21 @@ def find_department_prices(
                         price_value = float(department_data)
                     except Exception:
                         try:
-                            price_value = float(str(department_data).replace(".", "").replace(",", "."))
+                            cleaned_price_str = str(department_data).replace(".", "").replace(",", "")
+                            price_value = float(cleaned_price_str)
                         except Exception:
                             continue
                     if normalized_department and normalized_department not in normalize_turkish_text(faculty_name):
                         continue
                     result_price = price_value * 2 if apply_double_credit else price_value
-                    if apply_preference_discount and normalize_turkish_text(university) in _normalized_extra:
-                        result_price = result_price * 0.8
+                    
+                    if apply_preference_discount:
+                        normalized_uni_key = normalize_turkish_text(university)
+                        for simple_name in _normalized_extra:
+                            if simple_name in normalized_uni_key:
+                                result_price = result_price * 0.8
+                                break
+                                
                     price_results.append({
                         "university": university,
                         "faculty": faculty_name,
@@ -77,14 +91,21 @@ def find_department_prices(
                 price_value = float(faculty_data)
             except Exception:
                 try:
-                    price_value = float(str(faculty_data).replace(".", "").replace(",", "."))
+                    cleaned_price_str = str(faculty_data).replace(".", "").replace(",", "")
+                    price_value = float(cleaned_price_str)
                 except Exception:
                     continue
             if normalized_university and normalized_university not in normalize_turkish_text(university):
                 continue
             result_price = price_value * 2 if apply_double_credit else price_value
-            if apply_preference_discount and normalize_turkish_text(university) in _normalized_extra:
-                result_price = result_price * 0.8
+            
+            if apply_preference_discount:
+                normalized_uni_key = normalize_turkish_text(university)
+                for simple_name in _normalized_extra:
+                    if simple_name in normalized_uni_key:
+                        result_price = result_price * 0.8
+                        break
+                        
             price_results.append({
                 "university": university,
                 "faculty": "",
