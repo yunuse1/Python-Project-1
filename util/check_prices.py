@@ -9,6 +9,23 @@ def normalize_turkish_text(text: str) -> str:
 
 _normalized_scholarships = {normalize_turkish_text(k): v for k, v in scholarship_rates}
 
+def _calculate_price(price_data, apply_double_credit: bool, scholarship_rate: float = 0, apply_preference_discount: bool = False) -> float:
+    
+    try:
+        price_value = float(price_data)
+    except Exception:
+        try:
+            cleaned_price_str = str(price_data).replace(".", "").replace(",", "")
+            price_value = float(cleaned_price_str)
+        except Exception:
+            return None
+
+    result_price = price_value * 2 if apply_double_credit else price_value
+
+    if apply_preference_discount and scholarship_rate > 0:
+        result_price = result_price * (1 - scholarship_rate/100)
+    
+    return round(result_price, 2)
 
 def find_department_prices(
     department_name: str = None,
@@ -32,7 +49,8 @@ def find_department_prices(
     price_results = []
 
     for university, faculty_data in schools.items():
-        if normalized_university and normalized_university not in normalize_turkish_text(university):
+        normalized_uni = normalize_turkish_text(university)
+        if normalized_university and normalized_university not in normalized_uni:
             continue
 
         normalized_uni_key = normalize_turkish_text(university)
@@ -45,21 +63,10 @@ def find_department_prices(
                     for dept_name, price in department_data.items():
                         if normalized_department and normalized_department not in normalize_turkish_text(dept_name):
                             continue
-                        try:
-                            price_value = float(price)
-
-                        except Exception:
-                            try:
-                                cleaned_price_str = str(price).replace(".", "").replace(",", "")
-                                price_value = float(cleaned_price_str)
-                            except Exception:
-                                continue
-                        result_price = price_value * 2 if apply_double_credit else price_value
-
-                        if apply_preference_discount and scholarship_rate > 0:
-                            result_price = result_price * (1 - scholarship_rate/100)
                             
-                        result_price = round(result_price, 2) 
+                        result_price = _calculate_price(price, apply_double_credit, scholarship_rate, apply_preference_discount)
+                        if result_price is None:
+                            continue
 
                         price_results.append({
                             "university": university,
@@ -70,23 +77,12 @@ def find_department_prices(
                             "scholarship_rate": scholarship_rate if pref_applicable else 0
                         })
                 else:
-                    try:
-                        price_value = float(department_data)
-
-                    except Exception:
-                        try:
-                            cleaned_price_str = str(department_data).replace(".", "").replace(",", "")
-                            price_value = float(cleaned_price_str)
-                        except Exception:
-                            continue
                     if normalized_department and normalized_department not in normalize_turkish_text(faculty_name):
                         continue
 
-                    result_price = price_value * 2 if apply_double_credit else price_value
-
-                    if apply_preference_discount and scholarship_rate > 0:
-                        result_price = result_price * (1 - scholarship_rate/100)
-                    result_price = round(result_price, 2) 
+                    result_price = _calculate_price(department_data, apply_double_credit, scholarship_rate, apply_preference_discount)
+                    if result_price is None:
+                        continue
 
                     price_results.append({
                         "university": university,
@@ -97,25 +93,12 @@ def find_department_prices(
                         "scholarship_rate": scholarship_rate if pref_applicable else 0
                     })
         else:
-            try:
-                price_value = float(faculty_data)
-
-            except Exception:
-                try:
-                    cleaned_price_str = str(faculty_data).replace(".", "").replace(",", "")
-                    price_value = float(cleaned_price_str)
-                except Exception:
-                    continue
             if normalized_university and normalized_university not in normalize_turkish_text(university):
                 continue
 
-            result_price = price_value * 2 if apply_double_credit else price_value
-
-
-            if apply_preference_discount and scholarship_rate > 0:
-                result_price = result_price * (1 - scholarship_rate/100)
-            
-            result_price = round(result_price, 2) 
+            result_price = _calculate_price(faculty_data, apply_double_credit, scholarship_rate, apply_preference_discount)
+            if result_price is None:
+                continue
 
             price_results.append({
                 "university": university,

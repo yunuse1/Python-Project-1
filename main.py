@@ -11,8 +11,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 def main():
-    university = input("Would you like to see all universities or do you have a preferred university? (To see all universities, type “all.” For your preferred university, type the university name): ").strip().lower()
-    department = input("Would you like to see all departments or do you have a preferred department? (To see all department, type “all.” For your preferred department, type the department name): ").strip().lower()
+    university = input("Would you like to see all universities or do you have a preferred university? (To see all universities, type “all.” For your preferred university, type the university name): ").strip()
+    department = input("Would you like to see all departments or do you have a preferred department? (To see all department, type “all.” For your preferred department, type the department name): ").strip()
 
 
     while True:
@@ -31,8 +31,8 @@ def main():
         logger.info("Please answer yes/no.")
 
 
-    dept_arg = None if department == "all" else department
-    univ_arg = None if university == "all" else university
+    dept_arg = None if department.lower() == "all" else department
+    univ_arg = None if university.lower() == "all" else university
 
     schools_list = check_prices.find_department_prices(
         department_name=dept_arg,
