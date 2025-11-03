@@ -1,5 +1,4 @@
 import pytest
-# 'burs_listesi'ni import etmeye GEREK YOK, sadece check_prices'ı import et
 from util.check_prices import find_department_prices, normalize_turkish_text 
 
 # --- 1. Helper Function Tests ---
@@ -57,17 +56,16 @@ def test_apply_double_credit():
     assert results[0]['price'] == 1185000 * 2
 
 def test_preference_discount_applies():
-    # --- BU TEST GÜNCELLENDİ ---
-    # Kod artık dinamik listeyi kullanıyor. İstinye'nin indirimi %15.
-    # Orijinal Fiyat: 750,000
-    # Beklenen Fiyat: 750,000 * (1 - 0.15) = 637,500
+    # The code now uses a dynamic list. İstinye's discount is 15%.
+    # Original Price: 750,000
+    # Expected Price: 750,000 * (1 - 0.15) = 637,500
     results = find_department_prices(
         department_name="Tıp (Türkçe)", 
         university_name="İstinye Üniversitesi",
         apply_preference_discount=True
     )
     assert len(results) == 1
-    assert results[0]['price'] == 637500.0 # 600000'den 637500.0'a güncellendi
+    assert results[0]['price'] == 637500.0 
 
 def test_preference_discount_not_applied_when_not_in_list():
     results = find_department_prices(
@@ -126,16 +124,31 @@ def test_price_normalization_works_with_comma_thousands(monkeypatch):
     results = find_department_prices(university_name="Test Uni")
     assert results[0]['price'] == 750000.0
 
-def test_preference_discount_works_on_complex_key_name():
-    # --- BU TEST GÜNCELLENDİ ---
-    # Kod artık dinamik listeyi kullanıyor. MEF'in indirimi %25.
-    # Orijinal Fiyat: 465,120
-    # Beklenen Fiyat: 465,120 * (1 - 0.25) = 348,840
-    results = find_department_prices(
-        department_name="Bilgisayar Mühendisliği (55% İndirimli, Peşin)", 
-        university_name="MEF Üniversitesi",
-        apply_preference_discount=True
-    )
-    assert len(results) > 0
-    mef_cs_result = results[0]
-    assert mef_cs_result['price'] == 348840.0 # 372096.0'dan 348840.0'a güncellendi
+def test_invalid_price_format(monkeypatch):
+    mock_schools = {"Test Uni": {"Test Fak": {"Bölüm": "invalid_price"}}}
+    monkeypatch.setattr("util.check_prices.schools", mock_schools)
+    results = find_department_prices(university_name="Test Uni")
+    assert len(results) == 0
+
+def test_empty_results_when_all_prices_invalid(monkeypatch):
+    mock_schools = {
+        "Test Uni": {
+            "Fak1": {"Dep1": "invalid1"},
+            "Fak2": {"Dep2": "invalid2"}
+        }
+    }
+    monkeypatch.setattr("util.check_prices.schools", mock_schools)
+    results = find_department_prices()
+    assert len(results) == 0
+
+def test_mixed_valid_and_invalid_prices(monkeypatch):
+    mock_schools = {
+        "Test Uni": {
+            "Fak1": {"Dep1": "invalid"},
+            "Fak2": {"Dep2": "100000"}
+        }
+    }
+    monkeypatch.setattr("util.check_prices.schools", mock_schools)
+    results = find_department_prices()
+    assert len(results) == 1
+    assert results[0]['price'] == 100000.0

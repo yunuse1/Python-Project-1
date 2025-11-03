@@ -16,19 +16,30 @@ schools = {
             "İngilizce Öğretmenliği": 340000,
         },
         "Mühendislik Ve Doğa Bilimleri Fakültesi": {
-            "İç Mimarlık Ve Çevre Tasarımı": 450000, 
+            "İç Mimarlık Ve Çevre Tasarımı": 450000,
             "Yazılım Mühendisliği": 450000,
             "Bilgisayar Mühendisliği": 500000,
-            "Diğer Programlar": 360000,
+            "Bilgisayar Mühendisliği (İngilizce)": 360000,
+            "Biyomedikal Mühendisliği (İngilizce)": 360000,
+            "Elektrik-Elektronik Mühendisliği": 360000,
+            "Endüstriyel Tasarım": 360000,
+            "Moleküler Biyoloji ve Genetik": 360000,
+            "Moleküler Biyoloji ve Genetik (İngilizce)": 360000
         },
         "Sağlık Bilimleri Fakültesi": {
-            "Diğer Programlar": 450000,
-            "Çocuk Gelişimi": 300000,
-            "Ergoterapi": 300000,
-            "Odyoloji": 300000,
-            "Ebelik": 320000,
-            "Fizyoterapi Ve Rehabilitasyon": 340000,
+        "Çocuk Gelişimi": 300000,
+        "Ergoterapi": 300000,
+        "Odyoloji": 300000,
+        "Ebelik": 320000,
+        "Fizyoterapi ve Rehabilitasyon": 340000,
+        "Beslenme ve Diyetetik": 450000,
+        "Dil ve Konuşma Terapisi": 450000,
+        "Dil ve Konuşma Terapisi (İngilizce)": 450000,
+        "Fizyoterapi ve Rehabilitasyon (İngilizce)": 450000,
+        "Hemşirelik": 450000,
+        "Hemşirelik (İngilizce)": 450000
         },
+            
         "Meslek Yüksekokulu": {
             "Acil Durum ve Afet Yönetimi": 220000,
             "Biyomedikal Cihaz Teknolojisi": 220000,
@@ -38,8 +49,21 @@ schools = {
             "Odyometri": 220000,
             "Optisyenlik": 220000,
             "Patoloji Laboratuvar Teknikleri": 220000,
-            "Diğer Meslek Yüksekokulu Programları": 250,
+            "Ağız ve Diş Sağlığı": 250000,
+            "Ameliyathane Hizmetleri": 250000,
+            "Anestezi": 250000,
+            "Bilgisayar Programcılığı": 250000,
+            "Diş Protez Teknolojisi": 250000,
+            "Elektronörofizyoloji": 250000,
+            "Fizyoterapi": 250000,
+            "İlk ve Acil Yardım": 250000,
+            "İş ve Uğraşı Terapisi": 250000,
+            "Radyoterapi": 250000,
+            "Robotik ve Yapay Zeka": 250000,
+            "Tıbbi Görüntüleme Teknikleri": 250000,
+            "Tıbbi Laboratuvar Teknikleri": 250000
         }
+
     },
     "Arel Üniversitesi": {
         "Tıp Fakültesi": {
@@ -319,7 +343,72 @@ schools = {
             "Bilgisayar Programcılığı": 220000,
             "Bilgisayar Programcılığı (İngilizce)": 220000,
             "Uçak Teknolojisi": 220000,
-            "Diğer Önlisans bölümleri": 180000,
+            "Aşçılık": 180000,
+            "Aşçılık (İÖ)": 180000,
+            "Bankacılık ve Sigortacılık": 180000,
+            "Bankacılık ve Sigortacılık (İÖ)": 180000,
+            "Bilgisayar Destekli Tasarım ve Animasyon": 180000,
+            "Bilgisayar Programcılığı (Uzaktan Öğretim)": 180000,
+            "Biyomedikal Cihaz Teknolojisi": 180000,
+            "Biyomedikal Cihaz Teknolojisi (İÖ)": 180000,
+            "Çocuk Gelişimi": 180000,
+            "Çocuk Gelişimi (İÖ)": 180000,
+            "Dış Ticaret": 180000,
+            "Dış Ticaret (İngilizce)": 180000,
+            "Elektrik": 180000,
+            "Elektrik (İÖ)": 180000,
+            "Elektronik Teknolojisi": 180000,
+            "Elektronik Teknolojisi (İÖ)": 180000,
+            "Gıda Teknolojisi": 180000,
+            "Gıda Teknolojisi (İÖ)": 180000,
+            "Grafik Tasarımı": 180000,
+            "Grafik Tasarımı (İÖ)": 180000,
+            "Halkla İlişkiler ve Tanıtım": 180000,
+            "Halkla İlişkiler ve Tanıtım (İÖ)": 180000,
+            "Hava Lojistiği": 180000,
+            "İnsan Kaynakları Yönetimi": 180000,
+            "İnsan Kaynakları Yönetimi (İÖ)": 180000,
+            "İnsansız Hava Aracı Teknolojisi ve Operatörlüğü": 180000,
+            "İnşaat Teknolojisi": 180000,
+            "İnşaat Teknolojisi (İÖ)": 180000,
+            "İnternet ve Ağ Teknolojileri (İngilizce)": 180000,
+            "İş Sağlığı ve Güvenliği": 180000,
+            "İş Sağlığı ve Güvenliği (İÖ)": 180000,
+            "İşletme Yönetimi": 180000,
+            "İşletme Yönetimi (İngilizce)": 180000,
+            "Kuyumculuk ve Takı Tasarımı": 180000,
+            "Lojistik": 180000,
+            "Lojistik (İÖ)": 180000,
+            "Mahkeme Büro Hizmetleri": 180000,
+            "Makine": 180000,
+            "Makine (İÖ)": 180000,
+            "Mimari Restorasyon": 180000,
+            "Mimari Restorasyon (İÖ)": 180000,
+            "Moda Tasarımı": 180000,
+            "Moda Tasarımı (İÖ)": 180000,
+            "Muhasebe ve Vergi Uygulamaları": 180000,
+            "Muhasebe ve Vergi Uygulamaları (İÖ)": 180000,
+            "Otomotiv Teknolojisi": 180000,
+            "Otomotiv Teknolojisi (İÖ)": 180000,
+            "Pazarlama": 180000,
+            "Pazarlama (İÖ)": 180000,
+            "Radyo ve Televizyon Programcılığı": 180000,
+            "Radyo ve Televizyon Programcılığı (İÖ)": 180000,
+            "Saç Bakımı ve Güzellik Hizmetleri": 180000,
+            "Saç Bakımı ve Güzellik Hizmetleri (İÖ)": 180000,
+            "Siber Güvenlik": 180000,
+            "Sivil Hava Ulaştırma İşletmeciliği": 180000,
+            "Sivil Hava Ulaştırma İşletmeciliği (İngilizce)": 180000,
+            "Sivil Havacılık Kabin Hizmetleri": 180000,
+            "Sivil Havacılık Kabin Hizmetleri (İÖ)": 180000,
+            "Turist Rehberliği (İngilizce)": 180000,
+            "Turizm ve Otel İşletmeciliği": 180000,
+            "Turizm ve Otel İşletmeciliği (İÖ)": 180000,
+            "Uçuş Harekat Yöneticiliği": 180000,
+            "Uygulamalı İngilizce Çevirmenlik (İngilizce)": 180000,
+            "Uygulamalı İngilizce Çevirmenlik (İngilizce) (İÖ)": 180000,
+            "Uygulamalı İspanyolca Çevirmenlik (İspanyolca)": 180000,
+            "Uygulamalı İspanyolca Çevirmenlik (İspanyolca) (İÖ)": 180000
         },
         "Sağlık Hizmetleri Meslek Yüksekokulu": {
             "Diş Protez Teknolojisi": 230000,
@@ -670,269 +759,148 @@ schools = {
     },
     "Beykent Üniversitesi": {
         "DİŞ HEKİMLİĞİ FAKÜLTESİ": {
-        "Diş Hekimliği Fakültesi Burslu": 0,
-        "Diş Hekimliği Fakültesi (%50 İndirimli)": 785185
+        "Diş Hekimliği Fakültesi ": 785185
     },
     "TIP FAKÜLTESİ": {
-        "Tıp Burslu": 0,
-        "Tıp (%50 İndirimli)": 785185
+        "Tıp ": 785185
     },
     "FEN-EDEBİYAT FAKÜLTESİ": {
-        "Bilişim Sistemleri ve Teknolojileri Burslu": 0,
-        "Bilişim Sistemleri ve Teknolojileri (%50 İndirimli)": 429629,
-        "İngiliz Dili ve Edebiyatı Burslu": 0,
-        "İngiliz Dili ve Edebiyatı (%50 İndirimli)": 474074,
-        "İngilizce Mütercim ve Tercümanlık Burslu": 0,
-        "İngilizce Mütercim ve Tercümanlık (%50 İndirimli)": 474074,
-        "Matematik Burslu": 0,
-        "Matematik (%50 İndirimli)": 392593,
-        "Psikoloji Burslu": 0,
-        "Psikoloji (%50 İndirimli)": 637037,
-        "Psikoloji (İngilizce) Burslu": 0,
-        "Psikoloji (İngilizce) (%50 İndirimli)": 562963,
-        "Rusça Mütercim ve Tercümanlık Burslu": 0,
-        "Rusça Mütercim ve Tercümanlık (%50 İndirimli)": 325926,
-        "Sosyoloji Burslu": 0,
-        "Sosyoloji (%50 İndirimli)": 370370,
-        "Tarih Burslu": 0,
-        "Tarih (%50 İndirimli)": 325926,
-        "Türk Dili ve Edebiyatı Burslu": 0,
-        "Türk Dili ve Edebiyatı (%50 İndirimli)": 370370,
-        "Yazılım Geliştirme Burslu": 0,
-        "Yazılım Geliştirme (%50 İndirimli)": 474074
+        "Bilişim Sistemleri ve Teknolojileri ": 429629,
+        "İngiliz Dili ve Edebiyatı ": 474074,
+        "İngilizce Mütercim ve Tercümanlık ": 474074,
+        "Matematik ": 392593,
+        "Psikoloji ": 637037,
+        "Psikoloji (İngilizce) ": 562963,
+        "Rusça Mütercim ve Tercümanlık ": 325926,
+        "Sosyoloji ": 370370,
+        "Tarih ": 325926,
+        "Türk Dili ve Edebiyatı ": 370370,
+        "Yazılım Geliştirme ": 474074
     },
     "GÜZEL SANATLAR FAKÜLTESİ": {
-        "Grafik Tasarımı Burslu": 0,
-        "Grafik Tasarımı (%50 İndirimli)": 414815,
-        "Grafik Tasarımı (İngilizce) Burslu": 0,
-        "Grafik Tasarımı (İngilizce) (%50 İndirimli)": 414815,
-        "Gastronomi ve Mutfak Sanatları Burslu": 0,
-        "Gastronomi ve Mutfak Sanatları (%50 İndirimli)": 496296,
-        "İletişim ve Tasarımı Burslu": 0,
-        "İletişim ve Tasarımı (%50 İndirimli)": 370370,
-        "Radyo, Televizyon ve Sinema Burslu": 0,
-        "Radyo, Televizyon ve Sinema (%50 İndirimli)": 407407,
-        "Radyo, Televizyon ve Sinema (İngilizce) Burslu": 0,
-        "Radyo, Televizyon ve Sinema (İngilizce) (%50 İndirimli)": 407407,
-        "Oyunculuk (Özel Yetenek) Burslu": 0,
-        "Oyunculuk (Özel Yetenek) (%50 İndirimli)": 340741,
-        "Tekstil ve Moda Tasarımı Burslu": 0,
-        "Tekstil ve Moda Tasarımı (%50 İndirimli)": 392593
+        "Grafik Tasarımı ": 414815,
+        "Grafik Tasarımı (İngilizce) ": 414815,
+        "Gastronomi ve Mutfak Sanatları ": 496296,
+        "İletişim ve Tasarımı ": 370370,
+        "Radyo, Televizyon ve Sinema ": 407407,
+        "Radyo, Televizyon ve Sinema (İngilizce) ": 407407,
+        "Oyunculuk (Özel Yetenek) ": 340741,
+        "Tekstil ve Moda Tasarımı ": 392593
     },
     "HUKUK FAKÜLTESİ": {
-        "Hukuk Fakültesi Burslu": 0,
-        "Hukuk Fakültesi (%50 İndirimli)": 459259
+        "Hukuk Fakültesi ": 459259
     },
     "İKTİSADİ VE İDARİ BİLİMLER FAKÜLTESİ": {
-        "Finans ve Bankacılık Burslu": 0,
-        "Finans ve Bankacılık (%50 İndirimli)": 392593,
-        "Finans ve Bankacılık (İngilizce) Burslu": 0,
-        "Finans ve Bankacılık (İngilizce) (%50 İndirimli)": 392593,
-        "İktisat Burslu": 0,
-        "İktisat (%50 İndirimli)": 392593,
-        "İktisat (İngilizce) Burslu": 0,
-        "İktisat (İngilizce) (%50 İndirimli)": 392593,
-        "İşletme Burslu": 0,
-        "İşletme (%50 İndirimli)": 392593,
-        "İşletme (İngilizce) Burslu": 0,
-        "İşletme (İngilizce) (%50 İndirimli)": 392593,
-        "Lojistik Yönetimi Burslu": 0,
-        "Lojistik Yönetimi (%50 İndirimli)": 392593,
-        "Lojistik Yönetimi (İngilizce) Burslu": 0,
-        "Lojistik Yönetimi (İngilizce) (%50 İndirimli)": 392593,
-        "Sermaye Piyasası Burslu": 0,
-        "Sermaye Piyasası (%50 İndirimli)": 392593,
-        "Siyaset Bilimi ve Kamu Yönetimi Burslu": 0,
-        "Siyaset Bilimi ve Kamu Yönetimi (%50 İndirimli)": 392593,
-        "Siyaset Bilimi ve Kamu Yönetimi (İngilizce) Burslu": 0,
-        "Siyaset Bilimi ve Kamu Yönetimi (İngilizce) (%50 İndirimli)": 392593,
-        "Turizm İşletmeciliği Burslu": 0,
-        "Turizm İşletmeciliği (%50 İndirimli)": 392593,
-        "Uluslararası İlişkiler (İngilizce) Burslu": 0,
-        "Uluslararası İlişkiler (İngilizce) (%50) İndirimli": 392593,
-        "Uluslararası Ticaret ve Finansman Burslu": 0,
-        "Uluslararası Ticaret ve Finansman (%50 İndirimli)": 392593,
-        "Uluslararası Ticaret ve Finansman (İngilizce) Burslu": 0,
-        "Uluslararası Ticaret ve Finansman (İngilizce) (%50 İndirimli)": 392593,
-        "Yönetim Bilişim Sistemleri Burslu": 0,
-        "Yönetim Bilişim Sistemleri (%50 İndirimli)": 474074,
-        "Yönetim Bilişim Sistemleri (İngilizce) Burslu": 0,
-        "Yönetim Bilişim Sistemleri (İngilize) (%50 İndirimli)": 474074
+        "Finans ve Bankacılık ": 392593,
+        "Finans ve Bankacılık (İngilizce) ": 392593,
+        "İktisat ": 392593,
+        "İktisat (İngilizce) ": 392593,
+        "İşletme ": 392593,
+        "İşletme (İngilizce) ": 392593,
+        "Lojistik Yönetimi ": 392593,
+        "Lojistik Yönetimi (İngilizce) ": 392593,
+        "Sermaye Piyasası ": 392593,
+        "Siyaset Bilimi ve Kamu Yönetimi ": 392593,
+        "Siyaset Bilimi ve Kamu Yönetimi (İngilizce) ": 392593,
+        "Turizm İşletmeciliği ": 392593,
+        "Uluslararası İlişkiler (İngilizce)": 392593,
+        "Uluslararası Ticaret ve Finansman ": 392593,
+        "Uluslararası Ticaret ve Finansman (İngilizce) ": 392593,
+        "Yönetim Bilişim Sistemleri ": 474074,
+        "Yönetim Bilişim Sistemleri (İngilize) ": 474074
     },
     "İLETİŞİM FAKÜLTESİ": {
-        "Dijital Oyun Tasarımı Burslu": 0,
-        "Dijital Oyun Tasarımı (%50 İndirimli)": 474074,
-        "Dijital Oyun Tasarımı (İngilizce) Burslu": 0,
-        "Dijital Oyun Tasarımı (İngilizce) (%50 İndirimli)": 474074,
-        "Görsel İletişim Tasarımı Burslu": 0,
-        "Görsel İletişim Tasarımı (%50 İndirimli)": 392593,
-        "Görsel İletişim Tasarımı (İngilizce) Burslu": 0,
-        "Görsel İletişim Tasarımı (İngilizce) (%50 İndirimli)": 392593,
-        "Halkla İlişkiler ve Reklamcılık Burslu": 0,
-        "Halkla İlişkiler ve Reklamcılık (%50 İndirimli)": 392593,
-        "Medya ve İletişim Burslu": 0,
-        "Medya ve İletişim (%50 İndirimli)": 392593,
-        "Yeni Medya Burslu": 0,
-        "Yeni Medya (%50 İndirimli)": 392593,
-        "Yeni Medya (İngilizce) Burslu": 0,
-        "Yeni Medya (İngilizce) (%50 İndirimli)": 392593
+        "Dijital Oyun Tasarımı ": 474074,
+        "Dijital Oyun Tasarımı (İngilizce) ": 474074,
+        "Görsel İletişim Tasarımı ": 392593,
+        "Görsel İletişim Tasarımı (İngilizce) ": 392593,
+        "Halkla İlişkiler ve Reklamcılık ": 392593,
+        "Medya ve İletişim ": 392593,
+        "Yeni Medya ": 392593,
+        "Yeni Medya (İngilizce) ": 392593
     },
     "MÜHENDİSLİK-MİMARLIK FAKÜLTESİ": {
-        "Bilgisayar Mühendisliği Burslu": 0,
-        "Bilgisayar Mühendisliği (%50 İndirimli)": 592593,
-        "Bilgisayar Mühendisliği (İngilizce) Burslu": 0,
-        "Bilgisayar Mühendisliği (İngilizce) (%50 İndirimli)": 592593,
-        "Elektrik-Elektronik Mühendisliği Burslu": 0,
-        "Elektrik-Elektronik Mühendisliği (%50 İndirimli)": 362963,
-        "Endüstri Mühendisliği Burslu": 0,
-        "Endüstri Mühendisliği (%50 İndirimli)": 429630,
-        "Endüstri Mühendisliği (İngilizce) Burslu": 0,
-        "Endüstri Mühendisliği (İngilizce) (%50 İndirimli)": 429630,
-        "Endüstriyel Tasarım Burslu": 0,
-        "Endüstriyel Tasarım (%50 İndirimli)": 422222,
-        "Endüstriyel Tasarım (İngilizce) Burslu": 0,
-        "Endüstriyel Tasarım (İngilizce) (%50 İndirimli)": 422222,
-        "İç Mimarlık Burslu": 0,
-        "İç Mimarlık (%50 İndirimli)": 503704,
-        "İç Mimarlık (İngilizce) Burslu": 0,
-        "İç Mimarlık (İngilizce) (%50 İndirimli)": 503704,
-        "İnşaat Mühendisliği (İngilizce) Burslu": 0,
-        "İnşaat Mühendisliği (İngilizce) (%50 İndirimli)": 325926,
-        "Kimya Mühendisliği Burslu": 0,
-        "Kimya Mühendisliği (%50 İndirimli)": 325926,
-        "Makine Mühendisliği (İngilizce) Burslu": 0,
-        "Makine Mühendisliği (İngilizce) (%50 İndirimli)": 325926,
-        "Mimarlık Burslu": 0,
-        "Mimarlık (%50 İndirimli)": 325926,
-        "Mimarlık (İngilizce) Burslu": 0,
-        "Mimarlık (İngilizce) (%50 İndirimli)": 325926,
-        "Yazılım Mühendisliği Burslu": 0,
-        "Yazılım Mühendisliği (%50 İndirimli)": 592593
+        "Bilgisayar Mühendisliği ": 592593,
+        "Bilgisayar Mühendisliği (İngilizce) ": 592593,
+        "Elektrik-Elektronik Mühendisliği ": 362963,
+        "Endüstri Mühendisliği ": 429630,
+        "Endüstri Mühendisliği (İngilizce) ": 429630,
+        "Endüstriyel Tasarım ": 422222,
+        "Endüstriyel Tasarım (İngilizce) ": 422222,
+        "İç Mimarlık ": 503704,
+        "İç Mimarlık (İngilizce) ": 503704,
+        "İnşaat Mühendisliği (İngilizce) ": 325926,
+        "Kimya Mühendisliği ": 325926,
+        "Makine Mühendisliği (İngilizce) ": 325926,
+        "Mimarlık ": 325926,
+        "Mimarlık (İngilizce) ": 325926,
+        "Yazılım Mühendisliği ": 592593
     },
     "SAĞLIK BİLİMLERİ FAKÜLTESİ": {
-        "Beslenme ve Diyetetik Burslu": 0,
-        "Beslenme ve Diyetetik (%50 İndirimli)": 474074,
-        "Çocuk Gelişimi Burslu": 0,
-        "Çocuk Gelişimi (%50 İndirimli)": 429629,
-        "Ebelik Burslu": 0,
-        "Ebelik (%50 İndirimli)": 429629,
-        "Fizyoterapi ve Rehabilitasyon Burslu": 0,
-        "Fizyoterapi ve Rehabilitasyon (%50 İndirimli)": 474074,
-        "Hemşirelik Burslu": 0,
-        "Hemşirelik (%50 İndirimli)": 474074,
-        "Sağlık Yönetimi Burslu": 0,
-        "Sağlık Yönetimi (%50 İndirimli)": 370370
+        "Beslenme ve Diyetetik ": 474074,
+        "Çocuk Gelişimi ": 429629,
+        "Ebelik ": 429629,
+        "Fizyoterapi ve Rehabilitasyon ": 474074,
+        "Hemşirelik ": 474074,
+        "Sağlık Yönetimi ": 370370
     },
     "MESLEK YÜKSEKOKULU": {
-        "Ağız ve Diş Sağlığı Burslu": 0,
-        "Ağız ve Diş Sağlığı (%50 İndirimli)": 333333,
-        "Ameliyathane Hizmetleri Burslu": 0,
-        "Ameliyathane Hizmetleri (%50 İndirimli)": 311111,
-        "Anestezi Burslu": 0,
-        "Anestezi (%50 İndirimli)": 311111,
-        "Aşçılık Burslu": 0,
-        "Aşçılık (%50 İndirimli)": 281481,
-        "Bankacılık ve Sigortacılık Burslu": 0,
-        "Bankacılık ve Sigortacılık (%50 İndirimli)": 251852,
-        "Bilgisayar Programcılığı Burslu": 0,
-        "Bilgisayar Programcılığı (%50 İndirimli)": 333333,
-        "Bilgisayar Teknolojisi Burslu": 0,
-        "Bilgisayar Teknolojisi (%50 İndirimli)": 281481,
-        "Bilişim Güvenliği Teknolojisi Burslu": 0,
-        "Bilişim Güvenliği Teknolojisi (%50 İndirimli)": 281481,
-        "Biyomedikal Cihaz Teknolojisi Burslu": 0,
-        "Biyomedikal Cihaz Teknolojisi (%50 İndirimli)": 266667,
-        "CNC Programlama Operatörlüğü Burslu": 0,
-        "CNC Programlama Operatörlüğü (%50 İndirimli)": 266667,
-        "Çevresel Ölçüm ve İzleme Sistemleri Teknikerliği Burslu": 0,
-        "Çevresel Ölçüm ve İzleme Sistemleri Teknikerliği (%50 İndirimli)": 222222,
-        "Çocuk Gelişimi Burslu": 0,
-        "Çocuk Gelişimi (%50 İndirimli)": 259259,
-        "Çok Boyutlu Modelleme ve Animasyon Burslu": 0,
-        "Çok Boyutlu Modelleme ve Animasyon(%50 İndirimli)": 251852,
-        "Dış Ticaret Burslu": 0,
-        "Dış Ticaret (%50 İndirimli)": 266666,
-        "Doğalgaz ve Tesisatı Teknolojisi Burslu": 0,
-        "Doğalgaz ve Tesisatı Teknolojisi (%50 İndirimli)": 251852,
-        "Endüstri Ürünleri Tasarımı Burslu": 0,
-        "Endüstri Ürünleri Tasarımı (%50 İndirimli)": 251852,
-        "Enerji Tesisleri İşletmeciliği Burslu": 0,
-        "Enerji Tesisleri İşletmeciliği (%50 İndirimli)": 251852,
-        "Diş Protez Teknolojisi Burslu": 0,
-        "Diş Protez Teknolojisi (%50 İndirimli)": 296296,
-        "Diyaliz Burslu": 0,
-        "Diyaliz (%50 İndirimli)": 266667,
-        "Eczane Hizmetleri Burslu": 0,
-        "Eczane Hizmetleri (%50 İndirimli)": 266667,
-        "Elektronörofizyoloji Burslu": 0,
-        "Elektronörofizyoloji (%50 İndirimli)": 244444,
-        "Fizyoterapi Burslu": 0,
-        "Fizyoterapi (%50 İndirimli)": 362963,
-        "Grafik Tasarımı Burslu": 0,
-        "Grafik Tasarımı (%50 İndirimli)": 281481,
-        "Halkla İlişkiler ve Tanıtım Burslu": 0,
-        "Halkla İlişkiler ve Tanıtım (%50 İndirimli)": 237037,
-        "Hibrid ve Elektrikli Taşıtlar Teknolojisi Burslu": 0,
-        "Hibrid ve Elektrikli Taşıtlar Teknolojisi (%50 İndirimli)": 251852,
-        "İç Mekan Tasarımı Burslu": 0,
-        "İç Mekan Tasarımı (%50 İndirimli)": 251852,
-        "İlk ve Acil Yardım Burslu": 0,
-        "İlk ve Acil Yardım (%50 İndirimli)": 414815,
-        "İnsan Kaynakları Yönetimi Burslu": 0,
-        "İnsan Kaynakları Yönetimi (%50 İndirimli)": 259259,
-        "İnsansız Hava Aracı Teknolojileri ve Operatörlüğü Burslu": 0,
-        "İnsansız Hava Aracı Teknolojileri ve Operatörlüğü (%50 İndirimli)": 251852,
-        "İş Sağlığı ve Güvenliği Burslu": 0,
-        "İş Sağlığı ve Güvenliği (%50 İndirimli)": 251852,
-        "İşletme Yönetimi Burslu": 0,
-        "İşletme Yönetimi (%50 İndirimli)": 251852,
-        "Lojistik Burslu": 0,
-        "Lojistik (%50 İndirimli)": 251852,
-        "Mahkeme Büro Hizmetleri Burslu": 0,
-        "Mahkeme Büro Hizmetleri (%50 İndirimli)": 288889,
-        "Mekatronik Burslu": 0,
-        "Mekatronik (%50 İndirimli)": 251852,
-        "Mimari Restorasyon Burslu": 0,
-        "Mimari Restorasyon (%50 İndirimli)": 251852,
-        "Moda Tasarımı Burslu": 0,
-        "Moda Tasarımı (%50 İndirimli)": 237037,
-        "Otomotiv Teknolojisi Burslu": 0,
-        "Otomotiv Teknolojisi (%50 İndirimli)": 251852,
-        "Odyometri Burslu": 0,
-        "Odyometri (%50 İndirimli)": 251852,
-        "Optisyenlik Burslu": 0,
-        "Optisyenlik (%50 İndirimli)": 266667,
-        "Oyun Geliştirme ve Programlama Burslu": 0,
-        "Oyun Geliştirme ve Programlama (%50 İndirimli)": 266667,
-        "Ortopedik Protez ve Ortez Burslu": 0,
-        "Ortopedik Protez ve Ortez (%50 İndirimli)": 251852,
-        "Patoloji Laboratuvar Teknikleri Burslu": 0,
-        "Patoloji Laboratuvar Teknikleri (%50 İndirimli)": 259259,
-        "Radyoterapi Burslu": 0,
-        "Radyoterapi (%50 İndirimli)": 259259,
-        "Su ve Atık Yönetimi Teknikerliği Burslu": 0,
-        "Su ve Atık Yönetimi Teknikerliği (%50 İndirimli)": 222222,
-        "Sivil Hava Ulaştırma İşletmeciliği Burslu": 0,
-        "Sivil Hava Ulaştırma İşletmeciliği (%50 İndirimli)": 251852,
-        "Sivil Havacılık Kabin Hizmetleri Burslu": 0,
-        "Sivil Havacılık Kabin Hizmetleri (%50 İndirimli)": 281481,
-        "Tekstil Teknolojisi Burslu": 0,
-        "Tekstil Teknolojisi (%50 İndirimli)": 222222,
-        "Tıbbi Dokümantasyon ve Sekreterlik Burslu": 0,
-        "Tıbbi Dokümantasyon ve Sekreterlik (%50 İndirimli)": 281481,
-        "Tıbbi Görüntüleme Teknikleri Burslu": 0,
-        "Tıbbi Görüntüleme Teknikleri (%50 İndirimli)": 325926,
-        "Tıbbi Laboratuvar Teknikleri Burslu": 0,
-        "Tıbbi Laboratuvar Teknikleri (%50 İndirimli)": 325926,
-        "Turist Rehberliği Burslu": 0,
-        "Turist Rehberliği  (%50 İndirimli)": 251852,
-        "Turizm ve Seyahat Hizmetleri Burslu": 0,
-        "Turizm ve Seyahat Hizmetleri (%50 İndirimli)": 251852,
-        "Yapay Zeka Operatörlüğü Burslu": 0,
-        "Yapay Zeka Operatörlüğü (%50 İndirimli)": 333333,
-        "Yapı Yalıtım Teknolojisi Burslu": 0,
-        "Yapı Yalıtım Teknolojisi  (%50 İndirimli)": 251852
+        "Ağız ve Diş Sağlığı ": 333333,
+        "Ameliyathane Hizmetleri ": 311111,
+        "Anestezi ": 311111,
+        "Aşçılık ": 281481,
+        "Bankacılık ve Sigortacılık ": 251852,
+        "Bilgisayar Programcılığı ": 333333,
+        "Bilgisayar Teknolojisi ": 281481,
+        "Bilişim Güvenliği Teknolojisi ": 281481,
+        "Biyomedikal Cihaz Teknolojisi ": 266667,
+        "CNC Programlama Operatörlüğü ": 266667,
+        "Çevresel Ölçüm ve İzleme Sistemleri Teknikerliği ": 222222,
+        "Çocuk Gelişimi ": 259259,
+        "Çok Boyutlu Modelleme ve Animasyon": 251852,
+        "Dış Ticaret ": 266666,
+        "Doğalgaz ve Tesisatı Teknolojisi ": 251852,
+        "Endüstri Ürünleri Tasarımı ": 251852,
+        "Enerji Tesisleri İşletmeciliği ": 251852,
+        "Diş Protez Teknolojisi ": 296296,
+        "Diyaliz ": 266667,
+        "Eczane Hizmetleri ": 266667,
+        "Elektronörofizyoloji ": 244444,
+        "Fizyoterapi ": 362963,
+        "Grafik Tasarımı ": 281481,
+        "Halkla İlişkiler ve Tanıtım ": 237037,
+        "Hibrid ve Elektrikli Taşıtlar Teknolojisi ": 251852,
+        "İç Mekan Tasarımı ": 251852,
+        "İlk ve Acil Yardım ": 414815,
+        "İnsan Kaynakları Yönetimi ": 259259,
+        "İnsansız Hava Aracı Teknolojileri ve Operatörlüğü ": 251852,
+        "İş Sağlığı ve Güvenliği ": 251852,
+        "İşletme Yönetimi ": 251852,
+        "Lojistik ": 251852,
+        "Mahkeme Büro Hizmetleri ": 288889,
+        "Mekatronik ": 251852,
+        "Mimari Restorasyon ": 251852,
+        "Moda Tasarımı ": 237037,
+        "Otomotiv Teknolojisi ": 251852,
+        "Odyometri ": 251852,
+        "Optisyenlik ": 266667,
+        "Oyun Geliştirme ve Programlama ": 266667,
+        "Ortopedik Protez ve Ortez ": 251852,
+        "Patoloji Laboratuvar Teknikleri ": 259259,
+        "Radyoterapi ": 259259,
+        "Su ve Atık Yönetimi Teknikerliği ": 222222,
+        "Sivil Hava Ulaştırma İşletmeciliği ": 251852,
+        "Sivil Havacılık Kabin Hizmetleri ": 281481,
+        "Tekstil Teknolojisi ": 222222,
+        "Tıbbi Dokümantasyon ve Sekreterlik ": 281481,
+        "Tıbbi Görüntüleme Teknikleri ": 325926,
+        "Tıbbi Laboratuvar Teknikleri ": 325926,
+        "Turist Rehberliği  ": 251852,
+        "Turizm ve Seyahat Hizmetleri ": 251852,
+        "Yapay Zeka Operatörlüğü ": 333333,
+        "Yapı Yalıtım Teknolojisi  ": 251852
     }
+
 
     },"Beykoz Üniversitesi": {
         "İşletme ve Yönetim Bilimleri Fakültesi": {
@@ -1019,91 +987,91 @@ schools = {
     },
     "İstanbul Esenyurt Üniversitesi":{
         "İşletme ve Yönetim Bilimleri Fakültesi":{
-            "Ekonomi ve Finans (İngilizce) (%50 İndirimli)":275000,
-            "Elektronik Ticaret ve Yönetimi (%50 İndirimli)":275000,
-            "Havacılık Yönetimi (%50 İndirimli)":275000,
-            "İşletme (%50 İndirimli)":275000,
-            "İşletme (İngilizce) (%50 İndirimli)":275000,
-            "Lojistik Yönetimi (%50 İndirimli)":275000,
-            "Siyaset Bilimi ve Uluslararası İlişkiler (%50 İndirimli)":275000,
-            "Siyaset Bilimi ve Uluslararası İlişkiler (İngilizce) (%50 İndirimli)":275000,
-            "Uluslararası Ticaret ve Finansman (%50 İndirimli)":275000,
-            "Yönetim Bilişim Sistemleri (%50 İndirimli)":275000,
+            "Ekonomi ve Finans (İngilizce) ":275000,
+            "Elektronik Ticaret ve Yönetimi ":275000,
+            "Havacılık Yönetimi ":275000,
+            "İşletme ":275000,
+            "İşletme (İngilizce) ":275000,
+            "Lojistik Yönetimi ":275000,
+            "Siyaset Bilimi ve Uluslararası İlişkiler ":275000,
+            "Siyaset Bilimi ve Uluslararası İlişkiler (İngilizce) ":275000,
+            "Uluslararası Ticaret ve Finansman ":275000,
+            "Yönetim Bilişim Sistemleri ":275000,
             },
         "Mühendislik ve Mimarlık Fakültesi":{
-            "Bilgisayar Mühendisliği  (%50 İndirimli)":312500,
-            "Elektrik-Elektronik Mühendisliği (İngilizce) (%50 İndirimli)":312500,
-            "Endüstriyel Tasarım (%50 İndirimli)":312500,
-            "İç Mimarlık (%50 İndirimli)":312500,
-            "İç Mimarlık ve Çevre Tasarımı  (%50 İndirimli)":312500,
-            "Yazılım Mühendisliği (İngilizce) (%50 İndirimli)":312500,
+            "Bilgisayar Mühendisliği  ":312500,
+            "Elektrik-Elektronik Mühendisliği (İngilizce) ":312500,
+            "Endüstriyel Tasarım ":312500,
+            "İç Mimarlık ":312500,
+            "İç Mimarlık ve Çevre Tasarımı  ":312500,
+            "Yazılım Mühendisliği (İngilizce) ":312500,
             } ,
         "Sağlık Bilimleri Fakültesi":{
-            "Beslenme ve Diyetetik (%50 İndirimli)":325000,
-            "Çocuk Gelişimi (%50 İndirimli)":325000,
-            "Ebelik (%50 İndirimli)":325000,
-            "Fizyoterapi ve Rehabilitasyon (%50 İndirimli)":325000,
-            "Hemşirelik  (%50 İndirimli)":325000,
-            "Sosyal Hizmet (%50 İndirimli)":325000,
+            "Beslenme ve Diyetetik ":325000,
+            "Çocuk Gelişimi ":325000,
+            "Ebelik ":325000,
+            "Fizyoterapi ve Rehabilitasyon ":325000,
+            "Hemşirelik  ":325000,
+            "Sosyal Hizmet ":325000,
         } ,
         "Sanat ve Sosyal Bilimler Fakültesi":{
-            "Dijital Oyun Tasarımı (%50 İndirimli)":300000,
-            "Gastronomi ve Mutfak Sanatları (%50 İndirimli)":300000,
-            "Halkla İlişkiler ve Reklamcılık (%50 İndirimli)":300000,
-            "Psikoloji (%50 İndirimli)":300000,
-            "Radyo, Televizyon ve Sinema (%50 İndirimli)":300000,
-            "Sosyoloji (%50 İndirimli)":300000,
-            "Yeni Medya ve İletişim  (%50 İndirimli)":300000,
+            "Dijital Oyun Tasarımı ":300000,
+            "Gastronomi ve Mutfak Sanatları ":300000,
+            "Halkla İlişkiler ve Reklamcılık ":300000,
+            "Psikoloji ":300000,
+            "Radyo, Televizyon ve Sinema ":300000,
+            "Sosyoloji ":300000,
+            "Yeni Medya ve İletişim  ":300000,
         } ,
         "Spor Bilimleri Fakültesi":{
-            "Spor Yöneticiliği (%50 İndirimli)":237500,
+            "Spor Yöneticiliği ":237500,
         },
         "Uygulamalı Bilimler Yüksekokulu":{
-            "Bilişim Sistemleri ve Teknolojileri (%50 İndirimli)":300000,
-            "Veri Bilimi ve Analitiği (%50 İndirimli)":300000,
-            "Yazılım Geliştirme (%50 İndirimli)":300000,
+            "Bilişim Sistemleri ve Teknolojileri ":300000,
+            "Veri Bilimi ve Analitiği ":300000,
+            "Yazılım Geliştirme ":300000,
         },
         "Sağlık Hizmetleri Meslek Yüksekokulu":{
-            "Ağız ve Diş Sağlığı (%50 İndirimli)":200000,
-            "Ameliyathane Hizmetleri (%50 İndirimli)":200000,
-            "Anestezi (%50 İndirimli)":200000,
-            "Çocuk Gelişimi (%50 İndirimli)":200000,
-            "Diş Protez Teknolojisi (%50 İndirimli)":200000,
-            "Evde Hasta Bakımı (%50 İndirimli)":200000,
-            "Fizyoterapi (%50 İndirimli)":200000,
-            "İlk ve Acil Yardım (%50 İndirimli)":200000,
-            "Tıbbi Dokümantasyon ve Sekreterlik (%50 İndirimli)":200000,
-            "Tıbbi Görüntüleme Teknikleri (%50 İndirimli)":200000,
-            "Tıbbi Laboratuvar Teknikleri (%50 İndirimli)":200000,
+            "Ağız ve Diş Sağlığı ":200000,
+            "Ameliyathane Hizmetleri ":200000,
+            "Anestezi ":200000,
+            "Çocuk Gelişimi ":200000,
+            "Diş Protez Teknolojisi ":200000,
+            "Evde Hasta Bakımı ":200000,
+            "Fizyoterapi ":200000,
+            "İlk ve Acil Yardım ":200000,
+            "Tıbbi Dokümantasyon ve Sekreterlik ":200000,
+            "Tıbbi Görüntüleme Teknikleri ":200000,
+            "Tıbbi Laboratuvar Teknikleri ":200000,
         },
         "Bilişim Teknolojileri Meslek Yüksekokulu":{
-            "Bilgisayar Destekli Tasarım ve Animasyon (%50 İndirimli)":175000,
-            "Bilgisayar Programcılığı (%50 İndirimli)":175000,
-            "Bilgisayar Teknolojisi (%50 İndirimli)":175000,
-            "Bilişim Güvenliği Teknolojisi (%50 İndirimli)":175000,
-            "İnsansız Hava Aracı Teknolojisi ve Operatörlüğü (%50 İndirimli)":175000,
-            "İnternet ve Ağ Teknolojileri (%50 İndirimli)":175000,
-            "Oyun Geliştirme ve Programlama (%50 İndirimli)":175000,
+            "Bilgisayar Destekli Tasarım ve Animasyon ":175000,
+            "Bilgisayar Programcılığı ":175000,
+            "Bilgisayar Teknolojisi ":175000,
+            "Bilişim Güvenliği Teknolojisi ":175000,
+            "İnsansız Hava Aracı Teknolojisi ve Operatörlüğü ":175000,
+            "İnternet ve Ağ Teknolojileri ":175000,
+            "Oyun Geliştirme ve Programlama ":175000,
         },
         "Meslek Yüksekokulu":{
-            "Akıllı Altyapılar Teknikerliği (%50 İndirimli)":175000,
-            "Aşçılık (%50 İndirimli)":175000,
-            "Bankacılık ve Sigortacılık (%50 İndirimli)":175000,
-            "Ceza İnfaz ve Güvenlik Hizmetleri (%50 İndirimli)":175000,
-            "Dış Ticaret (%50 İndirimli)":175000,
-            "Elektrik Enerjisi Üretim, İletim ve Dağıtımı (%50 İndirimli)":175000,
-            "E-Ticaret ve Pazarlama (%50 İndirimli)":175000,
-            "Gıda Teknolojisi (%50 İndirimli)":175000,
-            "Grafik Tasarımı (%50 İndirimli)":175000,
-            "Halkla İlişkiler ve Tanıtım (%50 İndirimli)":175000,
-            "İnşaat Teknolojisi (%50 İndirimli)":175000,
-            "İş Sağlığı ve Güvenliği (%50 İndirimli)":175000,
-            "İşletme Yönetimi (%50 İndirimli)":175000,
-            "Lojistik (%50 İndirimli)":175000,
-            "Sivil Hava Ulaştırma İşletmeciliği (%50 İndirimli)":175000,
-            "Sivil Havacılık Kabin Hizmetleri (%50 İndirimli)":175000,
-            "Turist Rehberliği (%50 İndirimli)":175000,
-            "Uçuş Harekat Yöneticliği (%50 İndirimli)":175000,
+            "Akıllı Altyapılar Teknikerliği ":175000,
+            "Aşçılık ":175000,
+            "Bankacılık ve Sigortacılık ":175000,
+            "Ceza İnfaz ve Güvenlik Hizmetleri ":175000,
+            "Dış Ticaret ":175000,
+            "Elektrik Enerjisi Üretim, İletim ve Dağıtımı ":175000,
+            "E-Ticaret ve Pazarlama ":175000,
+            "Gıda Teknolojisi ":175000,
+            "Grafik Tasarımı ":175000,
+            "Halkla İlişkiler ve Tanıtım ":175000,
+            "İnşaat Teknolojisi ":175000,
+            "İş Sağlığı ve Güvenliği ":175000,
+            "İşletme Yönetimi ":175000,
+            "Lojistik ":175000,
+            "Sivil Hava Ulaştırma İşletmeciliği ":175000,
+            "Sivil Havacılık Kabin Hizmetleri ":175000,
+            "Turist Rehberliği ":175000,
+            "Uçuş Harekat Yöneticliği ":175000,
         },
     },
     "İstanbul Gedik Üniversitesi":{
@@ -1156,7 +1124,7 @@ schools = {
             "Ameliyathane Hizmetleri":260000,
         },
         "Gedik Meslek Yüksekokulu (Sosyal Programlar)":{
-            "Aşçılık (50% İndirimli)":300000,
+            "Aşçılık":300000,
             "Bankacılık ve Sigortacılık":225000,
             "Dış Ticaret (İngilizce)":225000,
             "Grafik Tasarımı":260000,
@@ -1430,7 +1398,7 @@ schools = {
     },
     "İstanbul Medipol Üniversitesi":{
         "Diş Hekimliği Fakültesi":{
-            "Diş Hekimliği (%30 İngilizce)": 930000,
+            "Diş Hekimliği ( İngilizce)": 930000,
             "Diş Hekimliği (İngilizce)": 930000,
         },
         "Eczacılık Fakültesi":{
@@ -1457,7 +1425,7 @@ schools = {
             "Mimarlık (İngilizce)": 540000,
         },
         "Hukuk Fakültesi":{
-            "Hukuk (%30 İngilizce)":485000,
+            "Hukuk ( İngilizce)":485000,
         },
         "İletişim Fakültesi":{
             "Medya ve Görsel Sanatlar": 445000,
@@ -1520,7 +1488,7 @@ schools = {
             "Sosyal Hizmet": 240000,
         },
         "Tıp Fakültesi":{
-            "Tıp (%30 İngilizce)": 880000,
+            "Tıp ( İngilizce)": 880000,
             "Tıp (İngilizce)": 880000,
         },
         "Meslek Yüksekokulu":{
@@ -1572,7 +1540,7 @@ schools = {
     },
     "İstanbul Sabahattin Zaim Üniversitesi":{
         "Eğitim Fakültesi":{
-            "Arapça Öğretmenliği (%30 Arapça)": 295000,
+            "Arapça Öğretmenliği ( Arapça)": 295000,
             "İlköğretim Matematik Öğretmenliği": 295000,
             "Müzik Öğretmenliği": 295000,
             "Okul Öncesi Öğretmenliği": 295000,
@@ -1586,13 +1554,13 @@ schools = {
         "İnsan ve Toplum Bilimleri Fakültesi":{
             "Görsel İletişim Tasarımı": 295000,
             "Siyaset Bilimi ve Uluslararası İlişkiler (İngilizce)": 295000,
-            "Sosyoloji (%30 İngilizce)": 295000,
+            "Sosyoloji ( İngilizce)": 295000,
             "Tarih": 295000,
             "Türk Dili ve Edebiyatı": 295000,
         },
         "İslami İlimler Fakültesi":{
             "İslami İlimler (Arapça)": 295000,
-            "İslami İlimler (%30 Arapça)": 295000,
+            "İslami İlimler ( Arapça)": 295000,
         },
         "İşletme ve Yönetim Bilimleri Fakültesi":{
             "İktisat (Türkçe)": 295000,
@@ -1605,10 +1573,10 @@ schools = {
             "Uluslararası Ticaret ve Finansman (Türkçe)": 295000,
         },
         "Mühendislik ve Doğa Bilimleri Fakültesi":{
-            "Elektrik - Elektronik Mühendisliği (%30 İngilizce)": 295000,
-            "Gıda Mühendisliği (%30 İngilizce)": 295000,
+            "Elektrik - Elektronik Mühendisliği ( İngilizce)": 295000,
+            "Gıda Mühendisliği ( İngilizce)": 295000,
             "Mimarlık": 295000,
-            "Moleküler Biyoloji ve Genetik (%30 İngilizce)": 295000,
+            "Moleküler Biyoloji ve Genetik ( İngilizce)": 295000,
         },
         "Sağlık Bilimleri Fakültesi":{
             "Sağlık Yönetimi": 295000,
@@ -2310,7 +2278,7 @@ schools = {
         "Lisans Programları": {
             "Türkçe Öğretmenliği": 291600,
             "Okul Öncesi Öğretmenliği": 300000,
-            "Özel Eğitim Öğretmenliği (%25 indirimli)": 450000,
+            "Özel Eğitim Öğretmenliği ": 450000,
             "Rehberlik ve Psikolojik Danışmanlık": 291600,
             "Arapça Öğretmenliği": 275890,
             "Hukuk": 339300,
@@ -2323,8 +2291,8 @@ schools = {
             "Tarih": 273776,
             "İngilizce Mütercim ve Tercümanlık": 341427,
             "Havacılık Yönetimi": 409806,
-            "Psikoloji (%25 indirimli)": 597146,
-            "İslami İlimler (%25 indirimli)": 334688,
+            "Psikoloji ": 597146,
+            "İslami İlimler ": 334688,
             "İnşaat Mühendisliği": 286013,
             "Elektrik-Elektronik Mühendisliği": 324075,
             "Yazılım Mühendisliği": 375188,
@@ -2333,7 +2301,7 @@ schools = {
             "Kültür Varlıklarını Koruma ve Onarım": 215325,
             "Mimarlık": 324075,
             "Grafik Tasarımı": 348428,
-            "İç Mimarlık (%25 indirimli)": 567240,
+            "İç Mimarlık ": 567240,
             "Geleneksel Türk Sanatları": 212500,
         },
         "Meslek Yüksekokulu": {
@@ -2353,7 +2321,7 @@ schools = {
             "Hava Lojistiği": 225000,
             "İç Mekan Tasarımı": 225000,
             "Ambalaj Tasarımı": 225000,
-            "Sivil Havacılık Kabin Hizmetleri (%25 indirimli)": 337500,
+            "Sivil Havacılık Kabin Hizmetleri ": 337500,
         }
     },
     "Fenerbahçe Üniversitesi": {
@@ -2404,105 +2372,105 @@ schools = {
     "Haliç Üniversitesi": {
         "Fen Edebiyat Fakültesi": {
             "Amerikan Kültürü ve Edebiyatı": 262500,
-            "İngilizce Mütercim ve Tercümanlık (%25 İndirimli)": 393750,
-            "Matematik (%25 İndirimli)": 360000,
-            "Moleküler Biyoloji ve Genetik (%25 İndirimli)": 375000,
-            "Moleküler Biyoloji ve Genetik (İngilizce) (%25 İndirimli)": 393750,
-            "Psikoloji (%25 İndirimli)": 412500,
-            "Psikoloji (İngilizce) (%25 İndirimli)": 435000,
+            "İngilizce Mütercim ve Tercümanlık ": 393750,
+            "Matematik ": 360000,
+            "Moleküler Biyoloji ve Genetik ": 375000,
+            "Moleküler Biyoloji ve Genetik (İngilizce) ": 393750,
+            "Psikoloji ": 412500,
+            "Psikoloji (İngilizce) ": 435000,
             "Türk Dili ve Edebiyatı": 227500,
         },
         "Güzel Sanatlar Fakültesi": {
-            "Çizgi Film ve Animasyon (%25 İndirimli)": 371250,
-            "Dijital Oyun Tasarımı (%25 İndirimli)": 371250,
-            "Gastronomi ve Mutfak Sanatları (%25 İndirimli)": 435000,
-            "Görsel İletişim Tasarımı (%25 İndirimli)": 371250,
-            "Grafik Tasarım (%25 İndirimli)": 360000,
-            "Tekstil ve Moda Tasarımı (%25 İndirimli)": 360000,
+            "Çizgi Film ve Animasyon ": 371250,
+            "Dijital Oyun Tasarımı ": 371250,
+            "Gastronomi ve Mutfak Sanatları ": 435000,
+            "Görsel İletişim Tasarımı ": 371250,
+            "Grafik Tasarım ": 360000,
+            "Tekstil ve Moda Tasarımı ": 360000,
         },
         "İşletme Fakültesi": {
-            "Ekonomi (%25 İndirimli)": 341250,
-            "Halkla İlişkiler ve Tanıtım (%25 İndirimli)": 341250,
-            "İşletme (%25 İndirimli)": 341250,
-            "İşletme (Ingilizce) (%25 İndirimli)": 341250,
-            "Siyaset Bilimi ve Uluslararası İlişkiler (%25 İndirimli)": 341250,
-            "Lojistik Yönetimi (İngilizce) (%25 İndirimli)": 386250,
-            "Uluslararası Ticaret ve İşletmecilik (İngilizce) (%25 İndirimli)": 341250,
-            "Yönetim Bilişim Sistemleri (İngilizce) (%25 İndirimli)": 386250,
+            "Ekonomi ": 341250,
+            "Halkla İlişkiler ve Tanıtım ": 341250,
+            "İşletme ": 341250,
+            "İşletme (Ingilizce) ": 341250,
+            "Siyaset Bilimi ve Uluslararası İlişkiler ": 341250,
+            "Lojistik Yönetimi (İngilizce) ": 386250,
+            "Uluslararası Ticaret ve İşletmecilik (İngilizce) ": 341250,
+            "Yönetim Bilişim Sistemleri (İngilizce) ": 386250,
         },
         "Mimarlık Fakültesi": {
-            "Endüstriyel Tasarım (%25 İndirimli)": 337500,
-            "İç Mimarlık ve Çevre Tasarımı (%25 İndirimli)": 435000,
+            "Endüstriyel Tasarım ": 337500,
+            "İç Mimarlık ve Çevre Tasarımı ": 435000,
             "Mimarlık": 235000,
         },
         "Mühendislik Fakültesi": {
-            "Bilgisayar Mühendisliği (İngilizce) (%25 İndirimli)": 412500,
-            "Elektrik-Elektronik Mühendisliği (İngilizce) (%25 İndirimli)": 341250,
-            "Endüstri Mühendisliği (İngilizce) (%25 İndirimli)": 341250,
+            "Bilgisayar Mühendisliği (İngilizce) ": 412500,
+            "Elektrik-Elektronik Mühendisliği (İngilizce) ": 341250,
+            "Endüstri Mühendisliği (İngilizce) ": 341250,
             "Makine Mühendisliği (Ingilizce)": 227500,
-            "Yazılım Mühendisliği (İngilizce) (%25 İndirimli)": 412500,
+            "Yazılım Mühendisliği (İngilizce) ": 412500,
         },
         "Sağlık Bilimleri Fakültesi": {
-            "Beslenme ve Diyetetik (%25 İndirimli)": 435000,
-            "Beslenme ve Diyetetik (Ingilizce) (%25 İndirimli)": 435000,
-            "Dil ve Konuşma Terapisi (%25 İndirimli)": 435000,
-            "Ebelik (%25 İndirimli)": 386250,
-            "Fizyoterapi ve Rehabilitasyon (%25 İndirimli)": 360000,
-            "Fizyoterapi ve Rehabilitasyon (İngilizce) (%25 İndirimli)": 360000,
-            "Hemşirelik (%25 İndirimli)": 412500,
-            "Hemşirelik (Ingilizce) (%25 İndirimli)": 412500,
+            "Beslenme ve Diyetetik ": 435000,
+            "Beslenme ve Diyetetik (Ingilizce) ": 435000,
+            "Dil ve Konuşma Terapisi ": 435000,
+            "Ebelik ": 386250,
+            "Fizyoterapi ve Rehabilitasyon ": 360000,
+            "Fizyoterapi ve Rehabilitasyon (İngilizce) ": 360000,
+            "Hemşirelik ": 412500,
+            "Hemşirelik (Ingilizce) ": 412500,
         },
         "Spor Bilimleri Fakültesi": {
-            "Antrenörlük Eğitimi (%25 İndirimli)": 371250,
-            "Beden Eğitimi ve Spor Öğretmenliği (%25 İndirimli)": 371250,
-            "Rekreasyon (%25 İndirimli)": 371250,
-            "Spor Yöneticiliği (%25 İndirimli)": 371250,
-            "Spor Yöneticiliği (İngilizce) (%25 İndirimli)": 371250,
+            "Antrenörlük Eğitimi ": 371250,
+            "Beden Eğitimi ve Spor Öğretmenliği ": 371250,
+            "Rekreasyon ": 371250,
+            "Spor Yöneticiliği ": 371250,
+            "Spor Yöneticiliği (İngilizce) ": 371250,
         },
         "Tıp Fakültesi": {
-            "Tıp Programı (%25 İndirimli)": 772500,
+            "Tıp Programı ": 772500,
             "Tıp Programı (İngilizce)": 515000,
         },
         "Meslek Yüksekokulu": {
-            "Anestezi (%25 İndirimli)": 292500,
-            "Aşçılık (%25 İndirimli)": 337500,
-            "Bankacılık ve Sigortacılık (%25 İndirimli)": 210000,
-            "Bilgisayar Programcılığı (%25 İndirimli)": 292500,
-            "Bilgisayar Teknolojisi (%25 İndirimli)": 292500,
-            "Bilişim Güvenliği Teknolojisi (%25 İndirimli)": 292500,
-            "Bulut Bilişim Operatörlüğü (%25 İndirimli)": 292500,
-            "Büyük Veri Analistliği (%25 İndirimli)": 292500,
-            "Çocuk Gelişimi (%25 İndirimli)": 270000,
-            "Dış Ticaret (%25 İndirimli)": 240000,
-            "Dijital Dönüşüm Elektroniği (%25 İndirimli)": 292500,
-            "Elektrik (%25 İndirimli)": 262500,
-            "Elektronik Teknolojisi (%25 İndirimli)": 262500,
-            "E-Ticaret ve Pazarlama (%25 İndirimli)": 292500,
-            "Fizyoterapi (%25 İndirimli)": 292500,
-            "Grafik Tasarımı (%25 İndirimli)": 262500,
-            "İç Mekan Tasarımı (%25 İndirimli)": 262500,
-            "İlk ve Acil Yardım (%25 İndirimli)": 360000,
-            "İmalat Yürütme Sistemleri Operatörlüğü (%25 İndirimli)": 262500,
-            "İnsan Kaynakları Yönetimi (%25 İndirimli)": 210000,
-            "İnsansız Araç Teknikerliği (%25 İndirimli)": 292500,
-            "İnşaat Teknolojisi (%25 İndirimli)": 262500,
-            "İşletme Yönetimi (%25 İndirimli)": 210000,
-            "Kurumsal Bilişim Uzmanlığı (%25 İndirimli)": 292500,
-            "Lojistik (%25 İndirimli)": 240000,
-            "Mahkeme Büro Hizmetleri (%25 İndirimli)": 210000,
-            "Makine (%25 İndirimli)": 262500,
-            "Moda Tasarımı (%25 İndirimli)": 255000,
-            "Otonom Sistemler Teknikerliği (%25 İndirimli)": 292500,
-            "Oyun Geliştirme ve Programlama (%25 İndirimli)": 262500,
-            "Raylı Sistemler İşletmeciliği (%25 İndirimli)": 262500,
-            "Robotik ve Yapay Zekâ (%25 İndirimli)": 292500,
-            "Saç Bakımı ve Güzellik Hizmetleri (%25 İndirimli)": 240000,
-            "Sağlık Bilgi Sistemleri Teknikerliği (%25 İndirimli)": 270000,
-            "Sağlık Turizmi İşletmeciliği (%25 İndirimli)": 210000,
-            "Siber Güvenlik (%25 İndirimli)": 292500,
-            "Tıbbi Görüntüleme Teknikleri (%25 İndirimli)": 270000,
-            "Turizm ve Otel İşletmeciliği (%25 İndirimli)": 262500,
-            "Yapay Zekâ Operatörlüğü (%25 İndirimli)": 292500,
+            "Anestezi ": 292500,
+            "Aşçılık ": 337500,
+            "Bankacılık ve Sigortacılık ": 210000,
+            "Bilgisayar Programcılığı ": 292500,
+            "Bilgisayar Teknolojisi ": 292500,
+            "Bilişim Güvenliği Teknolojisi ": 292500,
+            "Bulut Bilişim Operatörlüğü ": 292500,
+            "Büyük Veri Analistliği ": 292500,
+            "Çocuk Gelişimi ": 270000,
+            "Dış Ticaret ": 240000,
+            "Dijital Dönüşüm Elektroniği ": 292500,
+            "Elektrik ": 262500,
+            "Elektronik Teknolojisi ": 262500,
+            "E-Ticaret ve Pazarlama ": 292500,
+            "Fizyoterapi ": 292500,
+            "Grafik Tasarımı ": 262500,
+            "İç Mekan Tasarımı ": 262500,
+            "İlk ve Acil Yardım ": 360000,
+            "İmalat Yürütme Sistemleri Operatörlüğü ": 262500,
+            "İnsan Kaynakları Yönetimi ": 210000,
+            "İnsansız Araç Teknikerliği ": 292500,
+            "İnşaat Teknolojisi ": 262500,
+            "İşletme Yönetimi ": 210000,
+            "Kurumsal Bilişim Uzmanlığı ": 292500,
+            "Lojistik ": 240000,
+            "Mahkeme Büro Hizmetleri ": 210000,
+            "Makine ": 262500,
+            "Moda Tasarımı ": 255000,
+            "Otonom Sistemler Teknikerliği ": 292500,
+            "Oyun Geliştirme ve Programlama ": 262500,
+            "Raylı Sistemler İşletmeciliği ": 262500,
+            "Robotik ve Yapay Zekâ ": 292500,
+            "Saç Bakımı ve Güzellik Hizmetleri ": 240000,
+            "Sağlık Bilgi Sistemleri Teknikerliği ": 270000,
+            "Sağlık Turizmi İşletmeciliği ": 210000,
+            "Siber Güvenlik ": 292500,
+            "Tıbbi Görüntüleme Teknikleri ": 270000,
+            "Turizm ve Otel İşletmeciliği ": 262500,
+            "Yapay Zekâ Operatörlüğü ": 292500,
         },
         "Özel Yetenek": {
             "Opera": 225000,
@@ -2545,20 +2513,20 @@ schools = {
             "Siber Güvenlik": 175000,
             "Sivil Hava Ulaştırma İşletmeciliği": 175000,
         },
-        "Lisans Programları (%25 İndirimli)": {
-            "İngilizce Öğretmenliği (%25 İndirimli)": 412500,
-            "Okul Öncesi Öğretmenliği (%25 İndirimli)": 412500,
-            "Özel Eğitim Öğretmenliği (%25 İndirimli)": 412500,
-            "Sınıf Öğretmenliği (%25 İndirimli)": 412500,
-            "Psikoloji (%25 İndirimli)": 412500,
+        "Lisans Programları ": {
+            "İngilizce Öğretmenliği ": 412500,
+            "Okul Öncesi Öğretmenliği ": 412500,
+            "Özel Eğitim Öğretmenliği ": 412500,
+            "Sınıf Öğretmenliği ": 412500,
+            "Psikoloji ": 412500,
         },
-        "Meslek Yüksekokulu (%25 İndirimli)": {
-            "Anestezi (%25 İndirimli)": 262500,
-            "Diyaliz (%25 İndirimli)": 262500,
-            "İlk ve Acil Yardım (%25 İndirimli)": 262500,
-            "İnsansız Hava Aracı Teknolojisi ve Operatörlüğü (%25 İndirimli)": 262500,
-            "Sivil Havacılık Kabin Hizmetleri (%25 İndirimli)": 262500,
-            "Yapay Zeka Operatörlüğü (%25 İndirimli)": 262500,
+        "Meslek Yüksekokulu ": {
+            "Anestezi ": 262500,
+            "Diyaliz ": 262500,
+            "İlk ve Acil Yardım ": 262500,
+            "İnsansız Hava Aracı Teknolojisi ve Operatörlüğü ": 262500,
+            "Sivil Havacılık Kabin Hizmetleri ": 262500,
+            "Yapay Zeka Operatörlüğü ": 262500,
         }
     },
     "Işık Üniversitesi": {
@@ -2980,10 +2948,13 @@ schools = {
             "Spor Bilimleri": 190000,
         },
         "Sağlık Bilimleri Fakültesi": {
-            "Ebelik": 230000, 
+            "Ebelik": 230000,
             "Ergoterapi": 230000,
             "Sağlık Yönetimi": 230000,
-            "Diğer Bölümler": 245000, 
+            "Beslenme ve Diyetetik": 245000,
+            "Dil ve Konuşma Terapisi": 245000,
+            "Fizyoterapi ve Rehabilitasyon": 245000,
+            "Hemşirelik": 245000
         },
         "Tıp Fakültesi": {
             "Tıp": 360000, 
@@ -3126,31 +3097,31 @@ schools = {
         },
         "Sosyal ve Beşeri Bilimler": {
             "pisikoloji": 464738,
-            "işletme (%30 İNGİLİZCE)": 344250,
-            "uluslararası ticaret ve finansman (%30 İNGİLİZCE)": 344250,
+            "işletme ( İNGİLİZCE)": 344250,
+            "uluslararası ticaret ve finansman ( İNGİLİZCE)": 344250,
         }
     },
     "Konya Gıda Ve Tarım Üniversitesi": {
         "Mühendislik ve Mimarlık Fakültesi": {
-            "Bilgisayar Mühendisliği (İngilizce) - %50 İndirimli": 231000,
+            "Bilgisayar Mühendisliği (İngilizce) ": 231000,
             
-            "Yazılım Mühendisliği (Türkçe) - %50 İndirimli": 203500,
+            "Yazılım Mühendisliği (Türkçe) ": 203500,
            
-            "İç Mimarlık (Türkçe) - %50 İndirimli": 222750,
+            "İç Mimarlık (Türkçe) ": 222750,
             
         },
         "Sosyal ve Beşeri Bilimler Fakültesi": {
-            "Uluslararası Ticaret ve İşletmecilik (İngilizce) - %50 İndirimli": 195250,
+            "Uluslararası Ticaret ve İşletmecilik (İngilizce) ": 195250,
             
-            "Yönetim Bilişim Sistemleri (İngilizce) - %50 İndirimli": 195250,
+            "Yönetim Bilişim Sistemleri (İngilizce) ": 195250,
            
-            "Psikoloji (Türkçe) - %50 İndirimli": 313500,
+            "Psikoloji (Türkçe) ": 313500,
             
         },
         "Tarım ve Doğa Bilimler Fakültesi": {
-            "Bitkisel Üretim ve Teknolojileri (İngilizce) - %50 İndirimli": 68750,
+            "Bitkisel Üretim ve Teknolojileri (İngilizce) ": 68750,
             
-            "Moleküler Biyoloji ve Genetik (İngilizce) - %50 İndirimli": 162250,
+            "Moleküler Biyoloji ve Genetik (İngilizce) ": 162250,
             
         }
     
@@ -3161,65 +3132,65 @@ schools = {
             "Tıp Fakültesi (Ücretli)": 760000,
         },
         "Hukuk Fakültesi": {
-            "Hukuk Fakültesi (%50 İndirimli)": 265000,
+            "Hukuk Fakültesi ": 265000,
             
         },
         "Uygulamalı Bilimler Yüksekokulu": {
             "Pilotaj (Ücretli)": 660000,
         },
         "Mühendislik ve Doğa Bilimleri Fakültesi": {
-            "Bilgisayar Mühendisliği (%50 İndirimli)": 240000,
+            "Bilgisayar Mühendisliği ": 240000,
             
-            "Elektrik- Elektronik Mühendisliği (%50 İndirimli)": 215000,
+            "Elektrik- Elektronik Mühendisliği ": 215000,
            
-            "İnşaat Mühendisliği (%50 İndirimli)": 240000,
-            "Mekatronik Mühendisliği (%50 İndirimli)": 240000,
-            "Makine Mühendisliği (%50 İndirimli)": 240000,
-            "Endüstri Mühendisliği (%50 İndirimli)": 208000,
+            "İnşaat Mühendisliği ": 240000,
+            "Mekatronik Mühendisliği ": 240000,
+            "Makine Mühendisliği ": 240000,
+            "Endüstri Mühendisliği ": 208000,
            
         },
         "İktisadi, İdari ve Sosyal Bilimler Fakültesi": {
-            "İşletme (%50 İndirimli)": 256000,
-            "Enerji Yönetimi (%50 İndirimli)": 202500,
+            "İşletme ": 256000,
+            "Enerji Yönetimi ": 202500,
             
-            "Sigortacılık ve Sosyal Güvenlik (%50 İndirimli)": 202500,
+            "Sigortacılık ve Sosyal Güvenlik ": 202500,
             
-            "İslam İktisadı ve Finans (%50 İndirimli)": 196500,
-            "Uluslararası Ticaret ve Lojistik (%50 İndirimli)": 202500,
+            "İslam İktisadı ve Finans ": 196500,
+            "Uluslararası Ticaret ve Lojistik ": 202500,
            
-            "Uluslararası Ticaret ve Lojistik (İngilizce) (%50 İndirimli)": 232000,
+            "Uluslararası Ticaret ve Lojistik (İngilizce) ": 232000,
             
-            "İngilizce Mütercim Tercümanlık (%50 İndirimli)": 223000,
+            "İngilizce Mütercim Tercümanlık ": 223000,
             
-            "Arapça Mütercim ve Tercümanlık (%50 İndirimli)": 197000,
-            "İletişim ve Tasarımı (%50 İndirimli)": 225000,
+            "Arapça Mütercim ve Tercümanlık ": 197000,
+            "İletişim ve Tasarımı ": 225000,
           
-            "Sosyal Hizmet (%50 İndirimli)": 202500,
+            "Sosyal Hizmet ": 202500,
             
-            "Psikoloji (%50 İndirimli)": 232000,
+            "Psikoloji ": 232000,
            
-            "Sosyoloji (%50 İndirimli)": 196500,
-            "Tarih (%50 İndirimli)": 202500,
+            "Sosyoloji ": 196500,
+            "Tarih ": 202500,
         },
         "Güzel Sanatlar ve Tasarım Fakültesi": {
-            "Mimarlık (%50 İndirimli)": 225000,
-            "İç Mimarlık (%50 İndirimli)": 231000,
+            "Mimarlık ": 225000,
+            "İç Mimarlık ": 231000,
             
-            "Grafik Tasarımı (%50 İndirimli)": 231000,
+            "Grafik Tasarımı ": 231000,
             
         },
         "Sağlık Bilimleri Fakültesi": {
-            "Beslenme ve Diyetetik (%50 İndirimli)": 203000,
+            "Beslenme ve Diyetetik ": 203000,
             
-            "Çocuk Gelişimi (%50 İndirimli)": 203000,
+            "Çocuk Gelişimi ": 203000,
             
-            "Odyoloji (%50 İndirimli)": 203000,
+            "Odyoloji ": 203000,
           
-            "Hemşirelik (%50 İndirimli)": 203000,
+            "Hemşirelik ": 203000,
             
-            "Fizyoterapi ve Rehabilitasyon (%50 İndirimli)": 203000,
+            "Fizyoterapi ve Rehabilitasyon ": 203000,
           
-            "Ebelik (%50 İndirimli)": 203000,
+            "Ebelik ": 203000,
             
         },
         "Diğer Programlar": {
@@ -3231,267 +3202,250 @@ schools = {
         "Tıp Fakültesi": {
           
            
-            "Tıp Fakültesi (İngilizce) - %50 İndirimli": 480000
+            "Tıp Fakültesi (İngilizce) ": 480000
         },
         "Diş Hekimliği Fakültesi": {
             
-            "Diş Hekimliği (İngilizce) - %50 İndirimli": 460000
+            "Diş Hekimliği (İngilizce) ": 460000
         },
         "Eczacılık Fakültesi": {
             
-            "Eczacılık (İngilizce) - %50 İndirimli": 360000
+            "Eczacılık (İngilizce) ": 360000
         },
         "Sağlık Bilimleri Fakültesi": {
-            "Beslenme ve Diyetetik - %50 İndirimli": 260064,
+            "Beslenme ve Diyetetik ": 260064,
            
-            "Fizyoterapi ve Rehabilitasyon - %50 İndirimli": 260064,
+            "Fizyoterapi ve Rehabilitasyon ": 260064,
            
-            "Hemşirelik - %50 İndirimli": 260064,
-            "Ebelik - %50 İndirimli": 260064,
-            "Ergoterapi - %50 İndirimli": 260064,
-            "Dil ve Konuşma Terapisi - %50 İndirimli": 260064,
-            "Odyoloji - %50 İndirimli": 260064
+            "Hemşirelik ": 260064,
+            "Ebelik ": 260064,
+            "Ergoterapi ": 260064,
+            "Dil ve Konuşma Terapisi ": 260064,
+            "Odyoloji ": 260064
         },
         "Spor Bilimleri Fakültesi": {
-            "Antrenörlük - %50 İndirimli": 260064,
-            "Spor Yöneticiliği - %50 İndirimli": 260064
+            "Antrenörlük ": 260064,
+            "Spor Yöneticiliği ": 260064
         }
     },
-   "Maltepe Üniversitesi (SADECE %50 ve ÜZERİ İNDİRİMLİ PROGRAMLAR)": {
+   "Maltepe Üniversitesi ": {
         "Eğitim Fakültesi": {
-            "İlköğretim Matematik Öğretmenliği (%50 İndirimli)": 434500,
-            "İngilizce Öğretmenliği (%50 İndirimli)": 434500,
-            "Okul Öncesi Öğretmenliği (%50 İndirimli)": 434500,
-            "Özel Eğitim Öğretmenliği (%50 İndirimli)": 434500
+            "İlköğretim Matematik Öğretmenliği ": 434500,
+            "İngilizce Öğretmenliği ": 434500,
+            "Okul Öncesi Öğretmenliği ": 434500,
+            "Özel Eğitim Öğretmenliği ": 434500
         },
         "Güzel Sanatlar Fakültesi": {
-            "Gastronomi ve Mutfak Sanatları (%50 İndirimli)": 440000,
-            "Sahne Sanatları (%50 İndirimli)": 247500
+            "Gastronomi ve Mutfak Sanatları ": 440000,
+            "Sahne Sanatları ": 247500
         },
         "Hukuk Fakültesi": {
-            "Hukuk (%50 İndirimli)": 495000
+            "Hukuk ": 495000
         },
         "İletişim Fakültesi": {
-            "Gazetecilik (%50 İndirimli)": 418572,
-            "Görsel İletişim Tasarımı (%50 İndirimli)": 418572,
-            "Halkla İlişkiler ve Tanıtım (%50 İndirimli)": 418572,
-            "Radyo, Sinema ve Televizyon (%50 İndirimli)": 418572
+            "Gazetecilik ": 418572,
+            "Görsel İletişim Tasarımı ": 418572,
+            "Halkla İlişkiler ve Tanıtım ": 418572,
+            "Radyo, Sinema ve Televizyon ": 418572
         },
         "İnsan ve Toplum Bilimleri Fakültesi": {
-            "Felsefe (%50 İndirimli)": 269500,
-            "Sosyal Hizmet (%50 İndirimli)": 286000,
-            "Sosyoloji (%50 İndirimli)": 319000
+            "Felsefe ": 269500,
+            "Sosyal Hizmet ": 286000,
+            "Sosyoloji ": 319000
         },
         "İşletme ve Yönetim Bilimleri Fakültesi": {
-            "İşletme (İngilizce) (%50 İndirimli)": 478500,
-            "Siyaset Bilimi ve Uluslararası İlişkiler (%50 İndirimli)": 478500,
-            "Uluslararası Ticaret ve Lojistik (%50 İndirimli)": 478500,
-            "Uluslararası Ticaret ve Lojistik (İngilizce) (%50 İndirimli)": 478500
+            "İşletme (İngilizce) ": 478500,
+            "Siyaset Bilimi ve Uluslararası İlişkiler ": 478500,
+            "Uluslararası Ticaret ve Lojistik ": 478500,
+            "Uluslararası Ticaret ve Lojistik (İngilizce) ": 478500
         },
         "Konservatuvar": {
-            "Bestecilik ve Orkestra Şefliği (%50 İndirimli)": 231000,
-            "Piyano, Arp ve Gitar (%50 İndirimli)": 231000,
-            "Türk Halk Müziği (%50 İndirimli)": 231000,
-            "Üflemeli ve Vurmalı Çalgılar (%50 İndirimli)": 231000,
-            "Yaylı Çalgılar (%50 İndirimli)": 231000
+            "Bestecilik ve Orkestra Şefliği ": 231000,
+            "Piyano, Arp ve Gitar ": 231000,
+            "Türk Halk Müziği ": 231000,
+            "Üflemeli ve Vurmalı Çalgılar ": 231000,
+            "Yaylı Çalgılar ": 231000
         },
         "Mimarlık ve Tasarım Fakültesi": {
-            "Gemi ve Yat Tasarımı (%50 İndirimli)": 478500,
-            "İç Mimarlık (%50 İndirimli)": 478500,
-            "Mimarlık (%50 İndirimli)": 478500,
-            "Mimarlık (İngilizce) (%50 İndirim)": 478500
+            "Gemi ve Yat Tasarımı ": 478500,
+            "İç Mimarlık ": 478500,
+            "Mimarlık ": 478500,
+            "Mimarlık (İngilizce) ": 478500
         },
         "Mühendislik ve Doğa Bilimleri Fakültesi": {
-            "Bilgisayar Mühendisliği (İngilizce) (%50 İndirimli)": 495000,
-            "Elektrik-Elektronik Mühendisliği (İngilizce) (%50 İndirimli)": 495000,
-            "Endüstri Mühendisliği (İngilizce) (%50 İndirimli)": 495000,
-            "Yazılım Mühendisliği (İngilizce) (%50 İndirimli)": 495000
+            "Bilgisayar Mühendisliği (İngilizce) ": 495000,
+            "Elektrik-Elektronik Mühendisliği (İngilizce) ": 495000,
+            "Endüstri Mühendisliği (İngilizce) ": 495000,
+            "Yazılım Mühendisliği (İngilizce) ": 495000
         },
         "Tıp Fakültesi": {
-            "Tıp (%50 İndirimli)": 728750,
-            "Tıp (İngilizce) (%50 İndirimli)": 728750
+            "Tıp ": 728750,
+            "Tıp (İngilizce) ": 728750
         },
         "Meslek Yüksekokulu": {
-            "Bankacılık ve Sigortacılık (%50 İndirimli)": 247500,
-            "Çocuk Gelişimi (%50 İndirimli)": 247500,
-            "Halkla İlişkiler ve Tanıtım (%50 İndirimli)": 247500,
-            "İş Sağlığı ve Güvenliği (%50 İndirimli)": 247500,
-            "Mahkeme Büro Hizmetleri (%50 İndirimli)": 247500,
-            "Mimari Restorasyon (%50 İndirimli)": 247500,
-            "Moda Tasarımı (%50 İndirimli)": 247500,
-            "Sivil Hava Ulaştırma İşletmeciliği (%50 İndirimli)": 247500,
-            "Turizm ve Otel İşletmeciliği (%50 İndirimli)": 247500,
-            "Yapı Yalıtım Teknolojisi (%50 İndirimli)": 247500
+            "Bankacılık ve Sigortacılık ": 247500,
+            "Çocuk Gelişimi ": 247500,
+            "Halkla İlişkiler ve Tanıtım ": 247500,
+            "İş Sağlığı ve Güvenliği ": 247500,
+            "Mahkeme Büro Hizmetleri ": 247500,
+            "Mimari Restorasyon ": 247500,
+            "Moda Tasarımı ": 247500,
+            "Sivil Hava Ulaştırma İşletmeciliği ": 247500,
+            "Turizm ve Otel İşletmeciliği ": 247500,
+            "Yapı Yalıtım Teknolojisi ": 247500
         }
     },
-   "MEF Üniversitesi (SADECE %50 ve ÜZERİ İNDİRİMLİ PROGRAMLAR)": {
+   "MEF Üniversitesi ": {
         "Hazırlık Programı": {
-            "İngilizce Hazırlık (60% İndirimli, Peşin)": 351500,
-            "İngilizce Hazırlık (60% İndirimli, Taksitli)": 370000,
-            "İngilizce Hazırlık (55% İndirimli, Peşin)": 395438,
-            "İngilizce Hazırlık (55% İndirimli, Taksitli)": 416250
+            "İngilizce Hazırlık ": 351500,
+            "İngilizce Hazırlık ": 395438,
         },
         "Hukuk Fakültesi": {
-            "Hukuk (60% İndirimli, Peşin)": 385700,
-            "Hukuk (60% İndirimli, Taksitli)": 406000
+            "Hukuk ": 385700,
         },
         "Mühendislik Fakültesi": {
-            "Bilgisayar Mühendisliği (55% İndirimli, Peşin)": 465120,
-            "Bilgisayar Mühendisliği (55% İndirimli, Taksitli)": 489600,
+            "Bilgisayar Mühendisliği ": 465120,
             
-            "Endüstri Mühendisliği (55% İndirimli, Peşin)": 465120,
-            "Endüstri Mühendisliği (55% İndirimli, Taksitli)": 489600,
+            "Endüstri Mühendisliği ": 465120,
             
-            "Elektrik-Elektronik Mühendisliği (55% İndirimli, Peşin)": 431775,
-            "Elektrik-Elektronik Mühendisliği (55% İndirimli, Taksitli)": 454500,
+            "Elektrik-Elektronik Mühendisliği ": 431775,
 
-            "İnşaat Mühendisliği (60% İndirimli, Peşin)": 383800,
-            "İnşaat Mühendisliği (60% İndirimli, Taksitli)": 404000,
+            "İnşaat Mühendisliği ": 383800,
 
-            "Makine Mühendisliği (60% İndirimli, Peşin)": 383800,
-            "Makine Mühendisliği (60% İndirimli, Taksitli)": 404000,
+            "Makine Mühendisliği ": 383800,
 
-            "Yapay Zeka Mühendisliği (55% İndirimli, Peşin)": 431775,
-            "Yapay Zeka Mühendisliği (55% İndirimli, Taksitli)": 454500
+            "Yapay Zeka Mühendisliği ": 431775,
         },
         "İktisadi, İdari ve Sosyal Bilimler Fakültesi": {
-            "Ekonomi (55% İndirimli, Peşin)": 395438,
-            "Ekonomi (55% İndirimli, Taksitli)": 416250,
+            "Ekonomi ": 395438,
 
-            "İşletme (55% İndirimli, Peşin)": 395438,
-            "İşletme (55% İndirimli, Taksitli)": 416250,
+            "İşletme ": 395438,
 
-            "Siyaset Bilimi ve Uluslararası İlişkiler (55% İndirimli, Peşin)": 395438,
-            "Siyaset Bilimi ve Uluslararası İlişkiler (55% İndirimli, Taksitli)": 416250,
-
-            "Yönetim Bilişim Sistemleri (55% İndirimli, Peşin)": 395438,
-            "Yönetim Bilişim Sistemleri (55% İndirimli, Taksitli)": 416250
+            "Siyaset Bilimi ve Uluslararası İlişkiler ": 395438,
+            "Yönetim Bilişim Sistemleri ": 395438,
         },
         "Sanat Tasarım ve Mimarlık Fakültesi": {
-            "Mimarlık (60% İndirimli, Peşin)": 372400,
-            "Mimarlık (60% İndirimli, Taksitli)": 392000,
-
-            "Dijital Oyun Tasarımı (55% İndirimli, Peşin)": 418950,
-            "Dijital Oyun Tasarımı (55% İndirimli, Taksitli)": 441000
+            "Mimarlık ": 372400,
+            "Dijital Oyun Tasarımı ": 418950,
         }
     },
     "Mudanya Üniversitesi": {
         "Sağlık Bilimleri Fakültesi": {
-            "Çocuk Gelişimi (%50 Burslu)": 376000,
-            "Fizyoterapi ve Rehabilitasyon (%50 Burslu)": 376000,
-            "Hemşirelik (%50 Burslu)": 376000,
-            "Beslenme ve Diyetetik (%50 Burslu)": 376000,
-            "Dil ve Konuşma Terapisi (%50 Burslu)": 376000,
-            "Ebelik (%50 Burslu)": 376000
+            "Çocuk Gelişimi ": 376000,
+            "Fizyoterapi ve Rehabilitasyon ": 376000,
+            "Hemşirelik ": 376000,
+            "Beslenme ve Diyetetik ": 376000,
+            "Dil ve Konuşma Terapisi ": 376000,
+            "Ebelik ": 376000
         },
         "Sanat ve Sosyal Bilimler Fakültesi": {
-            "Psikoloji (İngilizce) (%50 Burslu)": 498500,
-            "Psikoloji (%50 Burslu)": 448000,
-            "İngiliz Dili ve Edebiyatı (%50 Burslu)": 282000,
-            "Ekonomi ve Finans (%50 Burslu)": 416500,
-            "Görsel İletişim Tasarımı (%50 Burslu)": 416500,
-            "İşletme (%50 Burslu)": 416500,
-            "İşletme (İngilizce) (%50 Burslu)": 416500,
-            "Lojistik Yönetimi (%50 Burslu)": 416500,
-            "Yönetim Bilişim Sistemleri (%50 Burslu)": 416500
+            "Psikoloji (İngilizce) ": 498500,
+            "Psikoloji ": 448000,
+            "İngiliz Dili ve Edebiyatı ": 282000,
+            "Ekonomi ve Finans ": 416500,
+            "Görsel İletişim Tasarımı ": 416500,
+            "İşletme ": 416500,
+            "İşletme (İngilizce) ": 416500,
+            "Lojistik Yönetimi ": 416500,
+            "Yönetim Bilişim Sistemleri ": 416500
         },
         "Mühendislik, Mimarlık ve Tasarım Fakültesi": {
-            "Bilgisayar Mühendisliği (%50 Burslu)": 448000,
-            "Bilgisayar Mühendisliği ING (%50 Burslu)": 498500,
-            "Elektrik- Elektronik Mühendisliği (İngilizce) (%50 Burslu)": 448000,
-            "Endüstri Mühendisliği (İngilizce) (%50 Burslu)": 498500,
-            "Endüstri Mühendisliği (%50 Burslu)": 448000,
-            "Endüstriyel Tasarım (%50 Burslu)": 448000
+            "Bilgisayar Mühendisliği ": 448000,
+            "Bilgisayar Mühendisliği ING ": 498500,
+            "Elektrik- Elektronik Mühendisliği (İngilizce) ": 448000,
+            "Endüstri Mühendisliği (İngilizce) ": 498500,
+            "Endüstri Mühendisliği ": 448000,
+            "Endüstriyel Tasarım ": 448000
         },
         "Meslek Yüksekokulu": {
-            "Anestezi (%50 Burslu)": 250000,
-            "İlk ve Acil Yardım (%50 Burslu)": 250000,
-            "Fizyoterapi (%50 Burslu)": 250000,
-            "Tıbbi Görüntüleme Teknikleri (%50 Burslu)": 250000,
-            "Grafik Tasarım (%50 Burslu)": 250000,
-            "Dış Ticaret (%50 Burslu)": 250000,
-            "Bilgisayar Programcılığı (%50 Burslu)": 250000,
-            "Otomotiv Teknolojisi (%50 Burslu)": 250000,
-            "Ağız ve Diş Sağlığı (%50 Burslu)": 250000,
-            "Elektronik Haberleşme Teknolojileri (%50 Burslu)": 250000,
-            "Dijital Dönüşüm Elektroniği (%50 Burslu)": 250000,
-            "Tele Sağlık Teknikerliği (%50 Burslu)": 250000
+            "Anestezi ": 250000,
+            "İlk ve Acil Yardım ": 250000,
+            "Fizyoterapi ": 250000,
+            "Tıbbi Görüntüleme Teknikleri ": 250000,
+            "Grafik Tasarım ": 250000,
+            "Dış Ticaret ": 250000,
+            "Bilgisayar Programcılığı ": 250000,
+            "Otomotiv Teknolojisi ": 250000,
+            "Ağız ve Diş Sağlığı ": 250000,
+            "Elektronik Haberleşme Teknolojileri ": 250000,
+            "Dijital Dönüşüm Elektroniği ": 250000,
+            "Tele Sağlık Teknikerliği ": 250000
         }
     },
     "Nuh Naci Yazgan Üniversitesi": {
         "Sağlık Bilimleri Fakültesi": {
             
-            "Çocuk Gelişimi (%50 Burslu)": 376000,
+            "Çocuk Gelişimi ": 376000,
             
-            "Fizyoterapi ve Rehabilitasyon (%50 Burslu)": 376000,
+            "Fizyoterapi ve Rehabilitasyon ": 376000,
             
-            "Hemşirelik (%50 Burslu)": 376000,
+            "Hemşirelik ": 376000,
             
-            "Beslenme ve Diyetetik (%50 Burslu)": 376000,
+            "Beslenme ve Diyetetik ": 376000,
           
-            "Dil ve Konuşma Terapisi (%50 Burslu)": 376000,
+            "Dil ve Konuşma Terapisi ": 376000,
             
-            "Ebelik (%50 Burslu)": 376000
+            "Ebelik ": 376000
         },
         "Sanat ve Sosyal Bilimler Fakültesi": {
            
-            "Psikoloji (İngilizce) (%50 Burslu)": 498500,
+            "Psikoloji (İngilizce) ": 498500,
           
-            "Psikoloji (%50 Burslu)": 448000,
+            "Psikoloji ": 448000,
             
-            "İngiliz Dili ve Edebiyatı (%50 Burslu)": 282000,
+            "İngiliz Dili ve Edebiyatı ": 282000,
             
-            "Ekonomi ve Finans (%50 Burslu)": 416500,
+            "Ekonomi ve Finans ": 416500,
             
-            "Görsel İletişim Tasarımı (%50 Burslu)": 416500,
+            "Görsel İletişim Tasarımı ": 416500,
           
-            "İşletme (%50 Burslu)": 416500,
+            "İşletme ": 416500,
            
-            "İşletme (İngilizce) (%50 Burslu)": 416500,
+            "İşletme (İngilizce) ": 416500,
             
-            "Lojistik Yönetimi (%50 Burslu)": 416500,
+            "Lojistik Yönetimi ": 416500,
             
-            "Yönetim Bilişim Sistemleri (%50 Burslu)": 416500
+            "Yönetim Bilişim Sistemleri ": 416500
         },
         "Mühendislik, Mimarlık ve Tasarım Fakültesi": {
            
-            "Bilgisayar Mühendisliği (%50 Burslu)": 448000,
+            "Bilgisayar Mühendisliği ": 448000,
             
-            "Bilgisayar Mühendisliği ING (%50 Burslu)": 498500,
+            "Bilgisayar Mühendisliği ING ": 498500,
            
-            "Elektrik- Elektronik Mühendisliği (İngilizce) (%50 Burslu)": 448000,
+            "Elektrik- Elektronik Mühendisliği (İngilizce) ": 448000,
            
-            "Endüstri Mühendisliği (İngilizce) (%50 Burslu)": 498500,
+            "Endüstri Mühendisliği (İngilizce) ": 498500,
            
-            "Endüstri Mühendisliği (%50 Burslu)": 448000,
+            "Endüstri Mühendisliği ": 448000,
            
-            "Endüstriyel Tasarım (%50 Burslu)": 448000
+            "Endüstriyel Tasarım ": 448000
         },
         "Meslek Yüksekokulu": {
             "Anestezi (Ücretli)": 500000,
-            "Anestezi (%50 Burslu)": 250000,
+            "Anestezi ": 250000,
             
-            "İlk ve Acil Yardım (%50 Burslu)": 250000,
+            "İlk ve Acil Yardım ": 250000,
            
-            "Fizyoterapi (%50 Burslu)": 250000,
+            "Fizyoterapi ": 250000,
             
-            "Tıbbi Görüntüleme Teknikleri (%50 Burslu)": 250000,
+            "Tıbbi Görüntüleme Teknikleri ": 250000,
             
-            "Grafik Tasarım (%50 Burslu)": 250000,
+            "Grafik Tasarım ": 250000,
           
-            "Dış Ticaret (%50 Burslu)": 250000,
+            "Dış Ticaret ": 250000,
            
-            "Bilgisayar Programcılığı (%50 Burslu)": 250000,
+            "Bilgisayar Programcılığı ": 250000,
            
-            "Otomotiv Teknolojisi (%50 Burslu)": 250000,
+            "Otomotiv Teknolojisi ": 250000,
             
-            "Ağız ve Diş Sağlığı (%50 Burslu)": 250000,
+            "Ağız ve Diş Sağlığı ": 250000,
             
-            "Elektronik Haberleşme Teknolojileri (%50 Burslu)": 250000,
+            "Elektronik Haberleşme Teknolojileri ": 250000,
           
-            "Dijital Dönüşüm Elektroniği (%50 Burslu)": 250000,
+            "Dijital Dönüşüm Elektroniği ": 250000,
             
-            "Tele Sağlık Teknikerliği (%50 Burslu)": 250000
+            "Tele Sağlık Teknikerliği ": 250000
         }
     },"Piri Reis Üniversitesi": {
         "Denizcilik Meslek Yüksekokulu": {
@@ -3536,43 +3490,32 @@ schools = {
     },
     "OSTİM Teknik Üniversitesi": {
         "Mühendislik Fakültesi": {
-            "Bilgisayar Mühendisliği (İngilizce) - %50 YKS İndirimli": 535000,
-            "Bilgisayar Mühendisliği (İngilizce) - İndirimli Ücret": 440000,
-            "Bilgisayar Mühendisliği (Türkçe) - %50 YKS İndirimli": 510000,
-            "Bilgisayar Mühendisliği (Türkçe) - İndirimli Ücret": 440000,
-            "Elektrik Elektronik Mühendisliği (İngilizce) - %50 YKS İndirimli": 465000,
-            "Elektrik Elektronik Mühendisliği (Türkçe) - %50 YKS İndirimli": 440000,
-            "Endüstri Mühendisliği (İngilizce) - %50 YKS İndirimli": 385000,
-            "Endüstri Mühendisliği (Türkçe) - %50 YKS İndirimli": 365000,
-            "Havacılık ve Uzay Mühendisliği (İngilizce) - %50 YKS İndirimli": 465000,
-            "Havacılık ve Uzay Mühendisliği (İngilizce) - İndirimli Ücret": 402000,
-            "Makine Mühendisliği (İngilizce) - %50 YKS İndirimli": 365000,
-            "Nanoteknoloji Mühendisliği (İngilizce) - %50 YKS İndirimli": 350000,
-            "Nanoteknoloji Mühendisliği (İngilizce) - İndirimli Ücret": 260000,
-            "Yapay Zeka Mühendisliği (Türkçe) - %50 YKS İndirimli": 535000,
-            "Yapay Zeka Mühendisliği (Türkçe) - İndirimli Ücret": 473000,
-            "Yazılım Mühendisliği (İngilizce) - %50 YKS İndirimli": 535000,
-            "Yazılım Mühendisliği (İngilizce) - İndirimli Ücret": 440000,
-            "Yazılım Mühendisliği (Türkçe) - %50 YKS İndirimli": 510000,
-            "Yazılım Mühendisliği (Türkçe) - İndirimli Ücret": 440000
+            "Bilgisayar Mühendisliği (İngilizce) ": 535000,
+            "Bilgisayar Mühendisliği (Türkçe) ": 510000,
+            "Elektrik Elektronik Mühendisliği (İngilizce) ": 465000,
+            "Elektrik Elektronik Mühendisliği (Türkçe) ": 440000,
+            "Endüstri Mühendisliği (İngilizce) ": 385000,
+            "Endüstri Mühendisliği (Türkçe) ": 365000,
+            "Havacılık ve Uzay Mühendisliği (İngilizce) ": 465000,
+            "Makine Mühendisliği (İngilizce) ": 365000,
+            "Nanoteknoloji Mühendisliği (İngilizce) ": 350000,
+            "Yapay Zeka Mühendisliği (Türkçe) ": 535000,
+            "Yazılım Mühendisliği (İngilizce) ": 535000,
+            "Yazılım Mühendisliği (Türkçe) ": 510000,
         },
         "İktisadi ve İdari Bilimler Fakültesi": {
-            "İşletme (Türkçe) - %50 YKS İndirimli": 350000,
-            "İşletme (Türkçe) - İndirimli Ücret": 273700,
-            "Uluslararası Ticaret ve Finans (İngilizce) - %50 YKS İndirimli": 350000,
-            "Uluslararası Ticaret ve Finans (İngilizce) - İndirimli Ücret": 273700,
-            "Ekonomi - %50 YKS İndirimli": 350000,
-            "Ekonomi - İndirimli Ücret": 273700,
-            "Siyaset Bilimi ve Uluslararası İlişkiler - %50 YKS İndirimli": 350000,
-            "Siyaset Bilimi ve Uluslararası İlişkiler - İndirimli Ücret": 273700,
-            "Yönetim Bilişim Sistemleri - %50 YKS İndirimli": 412500,
-            "Psikoloji - %50 YKS İndirimli": 390000
+            "İşletme (Türkçe) ": 350000,
+            "Uluslararası Ticaret ve Finans (İngilizce) ": 350000,
+            "Ekonomi ": 350000,
+            "Siyaset Bilimi ve Uluslararası İlişkiler ": 350000,
+            "Yönetim Bilişim Sistemleri ": 412500,
+            "Psikoloji ": 390000
         },
         "Mimarlık ve Tasarım Fakültesi": {
-            "İç Mimarlık - %50 YKS İndirimli": 350000,
-            "Mimarlık (İngilizce) - %50 YKS İndirimli": 412500
+            "İç Mimarlık ": 350000,
+            "Mimarlık (İngilizce) ": 412500
         },
-        "Meslek Yüksekokulu (%50 YKS İndirimli)": {
+        "Meslek Yüksekokulu ": {
             "Anestezi": 237500,
             "İlk ve Acil Yardım": 237500,
             "Tıbbi Görüntüleme Teknikleri": 237500,
@@ -3589,7 +3532,7 @@ schools = {
             "Elektrik": 237500
         },
         "Yabancı Diller Yüksekokulu": {
-            "İngilizce Hazırlık Ücreti - İndirimli Ücret": 350000
+            "İngilizce Hazırlık Ücreti ": 350000
         }
     },
     "Özyeğin Üniversitesi": {
@@ -3633,24 +3576,24 @@ schools = {
     },
     "TOBB Ekonomi ve Teknoloji Üniversitesi": {
         "Tıp Fakültesi": {
-            "Tıp (%50 Burslu)": 651000
+            "Tıp ": 651000
         },
         "Hukuk Fakültesi": {
-            "Hukuk (%50 Burslu)": 465000
+            "Hukuk ": 465000
         },
         "Mühendislik Fakültesi": {
-            "Bilgisayar Mühendisliği (%50 Burslu)": 465000,
-            "Endüstri Mühendisliği (%50 Burslu)": 465000,
-            "Yazılım Mühendisliği (%50 Burslu)": 465000
+            "Bilgisayar Mühendisliği ": 465000,
+            "Endüstri Mühendisliği ": 465000,
+            "Yazılım Mühendisliği ": 465000
         },
         "Sağlık Bilimleri Fakültesi": {
-            "Hemşirelik (%50 Burslu)": 465000,
-            "Fizyoterapi ve Rehabilitasyon (%50 Burslu)": 465000,
-            "Beslenme ve Diyetetik (%50 Burslu)": 465000
+            "Hemşirelik ": 465000,
+            "Fizyoterapi ve Rehabilitasyon ": 465000,
+            "Beslenme ve Diyetetik ": 465000
         },
         "Sosyal Bilimler Fakültesi": {
-            "Psikoloji (%50 Burslu)": 465000,
-            "İşletme (%50 Burslu)": 465000
+            "Psikoloji ": 465000,
+            "İşletme ": 465000
         }
     },
 
@@ -4265,8 +4208,8 @@ schools = {
             "Bilgisayar Mühendisliği": 379688
         },
         "İktisadi ve İdari Bilimler Fakültesi": {
-            "İşletme (%30 İngilizce)": 382500,
-            "Uluslararası Ticaret ve Finansman (%30 İngilizce)": 382500
+            "İşletme ( İngilizce)": 382500,
+            "Uluslararası Ticaret ve Finansman ( İngilizce)": 382500
         },
         "Yabancı Diller Fakültesi": {
             "Zorunlu İngilizce Hazırlık": 516375

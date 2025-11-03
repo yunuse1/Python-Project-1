@@ -26,7 +26,9 @@ cd Python-Project-1
 2. Create and activate a virtual environment (recommended):
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+source venv/bin/activate 
+ # On Windows use:
+venv\Scripts\activate
 ```
 
 3. Install dependencies:
@@ -63,4 +65,17 @@ The program generates a CSV file with the following columns:
 - Preference discounts (20%) are available for selected universities
 - Half scholarship option reduces the tuition fee by 50%
 - All prices are in Turkish Lira (TL)
+
+## Running Tests
+
+To run the tests, use the following command:
+
+```bash
+python -m pytest
+```
+or
+
+```bash
+py -m pytest
+```
 
