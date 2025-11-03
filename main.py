@@ -68,7 +68,7 @@ def main():
             writer.writerows(schools_list)
             logger.info(f" {len(schools_list)} recorded: {csv_filename}")
         else:
-            logger.error("Hiç kayıt bulunamadı.")
+            logger.error("There is not found record.")
 
 if __name__ == "__main__":
     main()
