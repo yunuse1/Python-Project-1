@@ -1,2 +1,4 @@
 pytest
 BeautifulSoup4
+pymongo
+requests
