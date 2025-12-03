@@ -1,202 +1,239 @@
-import urllib.request
-from bs4 import BeautifulSoup
-import ssl
+from __future__ import annotations
 import os
-import requests
+import ssl
+import urllib.request
+import urllib.parse
+from bs4 import BeautifulSoup
+import datetime
+import re
+import sys
+import unicodedata
+
+sys.path.insert(0, os.getcwd())
+from util.models import DepartmentPrice
+from util.repository import UniversityPriceRepository
 
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-def _parse_page(url: str) -> list:
-    page = urllib.request.urlopen(url, context=ctx).read()
-    soup = BeautifulSoup(page, "html.parser")
 
-    old_section = False
-    results = []
-
-    for tag in soup.find_all(["strong", "li", "table"]):
-
-        if tag.name == "strong":
-            strong_text = tag.get_text(strip=True)
-
-            if "2024" in strong_text:
-                old_section = True
-                continue
-
-        if old_section:
-            continue
-
-        if tag.name == "li":
-            text = tag.get_text(" ", strip=True)
-            if "₺" in text or "TL" in text:
-                results.append(text)
-
-        if tag.name == "table":
-            for row in tag.find_all("tr"):
-                cols = [c.get_text(" ", strip=True) for c in row.find_all(["td", "th"])]
-                if len(cols) >= 2:
-                    price = cols[1]
-                    if "₺" in price or "TL" in price:
-                        results.append(f"{cols[0]} → {cols[1]}")
-
-    return results
-
-def _parse_price_text(price_text: str) -> tuple:
+def _parse_price_num(price_text: str):
     if not price_text:
         return None, None
-    txt = price_text.replace("\xa0", " ").strip()
+    txt = price_text.replace('\xa0', ' ').strip()
     currency = None
-    if "₺" in txt:
-        currency = "TRY"
-    elif "TL" in txt.upper():
-        currency = "TRY"
-    elif "$" in txt:
-        currency = "USD"
-    cleaned = txt
-    cleaned = ''.join(ch for ch in cleaned if ch.isdigit() or ch in ",.\s")
-    parts = [p for p in cleaned.split() if any(c.isdigit() for c in p)]
-    if not parts:
+    if '₺' in txt or 'TL' in txt.upper():
+        currency = 'TRY'
+    elif '$' in txt:
+        currency = 'USD'
+    # remove non-number characters except , and .
+    num = re.sub(r"[^0-9,\.]+", "", txt)
+    if not num:
         return None, currency
-    num = parts[-1]
-    if "." in num and "," in num:
+    # normalize thousand separators
+    if '.' in num and ',' in num:
         num = num.replace('.', '').replace(',', '.')
     else:
         if '.' in num and len(num.split('.')[-1]) == 3:
             num = num.replace('.', '')
-        if ',' in num and len(num.split(',')[-1]) == 3:
-            num = num.replace(',', '')
-        else:
-            num = num.replace(',', '.')
+        num = num.replace(',', '.')
     try:
-        value = float(num)
+        return float(num), currency
     except Exception:
-        value = None
-    return value, currency
+        return None, currency
 
 
-def _format_prices(results_list):
-    import re
+def fetch_university_list(base_url: str = "https://www.universitego.com/") -> list:
+    req = urllib.request.Request(base_url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, context=ctx, timeout=30) as resp:
+        html = resp.read()
+    soup = BeautifulSoup(html, "html.parser")
 
-    def find_price_matches(text: str):
-        patterns = [r'₺\s?[\d\.,]+', r'[\d\.,]+\s?TL\b', r'\$\s?[\d\.,]+']
-        matches = []
-        for pat in patterns:
-            for m in re.finditer(pat, text, flags=re.IGNORECASE):
-                matches.append((m.start(), m.end(), m.group().strip()))
-        matches.sort(key=lambda x: x[0])
-        return matches
-
-    def split_programs(left_text: str):
-        import re
-        parts = [p.strip(" .–—()\n\t") for p in re.split(r'[;,]', left_text) if p.strip()]
-        return parts if parts else [left_text.strip()]
-
-    prices = []
-    for r in results_list:
-        if "→" in r:
-            parts = [p.strip() for p in r.split("→", 1)]
-            left = parts[0]
-            price_part = parts[1]
-            price_matches = find_price_matches(price_part) or find_price_matches(r)
-        else:
-            price_matches = find_price_matches(r)
-            if price_matches:
-                first = price_matches[0]
-                left = r[: first[0]]
+    anchors = soup.find_all("a", href=True)
+    seen = {}
+    pattern = re.compile(r"/([^/]+)-universitesi-ucretleri/?", flags=re.IGNORECASE)
+    for a in anchors:
+        href = a["href"]
+        m = pattern.search(href)
+        if not m:
+            if 'ücret' in href.lower() and 'universite' in href.lower():
+                pass
             else:
-                left = r
-
-        programs = split_programs(left)
-
-        price_chunks = []
-        if price_matches:
-            start = price_matches[0][0]
-            price_area = r[start:]
-            for chunk in price_area.split('/'):
-                chunk = chunk.strip(' ;,')
-                pm = find_price_matches(chunk)
-                if pm:
-                    price_chunks.append(pm[0][2])
-                else:
-                    price_chunks.append(chunk)
+                continue
+        full = urllib.parse.urljoin(base_url, href)
+        text = a.get_text(" ", strip=True)
+        if not text:
+            name = m.group(1).replace('-', ' ').title() if m else urllib.parse.urlparse(href).path
         else:
-            price_chunks = [""]
+            name = text
+        if full not in seen:
+            seen[full] = {"name": name.strip(), "url": full}
 
-        if len(programs) == 1 and len(price_chunks) > 1:
-            targets = [(programs[0], pc) for pc in price_chunks]
-        elif len(programs) > 1 and len(price_chunks) == 1:
-            targets = [(p, price_chunks[0]) for p in programs]
-        elif len(programs) == len(price_chunks):
-            targets = list(zip(programs, price_chunks))
-        else:
-            combined_price = ' / '.join(price_chunks) if price_chunks else ''
-            targets = [(left.strip(), combined_price)]
-
-        for prog, price_text in targets:
-            value, currency = _parse_price_text(price_text)
-            prices.append({
-                "item": prog,
-                "price_text": price_text or "",
-                "price_value": value,
-                "currency": currency,
-            })
-
-    return prices
+    return list(seen.values())
 
 
-def run_scraper(url: str | None = None, university_name: str | None = None, department: str | None = None, save: bool = True):
+def find_university_url(universities: list, query: str) -> str | None:
+    q = query.strip().lower()
+    for u in universities:
+        if u["name"].strip().lower() == q:
+            return u["url"]
+    for u in universities:
+        if q in u["name"].strip().lower():
+            return u["url"]
+    qtokens = q.split()
+    for u in universities:
+        name = u["name"].strip().lower()
+        if all(tok in name for tok in qtokens):
+            return u["url"]
+    return None
 
-    url = url or os.environ.get("SCRAPER_URL") or "https://www.basarisiralamalari.com/istanbul-nisantasi-universitesi-egitim-ucretleri-ve-burslari/"
-    raw = _parse_page(url)
-    prices = _format_prices(raw)
 
-    for p in prices:
-        print(p)
+def slugify(name: str) -> str:
+    if not name:
+        return ''
+    s = name.lower()
+    s = s.replace('üniversitesi', '').replace('universitesi', '').replace('ücretleri', '').strip()
+    # map common Turkish characters to ASCII equivalents
+    trans = str.maketrans({
+        'ş': 's', 'Ş': 's',
+        'ı': 'i', 'İ': 'i',
+        'ğ': 'g', 'Ğ': 'g',
+        'ü': 'u', 'Ü': 'u',
+        'ö': 'o', 'Ö': 'o',
+        'ç': 'c', 'Ç': 'c',
+    })
+    s = s.translate(trans)
+    s = unicodedata.normalize('NFKD', s)
+    s = s.encode('ascii', 'ignore').decode('ascii')
+    s = re.sub(r'[^a-z0-9]+', '-', s)
+    s = re.sub(r'-{2,}', '-', s).strip('-')
+    return s
 
-    if save:
+
+def scrape_universitego_table(url: str, university_name: str | None = None):
+    print('Fetching:', url)
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    with urllib.request.urlopen(req, context=ctx, timeout=30) as resp:
+        html = resp.read()
+    soup = BeautifulSoup(html, 'html.parser')
+
+    # find candidate tables: prefer id 'ozeluni' or table containing header with 'Ücret' or 'Bölüm Adı'
+    table = None
+    table = soup.find('table', id='ozeluni') or soup.find('table', class_='ozeluni')
+    if not table:
+        for t in soup.find_all('table'):
+            ths = t.find_all(['th'])
+            headers = ' '.join([th.get_text(' ', strip=True).lower() for th in ths])
+            if 'ücret' in headers or 'bölüm' in headers:
+                table = t
+                break
+
+    if not table:
+        print('No suitable table found on page')
+        return 0, 0
+
+    # locate column indices for department and price
+    dept_idx = None
+    price_idx = None
+    header_row = table.find('tr')
+    if header_row:
+        cols = [c.get_text(' ', strip=True).lower() for c in header_row.find_all(['th', 'td'])]
+        for i, h in enumerate(cols):
+            if 'bölüm' in h or 'bölüm adı' in h or 'program' in h:
+                dept_idx = i
+            if 'ücret' in h or 'ücretleri' in h or 'ücret' in h:
+                price_idx = i
+
+    # fallback positions
+    if dept_idx is None:
+        dept_idx = 0
+    if price_idx is None:
+        price_idx = -1
+
+    rows = []
+    for tr in table.find_all('tr'):
+        tds = [td.get_text(' ', strip=True) for td in tr.find_all(['td', 'th'])]
+        if len(tds) <= 1:
+            continue
+        # try to guard against header rows
+        if any('bölüm' in c.lower() or 'ücret' in c.lower() for c in tds[:3]):
+            continue
         try:
-            from util.connect import get_db
-            import datetime
+            dept = tds[dept_idx]
+        except Exception:
+            dept = tds[0]
+        try:
+            price_text = tds[price_idx]
+        except Exception:
+            price_text = ''
+        value, currency = _parse_price_num(price_text)
+        rows.append({'department': dept, 'price_text': price_text or '', 'price_value': value, 'currency': currency})
 
-            UNIVERSITY_NAME = university_name or os.environ.get("UNIVERSITY_NAME", "Istanbul Nisantasi University")
-            DEPARTMENT = department or os.environ.get("DEPARTMENT", "Unknown Department")
+    # save to DB via repository
+    repo = UniversityPriceRepository()
+    now = datetime.datetime.utcnow()
+    uni = university_name or os.environ.get('UNIVERSITY_NAME') or urllib.parse.urlparse(url).path.split('/')[-2].replace('-', ' ').strip()
+    inserted = 0
+    updated = 0
+    for r in rows:
+        dept_price = DepartmentPrice(
+            university=uni,
+            department=r.get('department', ''),
+            price_text=r.get('price_text', ''),
+            price_value=r.get('price_value'),
+            currency=r.get('currency'),
+            scraped_at=now,
+        )
+        ins, upd = repo.upsert_price(dept_price)
+        if ins:
+            inserted += 1
+        elif upd:
+            updated += 1
 
-            db = get_db()
-            coll = db["university_prices"]
-            now = datetime.datetime.utcnow()
-            for p in prices:
-                prog = p.get("item")
-                price_text = p.get("price_text", "")
-                doc = {
-                    "university_name": UNIVERSITY_NAME,
-                    "department": prog,
-                    "price_text": price_text,
-                    "price_value": p.get("price_value"),
-                    "currency": p.get("currency"),
-                    "scraped_at": now,
-                }
-                q = {"university_name": UNIVERSITY_NAME, "department": prog, "price_text": price_text}
-                res = coll.update_one(q, {"$set": doc}, upsert=True)
-                if getattr(res, "upserted_id", None):
-                    print("Inserted:", prog)
-                else:
-                    print("Updated:", prog)
+    print(f'Saved {len(rows)} rows – inserted {inserted}, updated {updated}')
+    return inserted, updated
+
+
+if __name__ == '__main__':
+    url = os.environ.get('SCRAPER_URL') or 'https://www.universitego.com/istanbul-arel-universitesi-ucretleri/'
+    uni = os.environ.get('UNIVERSITY_NAME') or 'Istanbul Arel University'
+    scrape_universitego_table(url, uni)
+
+
+def run_interactive_scrape():
+    # Fetch the university list lazily only when the user explicitly asks for it
+    universities = None
+
+    print('Type "list" to fetch and show available universities from universitego.com, or type a university name to scrape its page.')
+    uni_input = input('University (name or "list"): ').strip()
+    if not uni_input:
+        print('No input; aborting.')
+        return
+
+    if uni_input.lower() == 'list':
+        try:
+            universities = fetch_university_list()
         except Exception as e:
-            print("Failed to save to DB:", e)
+            print('Failed to fetch university list:', e)
+            universities = []
 
-    return prices
+        if not universities:
+            print('No universities fetched.')
+            return
+        for u in universities:
+            print('-', u['name'])
+        return
 
-## sonra ilgileneceğim burayla dokunmayın
-##try:
-##    import json
-##    resp = requests.get('https://ntfy.sh/AlSweigartZPgxBQ42/json?poll=1')
-##    notifications = []
-##    for json_text in resp.text.splitlines():
-##        notifications.append(json.loads(json_text))
-##        
-##    notifications[0]['message']
-##
-##    notifications[1]['message']
-##except Exception:
-##    pass
+    # User provided a name: avoid network calls by default — construct a slug
+    # and try the expected universitego URL. This is fast and works for most
+    # cases; if you want site-based matching, type "list" instead.
+    slug = slugify(uni_input)
+    url = f'https://www.universitego.com/{slug}-universitesi-ucretleri/'
+
+    print('Scraping URL:', url)
+    try:
+        scrape_universitego_table(url, uni_input)
+    except Exception as e:
+        print('Scrape failed:', e)
+       

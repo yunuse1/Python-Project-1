@@ -1,7 +1,7 @@
 import csv
 import util.check_prices as check_prices
 import logging
-from util.web_scraping import run_scraper
+from util.web_scraping import run_interactive_scrape
 
 
 logging.basicConfig(
@@ -12,12 +12,13 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 def main():
-    # Run scraper first (will save to DB if configured)
+    # Run interactive scraper (keeps all scraping logic inside util/web_scraping)
     try:
-        run_scraper(save=True)
+        run_interactive_scrape()
     except Exception:
         # don't fail the entire program if scraping has a problem
         pass
+
     university = input("Would you like to see all universities or do you have a preferred university? (To see all universities, type “all.” For your preferred university, type the university name): ").strip()
     department = input("Would you like to see all departments or do you have a preferred department? (To see all department, type “all.” For your preferred department, type the department name): ").strip()
 

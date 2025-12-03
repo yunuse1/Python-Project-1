@@ -1,16 +1,3 @@
-"""Create `university_prices` collection with JSON schema and indexes.
-
-Usage:
-    # Run inside docker-compose app service:
-    docker-compose exec app python -u util/migrations/create_prices_migration.py --seed
-
-    # Or run locally (ensure MONGO_URI env var points to your Mongo):
-    MONGO_URI='mongodb://localhost:27017' python util/migrations/create_prices_migration.py --seed
-
-The script is idempotent: it will create the collection if missing or update
-the validator if already present. When `--seed` is passed it inserts a few
-example documents that follow the schema.
-"""
 from __future__ import annotations
 
 import argparse
@@ -25,7 +12,6 @@ COLLECTION_NAME = "university_prices"
 
 
 def get_validator() -> Dict[str, Any]:
-    """Return a MongoDB JSON schema validator for the collection."""
     return {
         "$jsonSchema": {
             "bsonType": "object",
