@@ -8,10 +8,12 @@ import datetime
 import re
 import sys
 import unicodedata
+import time
+import requests
 
 sys.path.insert(0, os.getcwd())
-from util.models import DepartmentPrice
-from util.repository import UniversityPriceRepository
+from models.university_models import DepartmentPrice
+from repository.repository import UniversityPriceRepository
 
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
@@ -236,4 +238,77 @@ def run_interactive_scrape():
         scrape_universitego_table(url, uni_input)
     except Exception as e:
         print('Scrape failed:', e)
+
+
+def scrape_universities_from_list(save: bool = True, delay: int = 0, start_index: int = 0, stop_index: int | None = None):
+    try:
+        from util.school_list import universities
+    except Exception as e:
+        print('Could not import university list:', e)
+        return
+
+    total = len(universities)
+    stop = stop_index if stop_index is not None else total
+    inserted_total = 0
+    updated_total = 0
+    failed_total = 0
+    for idx, name in enumerate(universities[start_index:stop], start=start_index):
+        slug = slugify(name)
+        url = f'https://www.universitego.com/{slug}-universitesi-ucretleri/'
+        print(f'[{idx+1}/{total}] -> {name} -> {url}')
+        if save:
+            try:
+                ins, upd = scrape_universitego_table(url, name)
+                try:
+                    inserted_total += int(ins or 0)
+                except Exception:
+                    pass
+                try:
+                    updated_total += int(upd or 0)
+                except Exception:
+                    pass
+            except Exception as e:
+                failed_total += 1
+                print(f'Failed to scrape {name}:', e)
+        if delay and (idx + 1) < stop:
+            time.sleep(delay)
+
+    # send notification if topic provided via environment
+    notify_topic = os.environ.get('NOTIFY_TOPIC')
+    if save and notify_topic:
+        msg = f"Bütün üniversiteler güncellendi. Toplam taranan: {total}, başarılı sayfa içi kayıt: inserted={inserted_total}, updated={updated_total}, failed={failed_total}."
+        try:
+            send_notification(notify_topic, msg, title='Universiteler Güncellendi')
+        except Exception as e:
+            print('Notification failed:', e)
+
+
+def send_notification(topic: str, message: str, title: str | None = None, priority: int = 3):
+    """Send a notification using ntfy.sh (simple POST).
+
+    Requires environment variable `NOTIFY_TOPIC` or passing a `topic` value.
+    """
+    import sys
+    if not topic:
+        return
+    url = f'https://ntfy.sh/{topic}'
+    headers = {}
+    if title:
+        headers['Title'] = title
+    headers['Priority'] = str(priority)
+    try:
+        resp = requests.post(url, data=message.encode('utf-8'), headers=headers, timeout=10)
+        resp.raise_for_status()
+        # Echo the notification locally so the user sees the exact message
+        print('\n' + '='*60)
+        print(f'✓ NOTIFICATION SENT to {topic} (HTTP {resp.status_code})')
+        print('='*60)
+        if title:
+            print(f'Title: {title}')
+        print(f'Message:\n{message}')
+        print('='*60 + '\n')
+        sys.stdout.flush()
+    except Exception as e:
+        print(f'✗ Failed to send notification to {url}: {e}', flush=True)
+
        
