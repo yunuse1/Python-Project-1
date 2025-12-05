@@ -4,16 +4,6 @@ import typing as t
 
 
 def fetch_notifications(topic: str, poll: int = 1, timeout: int = 30) -> t.List[dict]:
-    """Fetch notifications for a given ntfy topic using the JSON poll endpoint.
-
-    Args:
-        topic: ntfy topic name (e.g. 'mytopic123')
-        poll: poll parameter (1 for immediate poll)
-        timeout: HTTP timeout in seconds
-
-    Returns:
-        A list of event dicts (may be empty).
-    """
     if not topic:
         raise ValueError('topic is required')
     url = f'https://ntfy.sh/{topic}/json?poll={poll}'

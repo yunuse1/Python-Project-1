@@ -58,7 +58,7 @@ universities = [
     "Ufuk Üniversitesi",
     "Beykent Üniversitesi",
     "Beykoz Üniversitesi",
-    "Bezm-i Alem Üniversitesi",
+    "BezmiAlem Üniversitesi",
     "İstanbul Esenyurt Üniversitesi",
     "İstanbul Gedik Üniversitesi",
     "İstanbul Gelişim Üniversitesi",

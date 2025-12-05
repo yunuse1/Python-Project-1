@@ -116,11 +116,37 @@ def slugify(name: str) -> str:
 def scrape_universitego_table(url: str, university_name: str | None = None):
     print('Fetching:', url)
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-    with urllib.request.urlopen(req, context=ctx, timeout=30) as resp:
-        html = resp.read()
+    try:
+        with urllib.request.urlopen(req, context=ctx, timeout=30) as resp:
+            html = resp.read()
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            fallback_urls = []
+            if '-universitesi-ucretleri' in url:
+                fallback_urls.append(url.replace('-universitesi-ucretleri/', '-ucretleri/'))
+                fallback_urls.append(url.replace('-universitesi-ucretleri/', '-universitesi/'))
+            
+            if 'yuksekokulu' in url and 'yusekokulu' not in url:
+                fallback_urls.append(url.replace('yuksekokulu', 'yusekokulu'))
+            
+            fetched = False
+            for fallback_url in fallback_urls:
+                try:
+                    print(f'Got 404, trying fallback URL: {fallback_url}')
+                    req = urllib.request.Request(fallback_url, headers={'User-Agent': 'Mozilla/5.0'})
+                    with urllib.request.urlopen(req, context=ctx, timeout=30) as resp:
+                        html = resp.read()
+                    fetched = True
+                    break
+                except urllib.error.HTTPError:
+                    continue
+            
+            if not fetched:
+                raise e
+        else:
+            raise
     soup = BeautifulSoup(html, 'html.parser')
 
-    # find candidate tables: prefer id 'ozeluni' or table containing header with 'Ücret' or 'Bölüm Adı'
     table = None
     table = soup.find('table', id='ozeluni') or soup.find('table', class_='ozeluni')
     if not table:
@@ -135,7 +161,6 @@ def scrape_universitego_table(url: str, university_name: str | None = None):
         print('No suitable table found on page')
         return 0, 0
 
-    # locate column indices for department and price
     dept_idx = None
     price_idx = None
     header_row = table.find('tr')
@@ -147,7 +172,6 @@ def scrape_universitego_table(url: str, university_name: str | None = None):
             if 'ücret' in h or 'ücretleri' in h or 'ücret' in h:
                 price_idx = i
 
-    # fallback positions
     if dept_idx is None:
         dept_idx = 0
     if price_idx is None:
@@ -193,7 +217,6 @@ def scrape_universitego_table(url: str, university_name: str | None = None):
         elif upd:
             updated += 1
 
-    print(f'Saved {len(rows)} rows – inserted {inserted}, updated {updated}')
     return inserted, updated
 
 
@@ -204,10 +227,8 @@ if __name__ == '__main__':
 
 
 def run_interactive_scrape():
-    # Fetch the university list lazily only when the user explicitly asks for it
     universities = None
 
-    print('Type "list" to fetch and show available universities from universitego.com, or type a university name to scrape its page.')
     uni_input = input('University (name or "list"): ').strip()
     if not uni_input:
         print('No input; aborting.')
@@ -217,7 +238,6 @@ def run_interactive_scrape():
         try:
             universities = fetch_university_list()
         except Exception as e:
-            print('Failed to fetch university list:', e)
             universities = []
 
         if not universities:
@@ -227,9 +247,6 @@ def run_interactive_scrape():
             print('-', u['name'])
         return
 
-    # User provided a name: avoid network calls by default — construct a slug
-    # and try the expected universitego URL. This is fast and works for most
-    # cases; if you want site-based matching, type "list" instead.
     slug = slugify(uni_input)
     url = f'https://www.universitego.com/{slug}-universitesi-ucretleri/'
 
@@ -252,10 +269,10 @@ def scrape_universities_from_list(save: bool = True, delay: int = 0, start_index
     inserted_total = 0
     updated_total = 0
     failed_total = 0
-    for idx, name in enumerate(universities[start_index:stop], start=start_index):
+    for idx, name in enumerate(universities[start_index:stop], start=start_index+1):
         slug = slugify(name)
         url = f'https://www.universitego.com/{slug}-universitesi-ucretleri/'
-        print(f'[{idx+1}/{total}] -> {name} -> {url}')
+        print(f'[{idx}/{total}] -> {name} -> {url}')
         if save:
             try:
                 ins, upd = scrape_universitego_table(url, name)
@@ -288,7 +305,6 @@ def send_notification(topic: str, message: str, title: str | None = None, priori
 
     Requires environment variable `NOTIFY_TOPIC` or passing a `topic` value.
     """
-    import sys
     if not topic:
         return
     url = f'https://ntfy.sh/{topic}'
@@ -301,7 +317,7 @@ def send_notification(topic: str, message: str, title: str | None = None, priori
         resp.raise_for_status()
         # Echo the notification locally so the user sees the exact message
         print('\n' + '='*60)
-        print(f'✓ NOTIFICATION SENT to {topic} (HTTP {resp.status_code})')
+        print(f'[OK] NOTIFICATION SENT to {topic} (HTTP {resp.status_code})')
         print('='*60)
         if title:
             print(f'Title: {title}')
@@ -309,6 +325,6 @@ def send_notification(topic: str, message: str, title: str | None = None, priori
         print('='*60 + '\n')
         sys.stdout.flush()
     except Exception as e:
-        print(f'✗ Failed to send notification to {url}: {e}', flush=True)
+        print(f'[FAILED] Notification to {url}: {e}', flush=True)
 
        
