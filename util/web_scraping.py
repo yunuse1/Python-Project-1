@@ -9,11 +9,14 @@ import re
 import sys
 import unicodedata
 import time
-import requests
+import logging
 
 sys.path.insert(0, os.getcwd())
 from models.university_models import UniversityDepartmentPrice
 from repository.repository import UniversityPriceRepository
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 # SSL context for HTTPS requests (disable verification for scraping)
 ssl_context = ssl.create_default_context()
@@ -61,78 +64,6 @@ def parse_price_from_text(price_text: str) -> tuple[float | None, str | None]:
         return None, currency_code
 
 
-def fetch_university_list(base_url: str = "https://www.universitego.com/") -> list[dict]:
-    """Fetch list of universities from the main page.
-    
-    Returns:
-        List of dictionaries with 'name' and 'url' keys
-    """
-    request = urllib.request.Request(base_url, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(request, context=ssl_context, timeout=30) as response:
-        html_content = response.read()
-    
-    soup = BeautifulSoup(html_content, "html.parser")
-    anchor_tags = soup.find_all("a", href=True)
-    
-    discovered_universities = {}
-    url_pattern = re.compile(r"/([^/]+)-universitesi-ucretleri/?", flags=re.IGNORECASE)
-    
-    for anchor in anchor_tags:
-        href = anchor["href"]
-        pattern_match = url_pattern.search(href)
-        
-        if not pattern_match:
-            if 'ücret' in href.lower() and 'universite' in href.lower():
-                pass
-            else:
-                continue
-        
-        full_url = urllib.parse.urljoin(base_url, href)
-        link_text = anchor.get_text(" ", strip=True)
-        
-        if not link_text:
-            university_name = pattern_match.group(1).replace('-', ' ').title() if pattern_match else urllib.parse.urlparse(href).path
-        else:
-            university_name = link_text
-        
-        if full_url not in discovered_universities:
-            discovered_universities[full_url] = {"name": university_name.strip(), "url": full_url}
-
-    return list(discovered_universities.values())
-
-
-def find_university_url(university_list: list[dict], search_query: str) -> str | None:
-    """Find a university URL by name (exact or partial match).
-    
-    Args:
-        university_list: List of university dictionaries
-        search_query: University name to search for
-    
-    Returns:
-        URL string if found, None otherwise
-    """
-    normalized_query = search_query.strip().lower()
-    
-    # Try exact match first
-    for university in university_list:
-        if university["name"].strip().lower() == normalized_query:
-            return university["url"]
-    
-    # Try partial match
-    for university in university_list:
-        if normalized_query in university["name"].strip().lower():
-            return university["url"]
-    
-    # Try token-based match
-    query_tokens = normalized_query.split()
-    for university in university_list:
-        university_name = university["name"].strip().lower()
-        if all(token in university_name for token in query_tokens):
-            return university["url"]
-    
-    return None
-
-
 def slugify_university_name(name: str) -> str:
     """Convert university name to URL-friendly slug.
     
@@ -176,7 +107,7 @@ def scrape_university_prices(url: str, university_name: str | None = None) -> tu
     Returns:
         Tuple of (inserted_count, updated_count)
     """
-    print(f'Fetching: {url}')
+    logger.info(f'Fetching: {url}')
     request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     
     try:
@@ -196,7 +127,7 @@ def scrape_university_prices(url: str, university_name: str | None = None) -> tu
             page_fetched = False
             for fallback_url in fallback_urls:
                 try:
-                    print(f'Got 404, trying fallback URL: {fallback_url}')
+                    logger.warning(f'Got 404, trying fallback URL: {fallback_url}')
                     request = urllib.request.Request(fallback_url, headers={'User-Agent': 'Mozilla/5.0'})
                     with urllib.request.urlopen(request, context=ssl_context, timeout=30) as response:
                         html_content = response.read()
@@ -224,7 +155,7 @@ def scrape_university_prices(url: str, university_name: str | None = None) -> tu
                 break
 
     if not price_table:
-        print('No suitable table found on page')
+        logger.warning('No suitable table found on page')
         return 0, 0
 
     # Determine column indices
@@ -293,7 +224,7 @@ def scrape_university_prices(url: str, university_name: str | None = None) -> tu
             currency_code=row.get('currency_code'),
             last_scraped_at=current_timestamp,
         )
-        was_inserted, was_updated = repository.upsert_department_price(department_price)
+        was_inserted, was_updated = repository.upsert(department_price)
         
         if was_inserted:
             inserted_count += 1
@@ -303,40 +234,7 @@ def scrape_university_prices(url: str, university_name: str | None = None) -> tu
     return inserted_count, updated_count
 
 
-def run_interactive_scrape():
-    """Run an interactive scraping session."""
-    university_list = None
-
-    user_input = input('University (name or "list"): ').strip()
-    if not user_input:
-        print('No input; aborting.')
-        return
-
-    if user_input.lower() == 'list':
-        try:
-            university_list = fetch_university_list()
-        except Exception:
-            university_list = []
-
-        if not university_list:
-            print('No universities fetched.')
-            return
-        
-        for university in university_list:
-            print('-', university['name'])
-        return
-
-    slug = slugify_university_name(user_input)
-    url = f'https://www.universitego.com/{slug}-universitesi-ucretleri/'
-
-    print(f'Scraping URL: {url}')
-    try:
-        scrape_university_prices(url, user_input)
-    except Exception as error:
-        print(f'Scrape failed: {error}')
-
-
-def scrape_universities_from_list(save: bool = True, delay: float = 0, start_index: int = 0, stop_index: int | None = None):
+def scrape_universities_from_list(save: bool = True, delay: float = 0, start_index: int = 0, stop_index: int | None = None) -> tuple[int, int, int, int]:
     """Scrape prices for all universities in the predefined list.
     
     Args:
@@ -344,12 +242,15 @@ def scrape_universities_from_list(save: bool = True, delay: float = 0, start_ind
         delay: Delay in seconds between requests
         start_index: Starting index in the university list
         stop_index: Ending index (exclusive) in the university list
+    
+    Returns:
+        Tuple of (total_scraped, total_inserted, total_updated, total_failed)
     """
     try:
         from util.school_list import universities as university_list
     except Exception as import_error:
-        print(f'Could not import university list: {import_error}')
-        return
+        logger.error(f'Could not import university list: {import_error}')
+        return 0, 0, 0, 0
 
     total_universities = len(university_list)
     end_index = stop_index if stop_index is not None else total_universities
@@ -361,7 +262,7 @@ def scrape_universities_from_list(save: bool = True, delay: float = 0, start_ind
     for index, university_name in enumerate(university_list[start_index:end_index], start=start_index + 1):
         slug = slugify_university_name(university_name)
         url = f'https://www.universitego.com/{slug}-universitesi-ucretleri/'
-        print(f'[{index}/{total_universities}] -> {university_name} -> {url}')
+        logger.info(f'[{index}/{total_universities}] -> {university_name} -> {url}')
         
         if save:
             try:
@@ -370,29 +271,37 @@ def scrape_universities_from_list(save: bool = True, delay: float = 0, start_ind
                 total_updated += int(updated or 0)
             except Exception as scrape_error:
                 total_failed += 1
-                print(f'Failed to scrape {university_name}: {scrape_error}')
+                logger.error(f'Failed to scrape {university_name}: {scrape_error}')
         
         if delay and (index + 1) < end_index:
             time.sleep(delay)
 
     # Send notification if topic is configured
     notification_topic = os.environ.get('NOTIFY_TOPIC')
+    notification_message = (
+        f"All universities have been updated. "
+        f"Total scraped: {total_universities}, "
+        f"inserted: {total_inserted}, "
+        f"updated: {total_updated}, "
+        f"failed: {total_failed}."
+    )
+    
+    # Log the summary
+    logger.info(notification_message)
+    
     if save and notification_topic:
-        notification_message = (
-            f"All universities have been updated. "
-            f"Total scraped: {total_universities}, "
-            f"inserted: {total_inserted}, "
-            f"updated: {total_updated}, "
-            f"failed: {total_failed}."
-        )
         try:
             send_scrape_notification(notification_topic, notification_message, title='Universities Updated')
         except Exception as notification_error:
-            print(f'Notification failed: {notification_error}')
+            logger.error(f'Notification failed: {notification_error}')
+    
+    return total_universities, total_inserted, total_updated, total_failed
 
 
 def send_scrape_notification(topic: str, message: str, title: str | None = None, priority: int = 3):
     """Send a notification via ntfy.sh.
+    
+    This is a wrapper around notifications.send_notification for backward compatibility.
     
     Args:
         topic: ntfy topic name
@@ -403,27 +312,11 @@ def send_scrape_notification(topic: str, message: str, title: str | None = None,
     if not topic:
         return
     
-    url = f'https://ntfy.sh/{topic}'
-    headers = {}
-    
-    if title:
-        headers['Title'] = title
-    headers['Priority'] = str(priority)
-    
     try:
-        response = requests.post(url, data=message.encode('utf-8'), headers=headers, timeout=10)
-        response.raise_for_status()
-        
-        print('\n' + '=' * 60)
-        print(f'[OK] NOTIFICATION SENT to {topic} (HTTP {response.status_code})')
-        print('=' * 60)
-        if title:
-            print(f'Title: {title}')
-        print(f'Message:\n{message}')
-        print('=' * 60 + '\n')
-        sys.stdout.flush()
-    except Exception as request_error:
-        print(f'[FAILED] Notification to {url}: {request_error}', flush=True)
+        from util.notifications import send_notification
+        send_notification(topic, message, title=title, priority=priority)
+    except Exception as error:
+        logger.error(f'Notification failed: {error}')
 
 
 if __name__ == '__main__':

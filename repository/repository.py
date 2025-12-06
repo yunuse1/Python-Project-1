@@ -44,36 +44,16 @@ class UniversityPriceRepository(BaseRepository[UniversityDepartmentPrice]):
         Returns:
             Tuple of (was_inserted, was_updated)
         """
-        return self.upsert_department_price(entity)
-
-    def upsert_department_price(self, department_price: UniversityDepartmentPrice) -> Tuple[bool, bool]:
-        """Insert or update a UniversityDepartmentPrice document.
-        
-        Returns:
-            Tuple of (was_inserted, was_updated)
-        """
         collection = self._db[self.COLLECTION_NAME]
         query_filter = {
-            'university_name': department_price.university_name,
-            'department_name': department_price.department_name
+            'university_name': entity.university_name,
+            'department_name': entity.department_name
         }
-        document = {
-            'university_name': department_price.university_name,
-            'faculty_name': department_price.faculty_name,
-            'department_name': department_price.department_name,
-            'price_description': department_price.price_description,
-            'price_amount': department_price.price_amount,
-            'currency_code': department_price.currency_code,
-            'last_scraped_at': department_price.last_scraped_at,
-        }
+        document = self._entity_to_document(entity)
         result = collection.update_one(query_filter, {'$set': document}, upsert=True)
         was_inserted = getattr(result, 'upserted_id', None) is not None
         was_updated = not was_inserted
         return was_inserted, was_updated
-
-    # Backward-compatible alias
-    def update_price(self, department_price: UniversityDepartmentPrice) -> Tuple[bool, bool]:
-        return self.upsert_department_price(department_price)
 
     def get_prices_by_university(self, university_name: str) -> List[UniversityDepartmentPrice]:
         """Get all department prices for a specific university."""
@@ -81,7 +61,7 @@ class UniversityPriceRepository(BaseRepository[UniversityDepartmentPrice]):
         cursor = collection.find({'university_name': university_name})
         results: List[UniversityDepartmentPrice] = []
         for document in cursor:
-            results.append(self._document_to_model(document))
+            results.append(self._document_to_entity(document))
         return results
 
     def get_all_prices(self) -> List[UniversityDepartmentPrice]:
@@ -90,7 +70,7 @@ class UniversityPriceRepository(BaseRepository[UniversityDepartmentPrice]):
         cursor = collection.find({})
         results: List[UniversityDepartmentPrice] = []
         for document in cursor:
-            results.append(self._document_to_model(document))
+            results.append(self._document_to_entity(document))
         return results
 
     def find_price_by_department(self, university_name: str, department_name: str) -> Optional[UniversityDepartmentPrice]:
@@ -101,7 +81,7 @@ class UniversityPriceRepository(BaseRepository[UniversityDepartmentPrice]):
             'department_name': department_name
         })
         if document:
-            return self._document_to_model(document)
+            return self._document_to_entity(document)
         return None
 
     # ========== Abstract Method Implementations ==========
@@ -160,19 +140,6 @@ class UniversityPriceRepository(BaseRepository[UniversityDepartmentPrice]):
         })
         return result.deleted_count > 0
 
-    def _document_to_entity(self, document: dict) -> UniversityDepartmentPrice:
-        """Convert a database document to an entity.
-        
-        Implements the abstract method from BaseRepository.
-        
-        Args:
-            document: The MongoDB document
-            
-        Returns:
-            UniversityDepartmentPrice entity
-        """
-        return self._document_to_model(document)
-
     def _entity_to_document(self, entity: UniversityDepartmentPrice) -> dict:
         """Convert an entity to a database document.
         
@@ -194,8 +161,11 @@ class UniversityPriceRepository(BaseRepository[UniversityDepartmentPrice]):
             'last_scraped_at': entity.last_scraped_at,
         }
 
-    def _document_to_model(self, document: dict) -> UniversityDepartmentPrice:
-        """Convert a MongoDB document to a UniversityDepartmentPrice model."""
+    def _document_to_entity(self, document: dict) -> UniversityDepartmentPrice:
+        """Convert a MongoDB document to a UniversityDepartmentPrice entity.
+        
+        Implements the abstract method from BaseRepository.
+        """
         return UniversityDepartmentPrice(
             university_name=document.get('university_name', ''),
             faculty_name=document.get('faculty_name'),

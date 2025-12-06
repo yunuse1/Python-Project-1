@@ -1,7 +1,11 @@
 import os
 import time
+import logging
 import pymongo
 from pymongo.errors import ServerSelectionTimeoutError, ConnectionFailure
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 
 DEFAULT_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
@@ -36,6 +40,9 @@ def get_collection(db_name: str = DEFAULT_DB, collection_name: str = DEFAULT_COL
 	return db[collection_name]
 
 if __name__ == "__main__":
+	# Configure logging for standalone run
+	logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+	
 	# Minimal example run (safe for Docker): retry until Mongo is reachable
 	max_retries = int(os.environ.get("MONGO_CONNECT_RETRIES", "12"))
 	retry_interval = int(os.environ.get("MONGO_CONNECT_INTERVAL", "5"))  # seconds
@@ -45,13 +52,13 @@ if __name__ == "__main__":
 			client = get_client()
 			db = get_db(client=client)
 			col = get_collection(client=client)
-			print("MongoDB bağlantısı başarılı.")
+			logger.info("MongoDB connection successful.")
 			break
 		except ConnectionError as err:
 			attempt += 1
-			print(f"MongoDB'e bağlanılamadı (deneme {attempt}/{max_retries}): {err}")
+			logger.error(f"Could not connect to MongoDB (attempt {attempt}/{max_retries}): {err}")
 			if attempt >= max_retries:
-				print("Max deneme sayısına ulaşıldı. Çıkılıyor.")
+				logger.error("Maximum retry attempts reached. Exiting.")
 				break
-			print(f"{retry_interval} saniye bekleniyor ve yeniden denenecek...")
+			logger.info(f"Waiting {retry_interval} seconds before retrying...")
 			time.sleep(retry_interval)

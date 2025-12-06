@@ -4,20 +4,29 @@ from util.web_scraping import scrape_universities_from_list
 from repository.repository import UniversityPriceRepository
 import argparse
 import os
-# -----------------------------
-# Excel ve PDF dönüştürme araçları
-# -----------------------------
 
 import pandas as pd
 from reportlab.lib.pagesizes import landscape, A4
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+
+PDF_FONT = 'Helvetica'  # Default fallback
+try:
+    # Try Windows Arial font (supports Turkish)
+    windows_font_path = os.path.join(os.environ.get('WINDIR', 'C:\\Windows'), 'Fonts', 'arial.ttf')
+    if os.path.exists(windows_font_path):
+        pdfmetrics.registerFont(TTFont('Arial', windows_font_path))
+        PDF_FONT = 'Arial'
+except Exception:
+    pass
 
 
 def convert_to_excel(csv_file, xlsx_file):
     df = pd.read_csv(csv_file, sep=';')
     df.to_excel(xlsx_file, index=False)
-    print("Excel oluşturuldu:", xlsx_file)
+    logger.info(f"Excel file created: {xlsx_file}")
 
 
 def convert_to_pdf(csv_file, pdf_file):
@@ -30,13 +39,16 @@ def convert_to_pdf(csv_file, pdf_file):
     table = Table(data)
     table.setStyle(TableStyle([
         ('GRID', (0,0), (-1,-1), 0.5, colors.black),
+        ('FONTNAME', (0,0), (-1,-1), PDF_FONT),
         ('FONTSIZE', (0,0), (-1,-1), 7),
         ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+        ('BACKGROUND', (0,0), (-1,0), colors.lightgrey),
+        ('FONTSIZE', (0,0), (-1,0), 8),
     ]))
 
     pdf.build([table])
 
-    print("PDF oluşturuldu:", pdf_file)
+    logger.info(f"PDF file created: {pdf_file}")
 
 # Configure logging
 logging.basicConfig(
@@ -81,12 +93,12 @@ def list_universities():
     unique_universities = sorted({price.university_name for price in all_prices})
     
     if unique_universities:
-        print('Universities in database:')
+        logger.info('Universities in database:')
         for university_name in unique_universities:
-            print(f'  - {university_name}')
-        print(f'\nTotal: {len(unique_universities)} universities')
+            logger.info(f'  - {university_name}')
+        logger.info(f'Total: {len(unique_universities)} universities')
     else:
-        print('No universities found in database.')
+        logger.info('No universities found in database.')
 
 
 def export_prices(
@@ -131,7 +143,6 @@ def export_prices(
             continue
         department_price_list.append({
             'university_name': price.university_name,
-            'faculty_name': price.faculty_name or '',
             'department_name': price.department_name,
             'price_amount': price_amount,
         })
@@ -197,56 +208,58 @@ def export_prices(
                 price_record['price_amount'] = round(price_record['price_amount'] * (1 - discount_rate / 100), 2)
 
     # Prepare CSV output - only include discount columns if discount is applied
+    # Define friendly column names for export
     if should_apply_preference_discount:
         csv_field_names = [
-            'university_name',
-            'faculty_name',
-            'department_name',
-            'price_amount',
-            'preference_discount_rate',
-            'preference_discounted_price',
-            'preference_discount_info'
+            'University',
+            'Department',
+            'Price',
+            'Discount Rate (%)',
+            'Discounted Price',
+            'Discount Info'
         ]
     else:
         csv_field_names = [
-            'university_name',
-            'faculty_name',
-            'department_name',
-            'price_amount'
+            'University',
+            'Department',
+            'Price'
         ]
 
     # Sanitize records for CSV output
     sanitized_records = []
     for price_record in department_price_list:
         record = {
-            'university_name': price_record.get('university_name', ''),
-            'faculty_name': price_record.get('faculty_name', ''),
-            'department_name': price_record.get('department_name', ''),
-            'price_amount': price_record.get('price_amount', None),
+            'University': price_record.get('university_name', ''),
+            'Department': price_record.get('department_name', ''),
+            'Price': price_record.get('price_amount', None),
         }
         # Only add discount fields if applying preference discount
         if should_apply_preference_discount:
-            record['preference_discount_rate'] = price_record.get('preference_discount_rate', 0) or 0
-            record['preference_discounted_price'] = price_record.get('preference_discounted_price', None)
-            record['preference_discount_info'] = price_record.get('preference_discount_info', 'No preference discount available.')
+            record['Discount Rate (%)'] = price_record.get('preference_discount_rate', 0) or 0
+            record['Discounted Price'] = price_record.get('preference_discounted_price', None)
+            record['Discount Info'] = price_record.get('preference_discount_info', 'No preference discount available.')
         sanitized_records.append(record)
 
     # Write to CSV file
+    if not sanitized_records:
+        logger.error('No records found to export.')
+        return
+        
     with open(output_filename, 'w', newline='', encoding='utf-8-sig') as csv_file:
-        if sanitized_records:
-            csv_writer = csv.DictWriter(csv_file, fieldnames=csv_field_names, delimiter=';')
-            csv_writer.writeheader()
-            csv_writer.writerows(sanitized_records)
-            logger.info(f'{len(sanitized_records)} records saved to: {output_filename}')
-            xlsx_file = output_filename.replace(".csv", ".xlsx")
-            pdf_file = output_filename.replace(".csv", ".pdf")
+        csv_writer = csv.DictWriter(csv_file, fieldnames=csv_field_names, delimiter=';')
+        csv_writer.writeheader()
+        csv_writer.writerows(sanitized_records)
+    
+    logger.info(f'{len(sanitized_records)} records saved to: {output_filename}')
+    
+    # Generate Excel and PDF files after CSV is closed
+    xlsx_file = output_filename.replace(".csv", ".xlsx")
+    pdf_file = output_filename.replace(".csv", ".pdf")
 
-            convert_to_excel(output_filename, xlsx_file)
-            convert_to_pdf(output_filename, pdf_file)
+    convert_to_excel(output_filename, xlsx_file)
+    convert_to_pdf(output_filename, pdf_file)
 
-            logger.info("Excel and PDF files have been generated.")
-        else:
-            logger.error('No records found to export.')
+    logger.info("Excel and PDF files have been generated.")
 
 
 def main():
@@ -357,20 +370,20 @@ Examples:
     # Check if no action specified
     if not any([parsed_args.scrape, parsed_args.list, parsed_args.export, parsed_args.show_notifications]):
         argument_parser.print_help()
-        print('\nError: Please specify at least one action (--scrape, --list, --export, or --show-notifications)')
+        logger.error('Please specify at least one action (--scrape, --list, --export, or --show-notifications)')
         return
 
     # Handle scraping
     if parsed_args.scrape:
         logger.info('Starting scraping process...')
         try:
-            scrape_universities_from_list(
+            total_scraped, total_inserted, total_updated, total_failed = scrape_universities_from_list(
                 save=True,
                 delay=parsed_args.scrape_delay,
                 start_index=parsed_args.start_index,
                 stop_index=parsed_args.stop_index
             )
-            logger.info('Scraping completed successfully.')
+            logger.info(f'Scraping completed. Scraped: {total_scraped}, Inserted: {total_inserted}, Updated: {total_updated}, Failed: {total_failed}')
         except Exception:
             logger.exception('Scraping failed')
 
@@ -398,7 +411,7 @@ Examples:
                 from util.notifications import fetch_notifications, print_notifications
                 logger.info(f'Fetching notifications from topic: {notification_topic}')
                 notification_events = fetch_notifications(notification_topic, poll_duration=1)
-                print(f'\n--- Notifications from topic: {notification_topic} ---')
+                logger.info(f'--- Notifications from topic: {notification_topic} ---')
                 print_notifications(notification_events)
             except Exception as notification_error:
                 logger.error(f'Failed to fetch notifications: {notification_error}')

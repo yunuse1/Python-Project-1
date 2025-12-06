@@ -1,6 +1,10 @@
 from __future__ import annotations
 import requests
 import typing as t
+import logging
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 
 def fetch_notifications(topic: str, poll_duration: int = 1, timeout_seconds: int = 30) -> t.List[dict]:
@@ -48,7 +52,7 @@ def print_notifications(notification_events: t.List[dict]) -> None:
         notification_events: List of notification event dictionaries
     """
     if not notification_events:
-        print('No notifications found')
+        logger.info('No notifications found')
         return
     
     for event in notification_events:
@@ -59,19 +63,19 @@ def print_notifications(notification_events: t.List[dict]) -> None:
         event_time = event.get('time')
         event_priority = event.get('priority')
         
-        print('---')
+        logger.info('---')
         if event_id:
-            print(f'id: {event_id}')
+            logger.info(f'id: {event_id}')
         if event_title:
-            print(f'title: {event_title}')
+            logger.info(f'title: {event_title}')
         if event_topic:
-            print(f'topic: {event_topic}')
+            logger.info(f'topic: {event_topic}')
         if event_time:
-            print(f'time: {event_time}')
+            logger.info(f'time: {event_time}')
         if event_priority is not None:
-            print(f'priority: {event_priority}')
-        print('message:')
-        print(event_message)
+            logger.info(f'priority: {event_priority}')
+        logger.info('message:')
+        logger.info(event_message)
 
 
 def send_notification(
@@ -121,10 +125,10 @@ def send_notification(
             timeout=timeout_seconds
         )
         response.raise_for_status()
-        print(f'Notification sent to topic: {topic}')
+        logger.info(f'Notification sent to topic: {topic}')
         return True
     except requests.exceptions.RequestException as request_error:
-        print(f'Failed to send notification: {request_error}')
+        logger.error(f'Failed to send notification: {request_error}')
         return False
 
 

@@ -2,3 +2,6 @@ pytest
 BeautifulSoup4
 pymongo
 requests
+pandas
+reportlab
+openpyxl
