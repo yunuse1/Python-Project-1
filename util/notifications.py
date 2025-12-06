@@ -3,61 +3,138 @@ import requests
 import typing as t
 
 
-def fetch_notifications(topic: str, poll: int = 1, timeout: int = 30) -> t.List[dict]:
+def fetch_notifications(topic: str, poll_duration: int = 1, timeout_seconds: int = 30) -> t.List[dict]:
+    """Fetch notifications from an ntfy topic.
+    
+    Args:
+        topic: The ntfy topic name to fetch from
+        poll_duration: Poll duration parameter for the API
+        timeout_seconds: Request timeout in seconds
+    
+    Returns:
+        List of notification event dictionaries
+    
+    Raises:
+        ValueError: If topic is not provided
+    """
     if not topic:
         raise ValueError('topic is required')
-    url = f'https://ntfy.sh/{topic}/json?poll={poll}'
-    resp = requests.get(url, timeout=timeout)
-    resp.raise_for_status()
-    # ntfy returns a JSON array of events
+    
+    request_url = f'https://ntfy.sh/{topic}/json?poll={poll_duration}'
+    response = requests.get(request_url, timeout=timeout_seconds)
+    response.raise_for_status()
+    
     try:
-        data = resp.json()
+        response_data = response.json()
     except Exception:
-        # fallback: try to parse text
-        text = resp.text
-        return [{'raw': text}]
-    if isinstance(data, list):
-        return data
-    # sometimes returns an object with 'events'
-    if isinstance(data, dict) and 'events' in data:
-        return data.get('events') or []
-    return [data]
+        # Fallback: return raw text if JSON parsing fails
+        raw_text = response.text
+        return [{'raw': raw_text}]
+    
+    if isinstance(response_data, list):
+        return response_data
+    
+    # Sometimes the API returns an object with 'events' key
+    if isinstance(response_data, dict) and 'events' in response_data:
+        return response_data.get('events') or []
+    
+    return [response_data]
 
 
-def print_notifications(events: t.List[dict]):
-    """Pretty-print a list of ntfy event dicts."""
-    if not events:
+def print_notifications(notification_events: t.List[dict]) -> None:
+    """Pretty-print a list of ntfy notification events.
+    
+    Args:
+        notification_events: List of notification event dictionaries
+    """
+    if not notification_events:
         print('No notifications found')
         return
-    for ev in events:
-        # common fields: id, time, event, topic, message, title, priority, tags
-        eid = ev.get('id')
-        title = ev.get('title')
-        message = ev.get('message') or ev.get('msg') or ev.get('raw') or ev.get('body')
-        topic = ev.get('topic')
-        time = ev.get('time')
-        priority = ev.get('priority')
+    
+    for event in notification_events:
+        event_id = event.get('id')
+        event_title = event.get('title')
+        event_message = event.get('message') or event.get('msg') or event.get('raw') or event.get('body')
+        event_topic = event.get('topic')
+        event_time = event.get('time')
+        event_priority = event.get('priority')
+        
         print('---')
-        if eid:
-            print('id:', eid)
-        if title:
-            print('title:', title)
-        if topic:
-            print('topic:', topic)
-        if time:
-            print('time:', time)
-        if priority is not None:
-            print('priority:', priority)
+        if event_id:
+            print(f'id: {event_id}')
+        if event_title:
+            print(f'title: {event_title}')
+        if event_topic:
+            print(f'topic: {event_topic}')
+        if event_time:
+            print(f'time: {event_time}')
+        if event_priority is not None:
+            print(f'priority: {event_priority}')
         print('message:')
-        print(message)
+        print(event_message)
+
+
+def send_notification(
+    topic: str,
+    message: str,
+    title: str = None,
+    priority: int = 3,
+    tags: t.List[str] = None,
+    timeout_seconds: int = 30
+) -> bool:
+    """Send a notification to an ntfy topic.
+    
+    Args:
+        topic: The ntfy topic to send to
+        message: The notification message body
+        title: Optional title for the notification
+        priority: Priority level (1-5, default 3)
+        tags: Optional list of tags/emojis
+        timeout_seconds: Request timeout in seconds
+    
+    Returns:
+        True if notification was sent successfully, False otherwise
+    
+    Raises:
+        ValueError: If topic or message is not provided
+    """
+    if not topic:
+        raise ValueError('topic is required')
+    if not message:
+        raise ValueError('message is required')
+    
+    request_url = f'https://ntfy.sh/{topic}'
+    request_headers = {}
+    
+    if title:
+        request_headers['Title'] = title
+    if priority:
+        request_headers['Priority'] = str(priority)
+    if tags:
+        request_headers['Tags'] = ','.join(tags)
+    
+    try:
+        response = requests.post(
+            request_url,
+            data=message.encode('utf-8'),
+            headers=request_headers,
+            timeout=timeout_seconds
+        )
+        response.raise_for_status()
+        print(f'Notification sent to topic: {topic}')
+        return True
+    except requests.exceptions.RequestException as request_error:
+        print(f'Failed to send notification: {request_error}')
+        return False
 
 
 if __name__ == '__main__':
     import argparse
 
-    parser = argparse.ArgumentParser(description='Fetch and print ntfy notifications for a topic')
-    parser.add_argument('topic', help='ntfy topic name')
-    parser.add_argument('--poll', type=int, default=1)
-    args = parser.parse_args()
-    evs = fetch_notifications(args.topic, poll=args.poll)
-    print_notifications(evs)
+    argument_parser = argparse.ArgumentParser(description='Fetch and print ntfy notifications for a topic')
+    argument_parser.add_argument('topic', help='ntfy topic name')
+    argument_parser.add_argument('--poll', type=int, default=1, help='Poll duration parameter')
+    
+    parsed_args = argument_parser.parse_args()
+    fetched_events = fetch_notifications(parsed_args.topic, poll_duration=parsed_args.poll)
+    print_notifications(fetched_events)

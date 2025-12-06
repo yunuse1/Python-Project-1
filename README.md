@@ -38,9 +38,49 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the program:
+Run the program in terminal:
 ```bash
-python main.py
+
+$env:NOTIFY_TOPIC = "myTopic"
+
+# Show help message
+python main.py --help
+
+# Scrape all universities
+python main.py --scrape
+
+# List universities in database
+python main.py --list
+
+# Export all universities to CSV
+python main.py --export
+
+# Export a specific university to CSV
+python main.py --export --university "İstinye Üniversitesi"
+
+# Filter by specific department
+python main.py --export --university "İstinye Üniversitesi" --department "Tıp"
+
+# Show prices with 50% scholarship
+python main.py --export --price-option half
+
+# Apply preference discount
+python main.py --export --university "İstinye Üniversitesi" --apply-preference-discount
+
+# Show notifications
+python main.py --show-notifications
+
+# Scrape and export together
+python main.py --scrape --export
+
+# Scrape with delay between requests
+python main.py --scrape --scrape-delay 1.0
+
+# Scrape between specific indices
+python main.py --scrape --start-index 0 --stop-index 10
+
+# Save to a different file
+python main.py --export --output "my_prices.csv"
 ```
 
 Follow the prompts to:
