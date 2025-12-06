@@ -4,6 +4,39 @@ from util.web_scraping import scrape_universities_from_list
 from repository.repository import UniversityPriceRepository
 import argparse
 import os
+# -----------------------------
+# Excel ve PDF dönüştürme araçları
+# -----------------------------
+
+import pandas as pd
+from reportlab.lib.pagesizes import landscape, A4
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.lib import colors
+
+
+def convert_to_excel(csv_file, xlsx_file):
+    df = pd.read_csv(csv_file, sep=';')
+    df.to_excel(xlsx_file, index=False)
+    print("Excel oluşturuldu:", xlsx_file)
+
+
+def convert_to_pdf(csv_file, pdf_file):
+    df = pd.read_csv(csv_file, sep=';')
+
+    pdf = SimpleDocTemplate(pdf_file, pagesize=landscape(A4))
+
+    data = [df.columns.tolist()] + df.values.tolist()
+
+    table = Table(data)
+    table.setStyle(TableStyle([
+        ('GRID', (0,0), (-1,-1), 0.5, colors.black),
+        ('FONTSIZE', (0,0), (-1,-1), 7),
+        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+    ]))
+
+    pdf.build([table])
+
+    print("PDF oluşturuldu:", pdf_file)
 
 # Configure logging
 logging.basicConfig(
@@ -205,6 +238,13 @@ def export_prices(
             csv_writer.writeheader()
             csv_writer.writerows(sanitized_records)
             logger.info(f'{len(sanitized_records)} records saved to: {output_filename}')
+            xlsx_file = output_filename.replace(".csv", ".xlsx")
+            pdf_file = output_filename.replace(".csv", ".pdf")
+
+            convert_to_excel(output_filename, xlsx_file)
+            convert_to_pdf(output_filename, pdf_file)
+
+            logger.info("Excel and PDF files have been generated.")
         else:
             logger.error('No records found to export.')
 
