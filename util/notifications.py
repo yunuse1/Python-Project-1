@@ -3,7 +3,6 @@ import requests
 import typing as t
 import logging
 
-# Configure logging
 logger = logging.getLogger(__name__)
 
 

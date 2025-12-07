@@ -15,6 +15,10 @@ class UniversityDepartmentPrice:
         university_name: Name of the university
         faculty_name: Optional name of the faculty
         department_name: Name of the department/program
+        score_type: Score type (SAY, EA, SÖZ, DİL, TYT)
+        quota: Quota/placement info (e.g., "34/34")
+        score: Admission score (can be None if "Dolmadı")
+        ranking: Admission ranking (can be None if "Dolmadı")
         price_description: Original price text from source
         price_amount: Numeric price value (can be None if not parseable)
         currency_code: ISO currency code (e.g., 'TRY', 'USD')
@@ -24,6 +28,10 @@ class UniversityDepartmentPrice:
     university_name: str
     faculty_name: Optional[str] = None
     department_name: str = ""
+    score_type: Optional[str] = None
+    quota: Optional[str] = None
+    score: Optional[float] = None
+    ranking: Optional[int] = None
     price_description: str = ""
     price_amount: Optional[float] = None
     currency_code: Optional[str] = None

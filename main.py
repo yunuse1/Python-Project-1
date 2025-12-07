@@ -31,20 +31,24 @@ def convert_to_excel(csv_file, xlsx_file):
         
         worksheet = writer.sheets['Ucretler']
     
-        #Column widths
-        worksheet.column_dimensions['A'].width = 47  # University
-        worksheet.column_dimensions['B'].width = 50  # Department
-        worksheet.column_dimensions['C'].width = 18  # Price
+        # Column widths for new fields
+        worksheet.column_dimensions['A'].width = 40  # University
+        worksheet.column_dimensions['B'].width = 45  # Department
+        worksheet.column_dimensions['C'].width = 12  # Score Type
+        worksheet.column_dimensions['D'].width = 12  # Quota
+        worksheet.column_dimensions['E'].width = 12  # Score
+        worksheet.column_dimensions['F'].width = 12  # Ranking
+        worksheet.column_dimensions['G'].width = 15  # Price
         
-        #preference discount columns
-        if len(df.columns) > 3:
-            worksheet.column_dimensions['D'].width = 17
-            worksheet.column_dimensions['E'].width = 20
-            worksheet.column_dimensions['F'].width = 65
+        # Preference discount columns (if present)
+        if len(df.columns) > 7:
+            worksheet.column_dimensions['H'].width = 15  # Discount Rate
+            worksheet.column_dimensions['I'].width = 18  # Discounted Price
+            worksheet.column_dimensions['J'].width = 55  # Discount Info
             
         for row in worksheet.iter_rows():
             for cell in row:
-                if cell.column == 6:
+                if cell.column == 10:  # Discount Info column
                     cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
                 else:
                     cell.alignment = Alignment(horizontal='center', vertical='center')
@@ -167,6 +171,10 @@ def export_prices(
         department_price_list.append({
             'university_name': price.university_name,
             'department_name': price.department_name,
+            'score_type': price.score_type,
+            'quota': price.quota,
+            'score': price.score,
+            'ranking': price.ranking,
             'price_amount': price_amount,
         })
 
@@ -236,6 +244,10 @@ def export_prices(
         csv_field_names = [
             'University',
             'Department',
+            'Score Type',
+            'Quota',
+            'Score',
+            'Ranking',
             'Price',
             'Discount Rate (%)',
             'Discounted Price',
@@ -245,6 +257,10 @@ def export_prices(
         csv_field_names = [
             'University',
             'Department',
+            'Score Type',
+            'Quota',
+            'Score',
+            'Ranking',
             'Price'
         ]
 
@@ -254,6 +270,10 @@ def export_prices(
         record = {
             'University': price_record.get('university_name', ''),
             'Department': price_record.get('department_name', ''),
+            'Score Type': price_record.get('score_type', '') or '',
+            'Quota': price_record.get('quota', '') or '',
+            'Score': price_record.get('score', '') if price_record.get('score') is not None else 'Dolmadı',
+            'Ranking': price_record.get('ranking', '') if price_record.get('ranking') is not None else 'Dolmadı',
             'Price': price_record.get('price_amount', None),
         }
         # Only add discount fields if applying preference discount

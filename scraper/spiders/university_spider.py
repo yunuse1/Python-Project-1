@@ -15,7 +15,6 @@ from typing import Generator, Any
 import scrapy
 from scrapy.http import Response
 
-# Add project root to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from scraper.items import UniversityPriceItem
@@ -60,7 +59,6 @@ class UniversityPriceSpider(scrapy.Spider):
                 self.university_list = []
                 self.logger.error('Could not import university list from util.school_list')
         
-        # Statistics tracking
         self.scraped_count = 0
         self.failed_count = 0
         self.pipeline_stats = {}
@@ -94,71 +92,77 @@ class UniversityPriceSpider(scrapy.Spider):
         university_name = response.meta.get('university_name', 'Unknown')
         self.logger.info(f'Parsing: {university_name} ({response.url})')
         
-        # Find the price table using CSS selectors
-        price_table = response.css('table#ozeluni, table.ozeluni').get()
+        table_selector = response.css('table#ozeluni, table.ozeluni')
         
-        if not price_table:
-            # Try alternative table detection
+        if not table_selector:
             for table in response.css('table'):
                 headers_text = ' '.join(table.css('th::text').getall()).lower()
                 if 'ücret' in headers_text or 'bölüm' in headers_text:
-                    price_table = table.get()
+                    table_selector = table
                     break
         
-        if not price_table:
+        if not table_selector:
             self.logger.warning(f'No price table found for {university_name}')
             self.failed_count += 1
             return
         
-        # Re-select the table for proper parsing
-        table_selector = response.css('table#ozeluni, table.ozeluni')
-        if not table_selector:
-            table_selector = response.css('table')
+        column_indices = {
+            'department': 0,
+            'score_type': 1,
+            'quota': 2,
+            'score': 3,
+            'ranking': 4,
+            'price': 5,
+        }
         
-        # Determine column indices from headers
-        department_col_index = 0
-        price_col_index = -1
+        header_row = table_selector.css('tr:first-child th')
+        if header_row:
+            headers = [th.css('::text').get() or '' for th in header_row]
+            headers = [h.strip().lower() for h in headers]
+            
+            for index, header in enumerate(headers):
+                if 'bölüm' in header or 'program' in header:
+                    column_indices['department'] = index
+                elif 'puan türü' in header or 'puan t' in header:
+                    column_indices['score_type'] = index
+                elif 'kont' in header or 'yer' in header:
+                    column_indices['quota'] = index
+                elif header == 'puan':
+                    column_indices['score'] = index
+                elif 'sıra' in header:
+                    column_indices['ranking'] = index
+                elif 'ücret' in header:
+                    column_indices['price'] = index
         
-        headers = table_selector.css('tr:first-child th::text, tr:first-child td::text').getall()
-        headers = [h.strip().lower() for h in headers]
-        
-        for index, header in enumerate(headers):
-            if 'bölüm' in header or 'program' in header:
-                department_col_index = index
-            if 'ücret' in header:
-                price_col_index = index
-        
-        # Extract rows
         current_timestamp = datetime.datetime.utcnow()
         rows_found = 0
         
-        for row in table_selector.css('tr'):
-            cells = row.css('td::text, td *::text').getall()
-            cells = [c.strip() for c in cells if c.strip()]
+        for row in table_selector.css('tr')[1:]:
+            cells = row.css('td')
             
-            if len(cells) <= 1:
+            if len(cells) < 2:
                 continue
             
-            # Skip header rows
-            if any('bölüm' in cell.lower() or 'ücret' in cell.lower() for cell in cells[:3]):
-                continue
+            def get_cell_text(cell_index: int) -> str:
+                if cell_index < len(cells):
+                    text = cells[cell_index].css('::text').getall()
+                    return ' '.join(t.strip() for t in text if t.strip())
+                return ''
             
-            # Extract department name and price
-            try:
-                department_name = cells[department_col_index] if department_col_index < len(cells) else cells[0]
-            except IndexError:
-                continue
+            department_name = get_cell_text(column_indices['department'])
+            score_type = get_cell_text(column_indices['score_type'])
+            quota = get_cell_text(column_indices['quota'])
+            score_text = get_cell_text(column_indices['score'])
+            ranking_text = get_cell_text(column_indices['ranking'])
+            price_text = get_cell_text(column_indices['price'])
             
-            try:
-                price_text = cells[price_col_index] if price_col_index < len(cells) else ''
-            except IndexError:
-                price_text = ''
-            
-            # Skip empty department names
             if not department_name or not department_name.strip():
                 continue
+            if 'bölüm' in department_name.lower() and 'adı' in department_name.lower():
+                continue
             
-            # Parse price
+            score = self._parse_score(score_text)
+            ranking = self._parse_ranking(ranking_text)
             price_amount, currency_code = self._parse_price(price_text)
             
             rows_found += 1
@@ -167,6 +171,10 @@ class UniversityPriceSpider(scrapy.Spider):
                 university_name=university_name,
                 faculty_name=None,
                 department_name=department_name,
+                score_type=score_type if score_type else None,
+                quota=quota if quota else None,
+                score=score,
+                ranking=ranking,
                 price_description=price_text,
                 price_amount=price_amount,
                 currency_code=currency_code,
@@ -205,7 +213,6 @@ class UniversityPriceSpider(scrapy.Spider):
         slug = name.lower()
         slug = slug.replace('üniversitesi', '').replace('universitesi', '').replace('ücretleri', '').strip()
         
-        # Map Turkish characters to ASCII equivalents
         turkish_char_map = str.maketrans({
             'ş': 's', 'Ş': 's',
             'ı': 'i', 'İ': 'i',
@@ -237,18 +244,15 @@ class UniversityPriceSpider(scrapy.Spider):
         cleaned_text = price_text.replace('\xa0', ' ').strip()
         currency_code = None
         
-        # Detect currency
         if '₺' in cleaned_text or 'TL' in cleaned_text.upper():
             currency_code = 'TRY'
         elif '$' in cleaned_text:
             currency_code = 'USD'
         
-        # Remove non-numeric characters except comma and period
         numeric_string = re.sub(r"[^0-9,\.]+", "", cleaned_text)
         if not numeric_string:
             return None, currency_code
         
-        # Normalize thousand separators and decimal points
         if '.' in numeric_string and ',' in numeric_string:
             numeric_string = numeric_string.replace('.', '').replace(',', '.')
         else:
@@ -260,6 +264,60 @@ class UniversityPriceSpider(scrapy.Spider):
             return float(numeric_string), currency_code
         except ValueError:
             return None, currency_code
+    
+    def _parse_score(self, score_text: str) -> float | None:
+        """Parse a score string and extract numeric value.
+        
+        Args:
+            score_text: Raw score string (e.g., "239,52" or "Dolmadı")
+            
+        Returns:
+            Float score value or None if not parseable
+        """
+        if not score_text:
+            return None
+        
+        cleaned_text = score_text.strip().lower()
+        
+        if 'dolmadı' in cleaned_text or 'dolmadi' in cleaned_text:
+            return None
+        
+        numeric_string = re.sub(r"[^0-9,\.]+", "", score_text)
+        if not numeric_string:
+            return None
+        
+        numeric_string = numeric_string.replace(',', '.')
+        
+        try:
+            return float(numeric_string)
+        except ValueError:
+            return None
+    
+    def _parse_ranking(self, ranking_text: str) -> int | None:
+        """Parse a ranking string and extract integer value.
+        
+        Args:
+            ranking_text: Raw ranking string (e.g., "633.510" or "Dolmadı")
+            
+        Returns:
+            Integer ranking value or None if not parseable
+        """
+        if not ranking_text:
+            return None
+        
+        cleaned_text = ranking_text.strip().lower()
+        
+        if 'dolmadı' in cleaned_text or 'dolmadi' in cleaned_text:
+            return None
+        
+        numeric_string = re.sub(r"[^0-9]+", "", ranking_text)
+        if not numeric_string:
+            return None
+        
+        try:
+            return int(numeric_string)
+        except ValueError:
+            return None
     
     def closed(self, reason: str):
         """Called when the spider is closed.

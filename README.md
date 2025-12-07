@@ -111,11 +111,12 @@ The program generates a CSV file with the following columns:
 To run the tests, use the following command:
 
 ```bash
-python -m pytest
+pytest -v
 ```
 or
 
 ```bash
-py -m pytest
+pytest tests/test_integration.py -v
+pytest tests/test_units.py -v
 ```
 

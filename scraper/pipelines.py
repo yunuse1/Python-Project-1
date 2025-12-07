@@ -9,7 +9,6 @@ import logging
 import os
 import sys
 
-# Add project root to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from models.university_models import UniversityDepartmentPrice
@@ -95,6 +94,10 @@ class MongoDBPipeline:
                 university_name=item.get('university_name', ''),
                 faculty_name=item.get('faculty_name'),
                 department_name=item.get('department_name', ''),
+                score_type=item.get('score_type'),
+                quota=item.get('quota'),
+                score=item.get('score'),
+                ranking=item.get('ranking'),
                 price_description=item.get('price_description', ''),
                 price_amount=item.get('price_amount'),
                 currency_code=item.get('currency_code'),
