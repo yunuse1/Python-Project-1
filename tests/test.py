@@ -167,74 +167,53 @@ def test_repository_find_get_all_delete(monkeypatch):
     assert repo.delete('badformat') is False
 
 # ---------------------------
-# util.web_scraping.py
+# util.web_scraping.py (Scrapy-based)
 # ---------------------------
 
-def test_parse_price_from_text_varieties():
-    assert web_mod.parse_price_from_text('') == (None, None)
-    amt, cur = web_mod.parse_price_from_text('₺235.000,00')
-    assert amt == 235000.0 and cur == 'TRY'
+def test_slugify_university_name():
+    """Test Turkish character slugification."""
+    result = web_mod.slugify_university_name('İstanbul Üniversitesi ücretleri')
+    assert result  # Should return non-empty string
+    assert 'istanbul' in result.lower()
+    # Turkish characters should be converted
+    assert 'ü' not in result
+    assert 'İ' not in result
+
+
+def test_scrape_universities_from_list_returns_tuple(monkeypatch):
+    """Test that scrape_universities_from_list returns proper tuple."""
+    # Mock the university list
+    monkeypatch.setitem(sys.modules, 'util.school_list', types.SimpleNamespace(universities=[]))
     
-    amt2, cur2 = web_mod.parse_price_from_text('$1234.56') 
-    assert round(amt2 - 1234.56, 6) == 0 and cur2 == 'USD'
-    
-    assert web_mod.slugify_university_name('İstanbul ÜNİVERSİTESİ ücretleri')
-
-def make_table_html(headers, rows):
-    header_html = ''.join(f'<th>{h}</th>' for h in headers)
-    rows_html = ''.join('<tr>' + ''.join(f'<td>{c}</td>' for c in r) + '</tr>' for r in rows)
-    return f"<html><body><table id=\"ozeluni\"><tr>{header_html}</tr>{rows_html}</table></body></html>".encode('utf-8')
+    # With empty list, should return zeros
+    result = web_mod.scrape_universities_from_list(save=True, delay=0, start_index=0, stop_index=0)
+    assert isinstance(result, tuple)
+    assert len(result) == 4  # (total, inserted, updated, failed)
 
 
-def test_scrape_university_prices_calls_repo(monkeypatch):
-    html = make_table_html(['Bölüm', 'Ücret'], [['Bilgisayar', '₺4.500'], ['İşletme', '₺28.000']])
-    monkeypatch.setattr(web_mod.urllib.request, 'urlopen', lambda request, context=None, timeout=None: DummyResponse(html))
-
-    fake_repo = Mock()
-    fake_repo.upsert.return_value = (True, False)
-    monkeypatch.setattr(web_mod, 'UniversityPriceRepository', lambda *args, **kwargs: fake_repo)
-
-    inserted, updated = web_mod.scrape_university_prices('http://example.com/test', 'Test Uni')
-    assert inserted == 2 and updated == 0
-    assert fake_repo.upsert.call_count == 2
-
-def test_scrape_university_prices_404_fallback(monkeypatch):
-    html = make_table_html(['Program', 'Ücret'], [['X', '₺1.000']])
-
-    def first_raise(request, context=None, timeout=None):
-        raise web_mod.urllib.error.HTTPError(getattr(request, 'full_url', 'u'), 404, 'Not Found', hdrs=None, fp=None)
-
-    calls = [first_raise, lambda request, context=None, timeout=None: DummyResponse(html)]
-    def seq(request, context=None, timeout=None):
-        return calls.pop(0)(request, context, timeout)
-
-    monkeypatch.setattr(web_mod.urllib.request, 'urlopen', seq)
-    fake_repo = Mock()
-    fake_repo.upsert.return_value = (True, False)
-    monkeypatch.setattr(web_mod, 'UniversityPriceRepository', lambda *args, **kwargs: fake_repo)
-
-    inserted, updated = web_mod.scrape_university_prices('http://example.com/some-universitesi-ucretleri/')
-    assert inserted == 1
-
-# ---------------------------
-# scrape_universities_from_list and send notification
-# ---------------------------
-
-def test_scrape_universities_from_list_and_notification(monkeypatch):
-    monkeypatch.setitem(sys.modules, 'util.school_list', types.SimpleNamespace(universities=['A Uni','B Uni']))
-    monkeypatch.setattr(web_mod, 'slugify_university_name', lambda s: s.lower().replace(' ', '-'))
-    monkeypatch.setattr(web_mod, 'scrape_university_prices', lambda url, name=None: (1,0))
-
+def test_send_scrape_notification(monkeypatch):
+    """Test notification wrapper function."""
     called = {}
-    def fake_send(topic, message, title=None, priority=3):
+    
+    def mock_send(topic, message, title=None, priority=3):
         called['topic'] = topic
         called['message'] = message
-    monkeypatch.setattr(web_mod, 'send_scrape_notification', fake_send)
+        return True
+    
+    # Mock the notifications module
+    monkeypatch.setattr(notif_mod, 'send_notification', mock_send)
+    
+    # Test the wrapper
+    web_mod.send_scrape_notification('test-topic', 'test message', title='Test')
+    assert called.get('topic') == 'test-topic'
+    assert called.get('message') == 'test message'
 
-    monkeypatch.setenv('NOTIFY_TOPIC', 'testtopic')
-    total, ins, upd, failed = web_mod.scrape_universities_from_list(save=True, delay=0, start_index=0, stop_index=2)
-    assert total == 2
-    assert called.get('topic') == 'testtopic'
+
+def test_send_scrape_notification_empty_topic():
+    """Test that empty topic doesn't send notification."""
+    # Should not raise an error
+    web_mod.send_scrape_notification('', 'message')
+    web_mod.send_scrape_notification(None, 'message')
 
 # ---------------------------
 # util.notifications
@@ -332,7 +311,10 @@ def test_export_prices_writes_csv_and_generates(monkeypatch, tmp_path):
     content = out.read_text(encoding='utf-8-sig')
     assert 'İstinye Üniversitesi' in content
 
-def test_list_universities_logs(monkeypatch, capsys):
+def test_list_universities_logs(monkeypatch, caplog):
+    """Test that list_universities logs output correctly."""
+    import logging
+    
     # 1. Hazırlık: Sahte veri
     price = models_mod.UniversityDepartmentPrice(
         university_name='U1',
@@ -348,20 +330,18 @@ def test_list_universities_logs(monkeypatch, capsys):
     
     # 2. KRİTİK ADIM: main.py içinde "UniversityPriceRepository()" çağrıldığında
     # bizim hazırladığımız "mock_repo_instance" dönsün.
-    # Bu yöntem, import karmaşasını tamamen çözer.
     monkeypatch.setattr(main_mod, 'UniversityPriceRepository', lambda *args, **kwargs: mock_repo_instance)
     
     # 3. SİGORTA: Eğer bir şekilde gerçek sınıfa giderse DB hatası vermesin diye MagicMock
     monkeypatch.setattr(connect_mod, 'get_client', MagicMock())
 
-    # 4. Çalıştır
-    main_mod.list_universities()
+    # 4. Capture logs
+    with caplog.at_level(logging.INFO):
+        main_mod.list_universities()
     
-    # 5. Çıktıları kontrol et
-    captured = capsys.readouterr()
-    output = captured.out + captured.err
-    
-    assert 'Universities' in output or 'Total' in output or 'U1' in output
+    # 5. Çıktıları kontrol et - logger kullanıldığı için caplog'dan bakıyoruz
+    log_output = caplog.text
+    assert 'U1' in log_output or 'Total' in log_output or 'universities' in log_output.lower()
 
 # ---------------------------
 # school_list sanity

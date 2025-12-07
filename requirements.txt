@@ -1,5 +1,5 @@
 pytest
-BeautifulSoup4
+Scrapy
 pymongo
 requests
 pandas
