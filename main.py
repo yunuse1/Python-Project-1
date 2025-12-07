@@ -11,7 +11,7 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-
+from openpyxl.styles import Alignment
 PDF_FONT = 'Helvetica'  # Default fallback
 try:
     # Try Windows Arial font (supports Turkish)
@@ -25,8 +25,31 @@ except Exception:
 
 def convert_to_excel(csv_file, xlsx_file):
     df = pd.read_csv(csv_file, sep=';')
-    df.to_excel(xlsx_file, index=False)
-    logger.info(f"Excel file created: {xlsx_file}")
+    
+    with pd.ExcelWriter(xlsx_file, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name='Ucretler')
+        
+        worksheet = writer.sheets['Ucretler']
+    
+        #Column widths
+        worksheet.column_dimensions['A'].width = 47  # University
+        worksheet.column_dimensions['B'].width = 50  # Department
+        worksheet.column_dimensions['C'].width = 18  # Price
+        
+        #preference discount columns
+        if len(df.columns) > 3:
+            worksheet.column_dimensions['D'].width = 17
+            worksheet.column_dimensions['E'].width = 20
+            worksheet.column_dimensions['F'].width = 65
+            
+        for row in worksheet.iter_rows():
+            for cell in row:
+                if cell.column == 6:
+                    cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+                else:
+                    cell.alignment = Alignment(horizontal='center', vertical='center')
+
+    logger.info(f"Excel file created: {xlsx_file}") 
 
 
 def convert_to_pdf(csv_file, pdf_file):
