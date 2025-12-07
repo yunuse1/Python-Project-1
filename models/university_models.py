@@ -62,7 +62,6 @@ class UniversityDepartmentPrice:
         }
         symbol = currency_symbols.get(self.currency_code or '', '')
         
-        # Format with thousand separators
         formatted_amount = f"{self.price_amount:,.2f}"
         return f"{symbol}{formatted_amount}"
     

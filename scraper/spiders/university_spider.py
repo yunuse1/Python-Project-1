@@ -1,9 +1,3 @@
-"""Scrapy Spider for scraping university tuition prices.
-
-This spider crawls universitego.com to extract department prices
-for Turkish universities. It uses CSS selectors and XPath for
-efficient data extraction.
-"""
 from __future__ import annotations
 import datetime
 import re
@@ -21,17 +15,6 @@ from scraper.items import UniversityPriceItem
 
 
 class UniversityPriceSpider(scrapy.Spider):
-    """Spider that scrapes university department prices from universitego.com.
-    
-    This spider generates URLs for all universities in the predefined list
-    and extracts price tables from each page.
-    
-    Attributes:
-        name: Spider identifier used by Scrapy
-        allowed_domains: List of domains the spider is allowed to crawl
-        custom_settings: Spider-specific settings
-    """
-    
     name = 'university_prices'
     allowed_domains = ['universitego.com']
     
@@ -41,12 +24,6 @@ class UniversityPriceSpider(scrapy.Spider):
     }
     
     def __init__(self, universities: list[str] | None = None, *args, **kwargs):
-        """Initialize the spider with optional university list.
-        
-        Args:
-            universities: Optional list of university names to scrape.
-                         If not provided, uses the default list from school_list.py
-        """
         super().__init__(*args, **kwargs)
         
         if universities:
@@ -64,11 +41,6 @@ class UniversityPriceSpider(scrapy.Spider):
         self.pipeline_stats = {}
     
     def start_requests(self) -> Generator[scrapy.Request, None, None]:
-        """Generate initial requests for all universities.
-        
-        Yields:
-            Scrapy Request objects for each university URL
-        """
         for university_name in self.university_list:
             slug = self._slugify_university_name(university_name)
             url = f'https://www.universitego.com/{slug}-universitesi-ucretleri/'
@@ -81,14 +53,6 @@ class UniversityPriceSpider(scrapy.Spider):
             )
     
     def parse(self, response: Response) -> Generator[UniversityPriceItem, None, None]:
-        """Parse the university price page and extract department prices.
-        
-        Args:
-            response: The HTTP response from the university page
-            
-        Yields:
-            UniversityPriceItem objects for each department price found
-        """
         university_name = response.meta.get('university_name', 'Unknown')
         self.logger.info(f'Parsing: {university_name} ({response.url})')
         
@@ -189,24 +153,11 @@ class UniversityPriceSpider(scrapy.Spider):
             self.logger.warning(f'No departments extracted from {university_name}')
     
     def handle_error(self, failure):
-        """Handle request failures.
-        
-        Args:
-            failure: The Twisted Failure object containing error details
-        """
         university_name = failure.request.meta.get('university_name', 'Unknown')
         self.logger.error(f'Failed to scrape {university_name}: {failure.value}')
         self.failed_count += 1
     
     def _slugify_university_name(self, name: str) -> str:
-        """Convert university name to URL-friendly slug.
-        
-        Args:
-            name: University name in Turkish
-            
-        Returns:
-            URL-friendly slug string
-        """
         if not name:
             return ''
         
@@ -230,14 +181,6 @@ class UniversityPriceSpider(scrapy.Spider):
         return slug
     
     def _parse_price(self, price_text: str) -> tuple[float | None, str | None]:
-        """Parse a price string and extract numeric value and currency code.
-        
-        Args:
-            price_text: Raw price string (e.g., "₺235.000,00")
-            
-        Returns:
-            Tuple of (price_amount, currency_code)
-        """
         if not price_text:
             return None, None
         
@@ -266,14 +209,6 @@ class UniversityPriceSpider(scrapy.Spider):
             return None, currency_code
     
     def _parse_score(self, score_text: str) -> float | None:
-        """Parse a score string and extract numeric value.
-        
-        Args:
-            score_text: Raw score string (e.g., "239,52" or "Dolmadı")
-            
-        Returns:
-            Float score value or None if not parseable
-        """
         if not score_text:
             return None
         
@@ -294,14 +229,6 @@ class UniversityPriceSpider(scrapy.Spider):
             return None
     
     def _parse_ranking(self, ranking_text: str) -> int | None:
-        """Parse a ranking string and extract integer value.
-        
-        Args:
-            ranking_text: Raw ranking string (e.g., "633.510" or "Dolmadı")
-            
-        Returns:
-            Integer ranking value or None if not parseable
-        """
         if not ranking_text:
             return None
         
@@ -320,11 +247,6 @@ class UniversityPriceSpider(scrapy.Spider):
             return None
     
     def closed(self, reason: str):
-        """Called when the spider is closed.
-        
-        Args:
-            reason: The reason the spider was closed
-        """
         self.logger.info(
             f'Spider closed: {reason}. '
             f'Universities scraped: {self.scraped_count}, '

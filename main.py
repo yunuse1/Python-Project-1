@@ -1,4 +1,3 @@
-import csv
 import logging
 from util.web_scraping import scrape_universities_from_list
 from repository.repository import UniversityPriceRepository
@@ -12,9 +11,9 @@ from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from openpyxl.styles import Alignment
-PDF_FONT = 'Helvetica'  # Default fallback
+PDF_FONT = 'Helvetica'  
 try:
-    # Try Windows Arial font (supports Turkish)
+    
     windows_font_path = os.path.join(os.environ.get('WINDIR', 'C:\\Windows'), 'Fonts', 'arial.ttf')
     if os.path.exists(windows_font_path):
         pdfmetrics.registerFont(TTFont('Arial', windows_font_path))
@@ -23,32 +22,28 @@ except Exception:
     pass
 
 
-def convert_to_excel(csv_file, xlsx_file):
-    df = pd.read_csv(csv_file, sep=';')
-    
+def convert_to_excel(df: pd.DataFrame, xlsx_file: str):
     with pd.ExcelWriter(xlsx_file, engine='openpyxl') as writer:
-        df.to_excel(writer, index=False, sheet_name='Ucretler')
+        df.to_excel(writer, index=False, sheet_name='Prices')
         
-        worksheet = writer.sheets['Ucretler']
+        worksheet = writer.sheets['Prices']
     
-        # Column widths for new fields
-        worksheet.column_dimensions['A'].width = 40  # University
-        worksheet.column_dimensions['B'].width = 45  # Department
-        worksheet.column_dimensions['C'].width = 12  # Score Type
-        worksheet.column_dimensions['D'].width = 12  # Quota
-        worksheet.column_dimensions['E'].width = 12  # Score
-        worksheet.column_dimensions['F'].width = 12  # Ranking
-        worksheet.column_dimensions['G'].width = 15  # Price
+        worksheet.column_dimensions['A'].width = 40  
+        worksheet.column_dimensions['B'].width = 45  
+        worksheet.column_dimensions['C'].width = 12  
+        worksheet.column_dimensions['D'].width = 12  
+        worksheet.column_dimensions['E'].width = 12  
+        worksheet.column_dimensions['F'].width = 12  
+        worksheet.column_dimensions['G'].width = 15  
         
-        # Preference discount columns (if present)
         if len(df.columns) > 7:
-            worksheet.column_dimensions['H'].width = 15  # Discount Rate
-            worksheet.column_dimensions['I'].width = 18  # Discounted Price
-            worksheet.column_dimensions['J'].width = 55  # Discount Info
+            worksheet.column_dimensions['H'].width = 15  
+            worksheet.column_dimensions['I'].width = 18  
+            worksheet.column_dimensions['J'].width = 55  
             
         for row in worksheet.iter_rows():
             for cell in row:
-                if cell.column == 10:  # Discount Info column
+                if cell.column == 10:  
                     cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
                 else:
                     cell.alignment = Alignment(horizontal='center', vertical='center')
@@ -56,9 +51,7 @@ def convert_to_excel(csv_file, xlsx_file):
     logger.info(f"Excel file created: {xlsx_file}") 
 
 
-def convert_to_pdf(csv_file, pdf_file):
-    df = pd.read_csv(csv_file, sep=';')
-
+def convert_to_pdf(df: pd.DataFrame, pdf_file: str):
     pdf = SimpleDocTemplate(pdf_file, pagesize=landscape(A4))
 
     data = [df.columns.tolist()] + df.values.tolist()
@@ -77,7 +70,6 @@ def convert_to_pdf(csv_file, pdf_file):
 
     logger.info(f"PDF file created: {pdf_file}")
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -146,7 +138,6 @@ def export_prices(
     """
     repository = UniversityPriceRepository()
 
-    # Fetch prices from database with optional filtering
     if university_filter.lower() != 'all':
         all_prices = repository.get_all_prices()
         search_query = university_filter.strip().lower()
@@ -161,11 +152,9 @@ def export_prices(
         logger.warning(f'No prices found for university filter: {university_filter}')
         return
 
-    # Convert price models to dictionaries for processing
     department_price_list = []
     for price in filtered_prices:
         price_amount = price.price_amount if price.price_amount is not None else None
-        # Skip records with empty department names
         if not price.department_name or not price.department_name.strip():
             continue
         department_price_list.append({
@@ -178,7 +167,6 @@ def export_prices(
             'price_amount': price_amount,
         })
 
-    # Filter by department if requested
     if department_filter.lower() != 'all':
         department_price_list = [
             item for item in department_price_list
@@ -189,24 +177,23 @@ def export_prices(
         logger.warning(f'No prices found for department filter: {department_filter}')
         return
 
-    # Load scholarship rates for preference discount calculation
     try:
         from util.school_list import scholarship_rates
         scholarship_rate_map = {university: rate for university, rate in scholarship_rates}
     except Exception:
         scholarship_rate_map = {}
 
-    # Normalize scholarship rate map keys for case-insensitive matching
     normalized_scholarship_rates = {
         normalize_turkish_text(key): value
         for key, value in scholarship_rate_map.items()
     }
 
-    # Calculate and attach preference discount information
     for price_record in department_price_list:
         normalized_university_name = normalize_turkish_text(price_record['university_name'])
         discount_rate = normalized_scholarship_rates.get(normalized_university_name)
         current_price = price_record.get('price_amount')
+        
+        price_record['original_price'] = current_price
 
         if discount_rate and isinstance(current_price, (int, float)):
             discounted_price = round(current_price * (1 - discount_rate / 100), 2)
@@ -225,21 +212,14 @@ def export_prices(
             price_record['preference_discounted_price'] = None
             price_record['preference_discount_info'] = "No preference discount available."
 
-    # Apply half scholarship price if requested
     if price_option == 'half':
         for price_record in department_price_list:
             if isinstance(price_record.get('price_amount'), (int, float)):
                 price_record['price_amount'] = price_record['price_amount'] * 0.5
+                price_record['original_price'] = price_record['price_amount']
+                if price_record.get('preference_discounted_price') is not None:
+                    price_record['preference_discounted_price'] = price_record['preference_discounted_price'] * 0.5
 
-    # Apply preference discount to price if requested
-    if should_apply_preference_discount:
-        for price_record in department_price_list:
-            discount_rate = price_record.get('preference_discount_rate', 0) or 0
-            if isinstance(price_record.get('price_amount'), (int, float)) and discount_rate:
-                price_record['price_amount'] = round(price_record['price_amount'] * (1 - discount_rate / 100), 2)
-
-    # Prepare CSV output - only include discount columns if discount is applied
-    # Define friendly column names for export
     if should_apply_preference_discount:
         csv_field_names = [
             'University',
@@ -264,7 +244,6 @@ def export_prices(
             'Price'
         ]
 
-    # Sanitize records for CSV output
     sanitized_records = []
     for price_record in department_price_list:
         record = {
@@ -274,39 +253,30 @@ def export_prices(
             'Quota': price_record.get('quota', '') or '',
             'Score': price_record.get('score', '') if price_record.get('score') is not None else 'Dolmadı',
             'Ranking': price_record.get('ranking', '') if price_record.get('ranking') is not None else 'Dolmadı',
-            'Price': price_record.get('price_amount', None),
+            'Price': price_record.get('original_price', None),
         }
-        # Only add discount fields if applying preference discount
         if should_apply_preference_discount:
             record['Discount Rate (%)'] = price_record.get('preference_discount_rate', 0) or 0
             record['Discounted Price'] = price_record.get('preference_discounted_price', None)
             record['Discount Info'] = price_record.get('preference_discount_info', 'No preference discount available.')
         sanitized_records.append(record)
 
-    # Write to CSV file
     if not sanitized_records:
         logger.error('No records found to export.')
         return
-        
-    with open(output_filename, 'w', newline='', encoding='utf-8-sig') as csv_file:
-        csv_writer = csv.DictWriter(csv_file, fieldnames=csv_field_names, delimiter=';')
-        csv_writer.writeheader()
-        csv_writer.writerows(sanitized_records)
     
-    logger.info(f'{len(sanitized_records)} records saved to: {output_filename}')
+    df = pd.DataFrame(sanitized_records)
     
-    # Generate Excel and PDF files after CSV is closed
-    xlsx_file = output_filename.replace(".csv", ".xlsx")
-    pdf_file = output_filename.replace(".csv", ".pdf")
+    xlsx_file = output_filename.replace(".csv", ".xlsx") if output_filename.endswith(".csv") else output_filename + ".xlsx"
+    pdf_file = output_filename.replace(".csv", ".pdf") if output_filename.endswith(".csv") else output_filename + ".pdf"
 
-    convert_to_excel(output_filename, xlsx_file)
-    convert_to_pdf(output_filename, pdf_file)
+    convert_to_excel(df, xlsx_file)
+    convert_to_pdf(df, pdf_file)
 
-    logger.info("Excel and PDF files have been generated.")
+    logger.info(f'{len(sanitized_records)} records exported to Excel and PDF.')
 
 
 def main():
-    # Set up argument parser
     argument_parser = argparse.ArgumentParser(
         description='Scrape university tuition prices and export to CSV.',
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -332,7 +302,6 @@ Examples:
         """
     )
     
-    # Action arguments (mutually exclusive main actions)
     action_group = argument_parser.add_argument_group('Actions')
     action_group.add_argument(
         '--scrape',
@@ -355,7 +324,6 @@ Examples:
         help='Fetch and display notifications from NOTIFY_TOPIC'
     )
     
-    # Scraping options
     scrape_group = argument_parser.add_argument_group('Scraping Options')
     scrape_group.add_argument(
         '--scrape-delay',
@@ -376,7 +344,6 @@ Examples:
         help='Stop index (exclusive) when scraping the universities list'
     )
     
-    # Export/Filter options
     export_group = argument_parser.add_argument_group('Export Options')
     export_group.add_argument(
         '--university',
@@ -404,19 +371,17 @@ Examples:
     export_group.add_argument(
         '--output',
         type=str,
-        default='university_department_prices.csv',
-        help='Output CSV filename (default: university_department_prices.csv)'
+        default='university_department_prices',
+        help='Output filename without extension (default: university_department_prices)'
     )
     
     parsed_args = argument_parser.parse_args()
 
-    # Check if no action specified
     if not any([parsed_args.scrape, parsed_args.list, parsed_args.export, parsed_args.show_notifications]):
         argument_parser.print_help()
         logger.error('Please specify at least one action (--scrape, --list, --export, or --show-notifications)')
         return
 
-    # Handle scraping
     if parsed_args.scrape:
         logger.info('Starting scraping process...')
         try:
@@ -430,11 +395,9 @@ Examples:
         except Exception:
             logger.exception('Scraping failed')
 
-    # Handle list universities
     if parsed_args.list:
         list_universities()
 
-    # Handle export
     if parsed_args.export:
         export_prices(
             university_filter=parsed_args.university,
@@ -444,7 +407,6 @@ Examples:
             output_filename=parsed_args.output
         )
 
-    # Handle notifications
     if parsed_args.show_notifications:
         notification_topic = os.environ.get('NOTIFY_TOPIC')
         if not notification_topic:

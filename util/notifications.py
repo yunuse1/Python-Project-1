@@ -30,14 +30,12 @@ def fetch_notifications(topic: str, poll_duration: int = 1, timeout_seconds: int
     try:
         response_data = response.json()
     except Exception:
-        # Fallback: return raw text if JSON parsing fails
         raw_text = response.text
         return [{'raw': raw_text}]
     
     if isinstance(response_data, list):
         return response_data
     
-    # Sometimes the API returns an object with 'events' key
     if isinstance(response_data, dict) and 'events' in response_data:
         return response_data.get('events') or []
     

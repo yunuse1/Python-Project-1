@@ -6,7 +6,6 @@ from unittest.mock import Mock, MagicMock
 import pytest
 import requests 
 
-# Modülleri doğru takma adlarla (alias) import ediyoruz
 import models.university_models as models_mod
 import util.connect as connect_mod
 import util.web_scraping as web_mod
@@ -15,9 +14,6 @@ import util.create_prices_migration as mig_mod
 import repository.repository as repo_mod
 import main as main_mod
 
-# ---------------------------
-# Helpers
-# ---------------------------
 class DummyResponse:
     def __init__(self, content: bytes, status: int = 200):
         self._content = content
@@ -35,10 +31,6 @@ class DummyResponse:
 
     def __exit__(self, exc_type, exc, tb):
         return False
-
-# ---------------------------
-# models/university_models.py
-# ---------------------------
 
 def test_universitydepartmentprice_composite_and_formatting():
     now = datetime.datetime.now(datetime.timezone.utc)
@@ -65,10 +57,6 @@ def test_apply_discount_and_errors():
     with pytest.raises(ValueError):
         u.apply_discount(101)
     assert u.apply_discount(25) == 150.0
-
-# ---------------------------
-# util.connect.py
-# ---------------------------
 
 def test_get_client_success(monkeypatch):
     fake_client = Mock()
@@ -106,10 +94,6 @@ def test_get_db_and_collection(monkeypatch):
     
     res = connect_mod.get_db('customdb', client=client_obj)
     assert res == 123
-
-# ---------------------------
-# repository.repository (CRUD)
-# ---------------------------
 
 def test_repository_upsert_insert_and_update(monkeypatch):
     fake_result_insert = Mock()
@@ -166,33 +150,23 @@ def test_repository_find_get_all_delete(monkeypatch):
     assert repo.delete('U::D') is True
     assert repo.delete('badformat') is False
 
-# ---------------------------
-# util.web_scraping.py (Scrapy-based)
-# ---------------------------
-
 def test_slugify_university_name():
-    """Test Turkish character slugification."""
     result = web_mod.slugify_university_name('İstanbul Üniversitesi ücretleri')
-    assert result  # Should return non-empty string
+    assert result
     assert 'istanbul' in result.lower()
-    # Turkish characters should be converted
     assert 'ü' not in result
     assert 'İ' not in result
 
 
 def test_scrape_universities_from_list_returns_tuple(monkeypatch):
-    """Test that scrape_universities_from_list returns proper tuple."""
-    # Mock the university list
     monkeypatch.setitem(sys.modules, 'util.school_list', types.SimpleNamespace(universities=[]))
     
-    # With empty list, should return zeros
     result = web_mod.scrape_universities_from_list(save=True, delay=0, start_index=0, stop_index=0)
     assert isinstance(result, tuple)
-    assert len(result) == 4  # (total, inserted, updated, failed)
+    assert len(result) == 4
 
 
 def test_send_scrape_notification(monkeypatch):
-    """Test notification wrapper function."""
     called = {}
     
     def mock_send(topic, message, title=None, priority=3):
@@ -200,24 +174,16 @@ def test_send_scrape_notification(monkeypatch):
         called['message'] = message
         return True
     
-    # Mock the notifications module
     monkeypatch.setattr(notif_mod, 'send_notification', mock_send)
     
-    # Test the wrapper
     web_mod.send_scrape_notification('test-topic', 'test message', title='Test')
     assert called.get('topic') == 'test-topic'
     assert called.get('message') == 'test message'
 
 
 def test_send_scrape_notification_empty_topic():
-    """Test that empty topic doesn't send notification."""
-    # Should not raise an error
     web_mod.send_scrape_notification('', 'message')
     web_mod.send_scrape_notification(None, 'message')
-
-# ---------------------------
-# util.notifications
-# ---------------------------
 
 def test_fetch_notifications_and_send(monkeypatch):
     mock_resp = Mock()
@@ -234,7 +200,6 @@ def test_fetch_notifications_and_send(monkeypatch):
     out = notif_mod.fetch_notifications('topic')
     assert isinstance(out, list) and out[0]['id'] == '1'
 
-    # send success
     mock_post_resp = Mock()
     mock_post_resp.raise_for_status.return_value = None
     mock_post_resp.status_code = 200
@@ -242,13 +207,8 @@ def test_fetch_notifications_and_send(monkeypatch):
     
     assert notif_mod.send_notification('t','m') is True
 
-    # send failure
     mock_requests.post.side_effect = requests.exceptions.RequestException('fail')
     assert notif_mod.send_notification('t','m') is False
-
-# ---------------------------
-# migrations
-# ---------------------------
 
 def test_get_validator_shape():
     v = mig_mod.get_validator()
@@ -273,10 +233,6 @@ def test_seed_example(monkeypatch):
     docs = mig_mod.seed_example(fake_db)
     assert isinstance(docs, list) and len(docs) == 2
 
-# ---------------------------
-# main.py tests
-# ---------------------------
-
 def test_normalize_turkish_text():
     assert main_mod.normalize_turkish_text('İSTANBUL') == 'istanbul'
     assert main_mod.normalize_turkish_text('') == ''
@@ -293,11 +249,8 @@ def test_export_prices_writes_csv_and_generates(monkeypatch, tmp_path):
     fake_repo = Mock()
     fake_repo.get_all_prices.return_value = [price]
     
-    # 1. DÜZELTME: MagicMock kullandık, böylece client['db'] hatası vermez.
     monkeypatch.setattr(connect_mod, 'get_client', MagicMock())
 
-    # Mocklama main.py'deki kullanım için yapılıyor
-    # main.py içindeki UniversityPriceRepository sınıfını, bizim sahte nesnemizi döndüren bir lambda ile değiştiriyoruz.
     monkeypatch.setattr(main_mod, 'UniversityPriceRepository', lambda *args, **kwargs: fake_repo)
 
     monkeypatch.setitem(sys.modules, 'util.school_list', types.SimpleNamespace(scholarship_rates=[('İstinye Üniversitesi', 20)]))
@@ -312,10 +265,8 @@ def test_export_prices_writes_csv_and_generates(monkeypatch, tmp_path):
     assert 'İstinye Üniversitesi' in content
 
 def test_list_universities_logs(monkeypatch, caplog):
-    """Test that list_universities logs output correctly."""
     import logging
     
-    # 1. Hazırlık: Sahte veri
     price = models_mod.UniversityDepartmentPrice(
         university_name='U1',
         department_name='Dept1',
@@ -324,37 +275,23 @@ def test_list_universities_logs(monkeypatch, caplog):
         last_scraped_at=datetime.datetime.now(datetime.timezone.utc)
     )
     
-    # Bu obje repo.get_all_prices() çağrıldığında dönecek liste
     mock_repo_instance = Mock()
     mock_repo_instance.get_all_prices.return_value = [price]
     
-    # 2. KRİTİK ADIM: main.py içinde "UniversityPriceRepository()" çağrıldığında
-    # bizim hazırladığımız "mock_repo_instance" dönsün.
     monkeypatch.setattr(main_mod, 'UniversityPriceRepository', lambda *args, **kwargs: mock_repo_instance)
     
-    # 3. SİGORTA: Eğer bir şekilde gerçek sınıfa giderse DB hatası vermesin diye MagicMock
     monkeypatch.setattr(connect_mod, 'get_client', MagicMock())
 
-    # 4. Capture logs
     with caplog.at_level(logging.INFO):
         main_mod.list_universities()
     
-    # 5. Çıktıları kontrol et - logger kullanıldığı için caplog'dan bakıyoruz
     log_output = caplog.text
     assert 'U1' in log_output or 'Total' in log_output or 'universities' in log_output.lower()
-
-# ---------------------------
-# school_list sanity
-# ---------------------------
 
 def test_school_list_structure():
     import util.school_list as sl
     assert isinstance(sl.scholarship_rates, list)
     assert isinstance(sl.universities, list)
-
-# ---------------------------
-# Imports
-# ---------------------------
 
 def test_imports():
     import importlib

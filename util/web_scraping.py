@@ -24,7 +24,6 @@ from scrapy import signals
 sys.path.insert(0, os.getcwd())
 from scraper.spiders.university_spider import UniversityPriceSpider
 
-# Configure logging
 logger = logging.getLogger(__name__)
 
 
@@ -43,7 +42,6 @@ def slugify_university_name(name: str) -> str:
     slug = name.lower()
     slug = slug.replace('üniversitesi', '').replace('universitesi', '').replace('ücretleri', '').strip()
     
-    # Map Turkish characters to ASCII equivalents
     turkish_char_map = str.maketrans({
         'ş': 's', 'Ş': 's',
         'ı': 'i', 'İ': 'i',
@@ -85,7 +83,6 @@ def scrape_universities_from_list(save: bool = True, delay: float = 0.5, start_i
     total_universities = len(university_list)
     end_index = stop_index if stop_index is not None else total_universities
     
-    # Get the subset of universities to scrape
     universities_to_scrape = university_list[start_index:end_index]
     
     if not universities_to_scrape:
@@ -94,21 +91,16 @@ def scrape_universities_from_list(save: bool = True, delay: float = 0.5, start_i
     
     logger.info(f'Starting Scrapy crawler for {len(universities_to_scrape)} universities...')
     
-    # Configure Scrapy settings
     settings = Settings()
     settings.setmodule('scraper.settings')
     
-    # Override delay if specified
     if delay:
         settings.set('DOWNLOAD_DELAY', delay)
     
-    # Create and configure the crawler process
     process = CrawlerProcess(settings)
     
-    # Track statistics via a custom stats collector
     stats = {'inserted': 0, 'updated': 0, 'failed': 0, 'scraped': 0}
     
-    # Create a custom signal handler to capture stats
     def spider_closed(spider, reason):
         stats['scraped'] = spider.scraped_count
         stats['failed'] = spider.failed_count
@@ -117,15 +109,12 @@ def scrape_universities_from_list(save: bool = True, delay: float = 0.5, start_i
             stats['updated'] = spider.pipeline_stats.get('updated', 0)
             stats['failed'] = spider.pipeline_stats.get('failed', 0)
     
-    # Add the spider to the crawler
     crawler = process.create_crawler(UniversityPriceSpider)
     crawler.signals.connect(spider_closed, signal=signals.spider_closed)
     
-    # Start crawling
     process.crawl(crawler, universities=universities_to_scrape)
     process.start()
     
-    # Log results
     notification_message = (
         f"Scrapy scraping completed. "
         f"Universities: {len(universities_to_scrape)}, "
@@ -135,7 +124,6 @@ def scrape_universities_from_list(save: bool = True, delay: float = 0.5, start_i
     )
     logger.info(notification_message)
     
-    # Send notification if topic is configured
     notification_topic = os.environ.get('NOTIFY_TOPIC')
     if save and notification_topic:
         try:
@@ -168,6 +156,5 @@ def send_scrape_notification(topic: str, message: str, title: str | None = None,
 
 
 if __name__ == '__main__':
-    # Run the Scrapy crawler when executed directly
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     scrape_universities_from_list()

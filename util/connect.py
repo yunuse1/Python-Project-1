@@ -4,7 +4,6 @@ import logging
 import pymongo
 from pymongo.errors import ServerSelectionTimeoutError, ConnectionFailure
 
-# Configure logging
 logger = logging.getLogger(__name__)
 
 
@@ -40,12 +39,10 @@ def get_collection(db_name: str = DEFAULT_DB, collection_name: str = DEFAULT_COL
 	return db[collection_name]
 
 if __name__ == "__main__":
-	# Configure logging for standalone run
 	logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 	
-	# Minimal example run (safe for Docker): retry until Mongo is reachable
 	max_retries = int(os.environ.get("MONGO_CONNECT_RETRIES", "12"))
-	retry_interval = int(os.environ.get("MONGO_CONNECT_INTERVAL", "5"))  # seconds
+	retry_interval = int(os.environ.get("MONGO_CONNECT_INTERVAL", "5"))  
 	attempt = 0
 	while attempt < max_retries:
 		try:

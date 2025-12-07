@@ -3,7 +3,6 @@ from typing import Tuple, List, Optional
 import sys
 import os
 
-# Ensure project root is on sys.path so imports like `util.models` work
 sys.path.insert(0, os.getcwd())
 
 from util.connect import get_db
@@ -84,8 +83,7 @@ class UniversityPriceRepository(BaseRepository[UniversityDepartmentPrice]):
             return self._document_to_entity(document)
         return None
 
-    # ========== Abstract Method Implementations ==========
-
+    
     def get_by_id(self, entity_id: str) -> Optional[UniversityDepartmentPrice]:
         """Get an entity by its identifier (composite key: university_name::department_name).
         

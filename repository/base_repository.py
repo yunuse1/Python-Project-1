@@ -9,7 +9,6 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import TypeVar, Generic, List, Optional, Tuple, Protocol, runtime_checkable
 
-# Generic type variable for entity models
 T = TypeVar('T')
 
 

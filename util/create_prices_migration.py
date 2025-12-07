@@ -8,7 +8,6 @@ from typing import Any, Dict, List
 from util.connect import get_db
 from pymongo.errors import CollectionInvalid
 
-# Configure logging
 logger = logging.getLogger(__name__)
 
 
@@ -63,11 +62,9 @@ def create_or_update_collection(db) -> None:
     """Create or update the university_prices collection with validator and indexes."""
     validator = get_validator()
     try:
-        # Try create with validator (idempotent if not existing)
         db.create_collection(COLLECTION_NAME, validator=validator)
         logger.info(f"Created collection '{COLLECTION_NAME}' with validator.")
     except CollectionInvalid:
-        # Already exists — update validator using collMod
         try:
             db.command(
                 {
@@ -81,7 +78,6 @@ def create_or_update_collection(db) -> None:
             logger.error(f"Failed to update collection validator: {exc}")
 
     coll = db[COLLECTION_NAME]
-    # Create useful indexes
     coll.create_index([("university_name", 1), ("department_name", 1)], unique=True)
     coll.create_index("last_scraped_at")
     logger.info("Ensured indexes on (university_name, department_name) and last_scraped_at.")
@@ -118,7 +114,7 @@ def seed_example(db) -> List[Dict[str, Any]]:
 
 
 def main(argv: List[str] | None = None) -> None:
-    # Configure logging for standalone run
+    
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     
     parser = argparse.ArgumentParser(description="Create migration for university_prices collection")
