@@ -47,7 +47,7 @@ def convert_to_excel(dataframe: pd.DataFrame, xlsx_file: str) -> None:
         worksheet = writer.sheets['Prices']
 
         column_widths = {
-            'A': 40, 'B': 45, 'C': 12, 'D': 12,
+            'A': 40, 'B': 70, 'C': 12, 'D': 12,
             'E': 12, 'F': 12, 'G': 15
         }
         for col, width in column_widths.items():
@@ -56,7 +56,7 @@ def convert_to_excel(dataframe: pd.DataFrame, xlsx_file: str) -> None:
         if len(dataframe.columns) > 7:
             worksheet.column_dimensions['H'].width = 15
             worksheet.column_dimensions['I'].width = 18
-            worksheet.column_dimensions['J'].width = 55
+            worksheet.column_dimensions['J'].width = 20
 
         for row in worksheet.iter_rows():
             for cell in row:
