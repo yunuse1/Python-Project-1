@@ -5,7 +5,7 @@ import os
 import pandas as pd
 from openpyxl.styles import Alignment
 from reportlab.lib import colors
-from reportlab.lib.pagesizes import A4, landscape
+from reportlab.lib.pagesizes import A3, landscape
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
@@ -79,17 +79,34 @@ def convert_to_pdf(dataframe: pd.DataFrame, pdf_file: str) -> None:
         dataframe: The pandas DataFrame to export.
         pdf_file: Output PDF file path.
     """
-    pdf = SimpleDocTemplate(pdf_file, pagesize=landscape(A4))
+    pdf = SimpleDocTemplate(
+        pdf_file,
+        pagesize=landscape(A3),
+        leftMargin=15,
+        rightMargin=15,
+        topMargin=15,
+        bottomMargin=15
+    )
     data = [dataframe.columns.tolist()] + dataframe.values.tolist()
 
-    table = Table(data)
+    # Calculate column widths based on number of columns
+    num_cols = len(dataframe.columns)
+    if num_cols <= 7:
+        # Basic export: Uni, Dept, ScoreType, Quota, Score, Ranking, Price
+        col_widths = [100, 280, 55, 50, 65, 70, 80]
+    else:
+        # With discount: 10 columns
+        col_widths = [95, 280, 50, 45, 55, 60, 65, 45, 70, 70]
+
+    table = Table(data, colWidths=col_widths[:num_cols])
     table.setStyle(TableStyle([
         ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
         ('FONTNAME', (0, 0), (-1, -1), PDF_FONT),
-        ('FONTSIZE', (0, 0), (-1, -1), 7),
+        ('FONTSIZE', (0, 0), (-1, -1), 8),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
         ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
-        ('FONTSIZE', (0, 0), (-1, 0), 8),
+        ('FONTSIZE', (0, 0), (-1, 0), 9),
     ]))
 
     pdf.build([table])
@@ -199,22 +216,17 @@ def _apply_discounts(price_list: list, scholarship_rate: dict) -> None:
             record['has_preference_discount'] = True
             record['preference_discount_rate'] = discount_rate
             record['preference_discounted_price'] = discounted
-            record['preference_discount_info'] = (
-                f"A preference discount of {discount_rate}% is available "
-                f"(price after discount: {discounted})."
-            )
+            record['preference_discount_info'] = f"{discount_rate}% available"
         elif discount_rate:
             record['has_preference_discount'] = True
             record['preference_discount_rate'] = discount_rate
             record['preference_discounted_price'] = None
-            record['preference_discount_info'] = (
-                f"A preference discount of {discount_rate}% is available."
-            )
+            record['preference_discount_info'] = f"{discount_rate}% available"
         else:
             record['has_preference_discount'] = False
             record['preference_discount_rate'] = 0
             record['preference_discounted_price'] = None
-            record['preference_discount_info'] = "No preference discount available."
+            record['preference_discount_info'] = "-"
 
 
 def _apply_half_price(price_list: list) -> None:
@@ -250,19 +262,18 @@ def _create_export_records(price_list: list, include_discount: bool) -> list:
             'Department': price_record.get('department_name', ''),
             'Score Type': price_record.get('score_type', '') or '',
             'Quota': price_record.get('quota', '') or '',
-            'Score': score_val if score_val else 'Dolmadı',
-            'Ranking': ranking_val if ranking_val else 'Dolmadı',
+            'Score': score_val if score_val else 'Not Filled',
+            'Ranking': ranking_val if ranking_val else 'Not Filled',
             'Price': price_record.get('original_price'),
         }
         if include_discount:
-            record['Discount Rate (%)'] = price_record.get(
-                'preference_discount_rate', 0
-            ) or 0
+            discount_rate = price_record.get('preference_discount_rate', 0) or 0
+            record['Discount %'] = discount_rate if discount_rate else '-'
             record['Discounted Price'] = price_record.get(
                 'preference_discounted_price'
-            )
+            ) or '-'
             record['Discount Info'] = price_record.get(
-                'preference_discount_info', 'No preference discount available.'
+                'preference_discount_info', '-'
             )
         records.append(record)
     return records

@@ -88,6 +88,7 @@ You need to set the following environment variables for the application to work:
 ### MongoDB Connection
 
 ```bash
+# If you download mongodb msi, you can pass this part but still doesn't see the env you can use this part 
 # Windows PowerShell
 $env:MONGO_URI = "mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/"
 
@@ -186,7 +187,10 @@ python main.py --export --university "İstinye Üniversitesi" --department "Tıp
 # Show 50% scholarship prices
 python main.py --export --price-option half
 
-# Apply preference discount
+# Apply preference discount (for all universities)
+python main.py --export --apply-preference-discount
+
+# Apply preference discount for a specific university
 python main.py --export --university "İstinye Üniversitesi" --apply-preference-discount
 
 # Save with different filename

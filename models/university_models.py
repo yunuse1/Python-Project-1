@@ -23,8 +23,8 @@ class UniversityDepartmentPrice:
         department_name: Name of the department/program.
         score_type: Score type (SAY, EA, SÖZ, DİL, TYT).
         quota: Quota/placement info (e.g., "34/34").
-        score: Admission score (can be None if "Dolmadı").
-        ranking: Admission ranking (can be None if "Dolmadı").
+        score: Admission score (can be None if not filled).
+        ranking: Admission ranking (can be None if not filled).
         price_description: Original price text from source.
         price_amount: Numeric price value (can be None if not parseable).
         currency_code: ISO currency code (e.g., 'TRY', 'USD').
