@@ -1,158 +1,93 @@
-"""Base repository module with abstract classes and protocols for OOP patterns.
+"""Abstract base repository for database operations.
 
-This module provides:
-- Abstract base class for repository pattern (Inheritance +5)
-- Protocol for type checking and interface definition (Abstract/Protocols +10)
-- Full type hints for static type checking
+This module provides an abstract base class that defines the interface
+for all repository implementations using the Generic type pattern.
 """
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from typing import TypeVar, Generic, List, Optional, Tuple, Protocol, runtime_checkable
+from typing import Generic, List, Optional, Tuple, TypeVar
 
 T = TypeVar('T')
 
 
-@runtime_checkable
-class RepositoryProtocol(Protocol[T]):
-    """Protocol defining the interface for repository operations.
-    
-    This protocol enables structural subtyping (duck typing with type checking).
-    Any class implementing these methods will be considered compatible.
-    """
-    
-    def upsert(self, entity: T) -> Tuple[bool, bool]:
-        """Insert or update an entity.
-        
-        Args:
-            entity: The entity to upsert
-            
-        Returns:
-            Tuple of (was_inserted, was_updated)
-        """
-        ...
-    
-    def get_by_id(self, entity_id: str) -> Optional[T]:
-        """Get an entity by its identifier.
-        
-        Args:
-            entity_id: The unique identifier
-            
-        Returns:
-            The entity if found, None otherwise
-        """
-        ...
-    
-    def get_all(self) -> List[T]:
-        """Get all entities.
-        
-        Returns:
-            List of all entities
-        """
-        ...
-    
-    def delete(self, entity_id: str) -> bool:
-        """Delete an entity by its identifier.
-        
-        Args:
-            entity_id: The unique identifier
-            
-        Returns:
-            True if deleted, False otherwise
-        """
-        ...
-
-
 class BaseRepository(ABC, Generic[T]):
     """Abstract base class for repository pattern implementation.
-    
-    This class provides a template for data access operations using
-    the Repository pattern. Subclasses must implement all abstract methods.
-    
+
+    This class defines the common interface that all repository classes
+    must implement. It uses Python's Generic type to provide type safety.
+
     Type Parameters:
-        T: The entity type this repository manages
-    
-    Attributes:
-        _collection_name: Name of the database collection
+        T: The entity type this repository manages.
     """
-    
+
     def __init__(self, collection_name: str):
-        """Initialize the repository with a collection name.
-        
+        """Initialize the base repository.
+
         Args:
-            collection_name: Name of the database collection
+            collection_name: Name of the database collection.
         """
         self._collection_name = collection_name
-    
-    @property
-    def collection_name(self) -> str:
-        """Get the collection name."""
-        return self._collection_name
-    
+
     @abstractmethod
     def upsert(self, entity: T) -> Tuple[bool, bool]:
-        """Insert or update an entity.
-        
+        """Insert or update an entity in the database.
+
         Args:
-            entity: The entity to upsert
-            
+            entity: The entity to upsert.
+
         Returns:
-            Tuple of (was_inserted, was_updated)
+            Tuple of (was_inserted, was_updated).
         """
-        pass
-    
+
     @abstractmethod
     def get_by_id(self, entity_id: str) -> Optional[T]:
         """Get an entity by its identifier.
-        
+
         Args:
-            entity_id: The unique identifier
-            
+            entity_id: The unique identifier of the entity.
+
         Returns:
-            The entity if found, None otherwise
+            The entity if found, None otherwise.
         """
-        pass
-    
+
     @abstractmethod
     def get_all(self) -> List[T]:
-        """Get all entities.
-        
+        """Get all entities from the database.
+
         Returns:
-            List of all entities
+            List of all entities.
         """
-        pass
-    
+
     @abstractmethod
     def delete(self, entity_id: str) -> bool:
         """Delete an entity by its identifier.
-        
+
         Args:
-            entity_id: The unique identifier
-            
+            entity_id: The unique identifier of the entity.
+
         Returns:
-            True if deleted, False otherwise
+            True if deleted, False otherwise.
         """
-        pass
-    
-    @abstractmethod
-    def _document_to_entity(self, document: dict) -> T:
-        """Convert a database document to an entity.
-        
-        Args:
-            document: The database document
-            
-        Returns:
-            The entity object
-        """
-        pass
-    
+
     @abstractmethod
     def _entity_to_document(self, entity: T) -> dict:
         """Convert an entity to a database document.
-        
+
         Args:
-            entity: The entity object
-            
+            entity: The entity to convert.
+
         Returns:
-            The database document
+            Dictionary suitable for database storage.
         """
-        pass
+
+    @abstractmethod
+    def _document_to_entity(self, document: dict) -> T:
+        """Convert a database document to an entity.
+
+        Args:
+            document: The database document.
+
+        Returns:
+            The converted entity.
+        """

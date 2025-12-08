@@ -1,4 +1,3 @@
-# Preference scholarship discount rates by university (university_name, discount_percentage)
 scholarship_rates = [
     ("Üsküdar Üniversitesi", 25),
     ("Alanya Üniversitesi", 20),
@@ -42,7 +41,6 @@ scholarship_rates = [
     ("Özyeğin Üniversitesi", 25),
     ("Piri Reis Üniversitesi", 20)
 ]
-
 
 # List of universities to scrape
 universities = [

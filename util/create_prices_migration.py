@@ -1,24 +1,30 @@
+"""Database migration utilities for university_prices collection.
+
+This module provides functions for creating and updating the
+university_prices MongoDB collection with proper schema validation.
+"""
 from __future__ import annotations
 
 import argparse
-import pprint
+import datetime
 import logging
+import pprint
 from typing import Any, Dict, List
 
-from util.connect import get_db
 from pymongo.errors import CollectionInvalid
 
-logger = logging.getLogger(__name__)
+from util.connect import get_db
 
+logger = logging.getLogger(__name__)
 
 COLLECTION_NAME = "university_prices"
 
 
 def get_validator() -> Dict[str, Any]:
     """Return MongoDB JSON Schema validator for university_prices collection.
-    
+
     Returns:
-        Dictionary containing the $jsonSchema validator
+        Dictionary containing the $jsonSchema validator.
     """
     return {
         "$jsonSchema": {
@@ -58,35 +64,50 @@ def get_validator() -> Dict[str, Any]:
     }
 
 
-def create_or_update_collection(db) -> None:
-    """Create or update the university_prices collection with validator and indexes."""
+def create_or_update_collection(database) -> None:
+    """Create or update the university_prices collection with validator and indexes.
+
+    Args:
+        database: MongoDB database object.
+    """
     validator = get_validator()
     try:
-        db.create_collection(COLLECTION_NAME, validator=validator)
-        logger.info(f"Created collection '{COLLECTION_NAME}' with validator.")
+        database.create_collection(COLLECTION_NAME, validator=validator)
+        logger.info("Created collection '%s' with validator.", COLLECTION_NAME)
     except CollectionInvalid:
         try:
-            db.command(
-                {
-                    "collMod": COLLECTION_NAME,
-                    "validator": validator,
-                    "validationLevel": "moderate",
-                }
+            database.command({
+                "collMod": COLLECTION_NAME,
+                "validator": validator,
+                "validationLevel": "moderate",
+            })
+            logger.info(
+                "Updated validator for existing collection '%s'.",
+                COLLECTION_NAME
             )
-            logger.info(f"Updated validator for existing collection '{COLLECTION_NAME}'.")
-        except Exception as exc:
-            logger.error(f"Failed to update collection validator: {exc}")
+        except (TypeError, ValueError) as exc:
+            logger.error("Failed to update collection validator: %s", exc)
 
-    coll = db[COLLECTION_NAME]
-    coll.create_index([("university_name", 1), ("department_name", 1)], unique=True)
+    coll = database[COLLECTION_NAME]
+    coll.create_index(
+        [("university_name", 1), ("department_name", 1)],
+        unique=True
+    )
     coll.create_index("last_scraped_at")
-    logger.info("Ensured indexes on (university_name, department_name) and last_scraped_at.")
+    logger.info(
+        "Ensured indexes on (university_name, department_name) and last_scraped_at."
+    )
 
 
-def seed_example(db) -> List[Dict[str, Any]]:
-    """Insert example documents for testing."""
-    import datetime
-    
+def seed_example(database) -> List[Dict[str, Any]]:
+    """Insert example documents for testing.
+
+    Args:
+        database: MongoDB database object.
+
+    Returns:
+        List of inserted documents.
+    """
     docs = [
         {
             "university_name": "Istanbul Nisantasi University",
@@ -107,30 +128,43 @@ def seed_example(db) -> List[Dict[str, Any]]:
             "last_scraped_at": datetime.datetime.utcnow(),
         },
     ]
-    coll = db[COLLECTION_NAME]
+    coll = database[COLLECTION_NAME]
     result = coll.insert_many(docs)
-    logger.info(f"Inserted sample documents, ids: {result.inserted_ids}")
+    logger.info("Inserted sample documents, ids: %s", result.inserted_ids)
     return docs
 
 
 def main(argv: List[str] | None = None) -> None:
-    
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    
-    parser = argparse.ArgumentParser(description="Create migration for university_prices collection")
-    parser.add_argument("--seed", action="store_true", help="Insert example documents after creating the collection")
+    """Main entry point for the migration script.
+
+    Args:
+        argv: Optional list of command line arguments.
+    """
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+
+    parser = argparse.ArgumentParser(
+        description="Create migration for university_prices collection"
+    )
+    parser.add_argument(
+        "--seed",
+        action="store_true",
+        help="Insert example documents after creating the collection"
+    )
     args = parser.parse_args(argv)
 
     try:
-        db = get_db()
-    except Exception as exc:
-        logger.error(f"Could not get DB connection: {exc}")
+        database = get_db()
+    except ConnectionError as exc:
+        logger.error("Could not get DB connection: %s", exc)
         return
 
-    create_or_update_collection(db)
+    create_or_update_collection(database)
 
     if args.seed:
-        docs = seed_example(db)
+        docs = seed_example(database)
         pprint.pprint(docs)
 
 

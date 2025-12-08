@@ -237,7 +237,7 @@ def test_normalize_turkish_text():
     assert main_mod.normalize_turkish_text('İSTANBUL') == 'istanbul'
     assert main_mod.normalize_turkish_text('') == ''
 
-def test_export_prices_writes_csv_and_generates(monkeypatch, tmp_path):
+def test_export_prices_writes_excel_and_pdf(monkeypatch, tmp_path):
     price = models_mod.UniversityDepartmentPrice(
         university_name='İstinye Üniversitesi',
         faculty_name='Fakulte',
@@ -248,21 +248,36 @@ def test_export_prices_writes_csv_and_generates(monkeypatch, tmp_path):
     )
     fake_repo = Mock()
     fake_repo.get_all_prices.return_value = [price]
-    
+
     monkeypatch.setattr(connect_mod, 'get_client', MagicMock())
-
     monkeypatch.setattr(main_mod, 'UniversityPriceRepository', lambda *args, **kwargs: fake_repo)
+    monkeypatch.setitem(
+        sys.modules,
+        'util.school_list',
+        types.SimpleNamespace(scholarship_rates=[('İstinye Üniversitesi', 20)])
+    )
 
-    monkeypatch.setitem(sys.modules, 'util.school_list', types.SimpleNamespace(scholarship_rates=[('İstinye Üniversitesi', 20)]))
+    excel_created = {'called': False}
+    pdf_created = {'called': False}
 
-    out = tmp_path / 'out.csv'
-    monkeypatch.setattr(main_mod, 'convert_to_excel', lambda a, b: None)
-    monkeypatch.setattr(main_mod, 'convert_to_pdf', lambda a, b: None)
+    def mock_excel(df, path):
+        excel_created['called'] = True
+        excel_created['path'] = path
+        excel_created['df'] = df
 
+    def mock_pdf(df, path):
+        pdf_created['called'] = True
+        pdf_created['path'] = path
+
+    monkeypatch.setattr(main_mod, 'convert_to_excel', mock_excel)
+    monkeypatch.setattr(main_mod, 'convert_to_pdf', mock_pdf)
+
+    out = tmp_path / 'out'
     main_mod.export_prices('İstinye Üniversitesi', 'all', 'full', True, str(out))
-    assert out.exists()
-    content = out.read_text(encoding='utf-8-sig')
-    assert 'İstinye Üniversitesi' in content
+
+    assert excel_created['called']
+    assert pdf_created['called']
+    assert 'İstinye Üniversitesi' in excel_created['df']['University'].values
 
 def test_list_universities_logs(monkeypatch, caplog):
     import logging

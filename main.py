@@ -1,74 +1,20 @@
-import logging
-from util.web_scraping import scrape_universities_from_list
-from repository.repository import UniversityPriceRepository
 import argparse
+import logging
 import os
 
 import pandas as pd
-from reportlab.lib.pagesizes import landscape, A4
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from openpyxl.styles import Alignment
 from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4, landscape
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from openpyxl.styles import Alignment
-PDF_FONT = 'Helvetica'  
-try:
-    
-    windows_font_path = os.path.join(os.environ.get('WINDIR', 'C:\\Windows'), 'Fonts', 'arial.ttf')
-    if os.path.exists(windows_font_path):
-        pdfmetrics.registerFont(TTFont('Arial', windows_font_path))
-        PDF_FONT = 'Arial'
-except Exception:
-    pass
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 
+from repository.repository import UniversityPriceRepository
+from util.web_scraping import scrape_universities_from_list
+from util.school_list import scholarship_rates
+from util.notifications import fetch_notifications, print_notifications
 
-def convert_to_excel(df: pd.DataFrame, xlsx_file: str):
-    with pd.ExcelWriter(xlsx_file, engine='openpyxl') as writer:
-        df.to_excel(writer, index=False, sheet_name='Prices')
-        
-        worksheet = writer.sheets['Prices']
-    
-        worksheet.column_dimensions['A'].width = 40  
-        worksheet.column_dimensions['B'].width = 45  
-        worksheet.column_dimensions['C'].width = 12  
-        worksheet.column_dimensions['D'].width = 12  
-        worksheet.column_dimensions['E'].width = 12  
-        worksheet.column_dimensions['F'].width = 12  
-        worksheet.column_dimensions['G'].width = 15  
-        
-        if len(df.columns) > 7:
-            worksheet.column_dimensions['H'].width = 15  
-            worksheet.column_dimensions['I'].width = 18  
-            worksheet.column_dimensions['J'].width = 55  
-            
-        for row in worksheet.iter_rows():
-            for cell in row:
-                if cell.column == 10:  
-                    cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
-                else:
-                    cell.alignment = Alignment(horizontal='center', vertical='center')
-
-    logger.info(f"Excel file created: {xlsx_file}") 
-
-
-def convert_to_pdf(df: pd.DataFrame, pdf_file: str):
-    pdf = SimpleDocTemplate(pdf_file, pagesize=landscape(A4))
-
-    data = [df.columns.tolist()] + df.values.tolist()
-
-    table = Table(data)
-    table.setStyle(TableStyle([
-        ('GRID', (0,0), (-1,-1), 0.5, colors.black),
-        ('FONTNAME', (0,0), (-1,-1), PDF_FONT),
-        ('FONTSIZE', (0,0), (-1,-1), 7),
-        ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-        ('BACKGROUND', (0,0), (-1,0), colors.lightgrey),
-        ('FONTSIZE', (0,0), (-1,0), 8),
-    ]))
-
-    pdf.build([table])
-
-    logger.info(f"PDF file created: {pdf_file}")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -77,25 +23,97 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+PDF_FONT = 'Helvetica'
+try:
+    windows_font_path = os.path.join(
+        os.environ.get('WINDIR', 'C:\\Windows'), 'Fonts', 'arial.ttf'
+    )
+    if os.path.exists(windows_font_path):
+        pdfmetrics.registerFont(TTFont('Arial', windows_font_path))
+        PDF_FONT = 'Arial'
+except (OSError, IOError):
+    pass
+
+
+def convert_to_excel(dataframe: pd.DataFrame, xlsx_file: str) -> None:
+    """Convert DataFrame to Excel file with formatting.
+
+    Args:
+        dataframe: The pandas DataFrame to export.
+        xlsx_file: Output Excel file path.
+    """
+    with pd.ExcelWriter(xlsx_file, engine='openpyxl') as writer:
+        dataframe.to_excel(writer, index=False, sheet_name='Prices')
+        worksheet = writer.sheets['Prices']
+
+        column_widths = {
+            'A': 40, 'B': 45, 'C': 12, 'D': 12,
+            'E': 12, 'F': 12, 'G': 15
+        }
+        for col, width in column_widths.items():
+            worksheet.column_dimensions[col].width = width
+
+        if len(dataframe.columns) > 7:
+            worksheet.column_dimensions['H'].width = 15
+            worksheet.column_dimensions['I'].width = 18
+            worksheet.column_dimensions['J'].width = 55
+
+        for row in worksheet.iter_rows():
+            for cell in row:
+                if cell.column == 10:
+                    cell.alignment = Alignment(
+                        horizontal='center', vertical='center', wrap_text=True
+                    )
+                else:
+                    cell.alignment = Alignment(
+                        horizontal='center', vertical='center'
+                    )
+
+    logger.info("Excel file created: %s", xlsx_file)
+
+
+def convert_to_pdf(dataframe: pd.DataFrame, pdf_file: str) -> None:
+    """Convert DataFrame to PDF file with table formatting.
+
+    Args:
+        dataframe: The pandas DataFrame to export.
+        pdf_file: Output PDF file path.
+    """
+    pdf = SimpleDocTemplate(pdf_file, pagesize=landscape(A4))
+    data = [dataframe.columns.tolist()] + dataframe.values.tolist()
+
+    table = Table(data)
+    table.setStyle(TableStyle([
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+        ('FONTNAME', (0, 0), (-1, -1), PDF_FONT),
+        ('FONTSIZE', (0, 0), (-1, -1), 7),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+        ('FONTSIZE', (0, 0), (-1, 0), 8),
+    ]))
+
+    pdf.build([table])
+    logger.info("PDF file created: %s", pdf_file)
+
 
 def normalize_turkish_text(text: str) -> str:
     """Normalize Turkish text for case-insensitive comparison.
-    
+
     Handles Turkish-specific characters like İ, ı, Ş, ş, Ğ, ğ, Ü, ü, Ö, ö, Ç, ç.
-    
+
     Args:
-        text: Input text to normalize
-    
+        text: Input text to normalize.
+
     Returns:
-        Lowercase normalized text
+        Lowercase normalized text.
     """
     if not text:
         return ''
-    
+
     text = text.strip()
     turkish_uppercase = 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ'
     turkish_lowercase = 'abcçdefgğhıijklmnoöprsştuüvyz'
-    
+
     result = ''
     for character in text:
         if character in turkish_uppercase:
@@ -105,19 +123,149 @@ def normalize_turkish_text(text: str) -> str:
     return result
 
 
-def list_universities():
+def list_universities() -> None:
     """List all universities in the database."""
     repository = UniversityPriceRepository()
     all_prices = repository.get_all_prices()
     unique_universities = sorted({price.university_name for price in all_prices})
-    
+
     if unique_universities:
         logger.info('Universities in database:')
         for university_name in unique_universities:
-            logger.info(f'  - {university_name}')
-        logger.info(f'Total: {len(unique_universities)} universities')
+            logger.info('  - %s', university_name)
+        logger.info('Total: %d universities', len(unique_universities))
     else:
         logger.info('No universities found in database.')
+
+
+def _load_scholarship_rates() -> dict:
+    """Load scholarship rates from school_list module.
+
+    Returns:
+        Dictionary mapping normalized university names to discount rates.
+    """
+    try:
+
+        scholarship_map = dict(scholarship_rates)
+    except (ImportError, AttributeError):
+        scholarship_map = {}
+
+    return {
+        normalize_turkish_text(key): value
+        for key, value in scholarship_map.items()
+    }
+
+
+def _build_price_records(filtered_prices: list) -> list:
+    """Build price records from filtered price data.
+
+    Args:
+        filtered_prices: List of price objects from repository.
+
+    Returns:
+        List of price record dictionaries.
+    """
+    records = []
+    for price in filtered_prices:
+        if not price.department_name or not price.department_name.strip():
+            continue
+        records.append({
+            'university_name': price.university_name,
+            'department_name': price.department_name,
+            'score_type': price.score_type,
+            'quota': price.quota,
+            'score': price.score,
+            'ranking': price.ranking,
+            'price_amount': price.price_amount,
+        })
+    return records
+
+
+def _apply_discounts(price_list: list, scholarship_rate: dict) -> None:
+    """Apply preference discounts to price records.
+
+    Args:
+        price_list: List of price record dictionaries.
+        scholarship_rates: Dictionary of normalized names to discount rates.
+    """
+    for record in price_list:
+        normalized_name = normalize_turkish_text(record['university_name'])
+        discount_rate = scholarship_rate.get(normalized_name)
+        current_price = record.get('price_amount')
+        record['original_price'] = current_price
+
+        if discount_rate and isinstance(current_price, (int, float)):
+            discounted = round(current_price * (1 - discount_rate / 100), 2)
+            record['has_preference_discount'] = True
+            record['preference_discount_rate'] = discount_rate
+            record['preference_discounted_price'] = discounted
+            record['preference_discount_info'] = (
+                f"A preference discount of {discount_rate}% is available "
+                f"(price after discount: {discounted})."
+            )
+        elif discount_rate:
+            record['has_preference_discount'] = True
+            record['preference_discount_rate'] = discount_rate
+            record['preference_discounted_price'] = None
+            record['preference_discount_info'] = (
+                f"A preference discount of {discount_rate}% is available."
+            )
+        else:
+            record['has_preference_discount'] = False
+            record['preference_discount_rate'] = 0
+            record['preference_discounted_price'] = None
+            record['preference_discount_info'] = "No preference discount available."
+
+
+def _apply_half_price(price_list: list) -> None:
+    """Apply 50% scholarship to price records.
+
+    Args:
+        price_list: List of price record dictionaries.
+    """
+    for record in price_list:
+        if isinstance(record.get('price_amount'), (int, float)):
+            record['price_amount'] = record['price_amount'] * 0.5
+            record['original_price'] = record['price_amount']
+            if record.get('preference_discounted_price') is not None:
+                record['preference_discounted_price'] *= 0.5
+
+
+def _create_export_records(price_list: list, include_discount: bool) -> list:
+    """Create sanitized records for export.
+
+    Args:
+        price_list: List of price record dictionaries.
+        include_discount: Whether to include discount columns.
+
+    Returns:
+        List of sanitized record dictionaries for export.
+    """
+    records = []
+    for price_record in price_list:
+        score_val = price_record.get('score')
+        ranking_val = price_record.get('ranking')
+        record = {
+            'University': price_record.get('university_name', ''),
+            'Department': price_record.get('department_name', ''),
+            'Score Type': price_record.get('score_type', '') or '',
+            'Quota': price_record.get('quota', '') or '',
+            'Score': score_val if score_val else 'Dolmadı',
+            'Ranking': ranking_val if ranking_val else 'Dolmadı',
+            'Price': price_record.get('original_price'),
+        }
+        if include_discount:
+            record['Discount Rate (%)'] = price_record.get(
+                'preference_discount_rate', 0
+            ) or 0
+            record['Discounted Price'] = price_record.get(
+                'preference_discounted_price'
+            )
+            record['Discount Info'] = price_record.get(
+                'preference_discount_info', 'No preference discount available.'
+            )
+        records.append(record)
+    return records
 
 
 def export_prices(
@@ -126,15 +274,15 @@ def export_prices(
     price_option: str,
     should_apply_preference_discount: bool,
     output_filename: str
-):
-    """Export university prices to CSV file.
-    
+) -> None:
+    """Export university prices to Excel and PDF files.
+
     Args:
-        university_filter: University name to filter (or 'all')
-        department_filter: Department name to filter (or 'all')
-        price_option: 'full' or 'half' scholarship price
-        should_apply_preference_discount: Whether to apply preference discount
-        output_filename: Output CSV filename
+        university_filter: University name to filter (or 'all').
+        department_filter: Department name to filter (or 'all').
+        price_option: 'full' or 'half' scholarship price.
+        should_apply_preference_discount: Whether to include discount columns.
+        output_filename: Output filename without extension.
     """
     repository = UniversityPriceRepository()
 
@@ -142,284 +290,207 @@ def export_prices(
         all_prices = repository.get_all_prices()
         search_query = university_filter.strip().lower()
         filtered_prices = [
-            price for price in all_prices 
+            price for price in all_prices
             if search_query in (price.university_name or '').lower()
         ]
     else:
         filtered_prices = repository.get_all_prices()
 
     if not filtered_prices:
-        logger.warning(f'No prices found for university filter: {university_filter}')
+        logger.warning('No prices found for university filter: %s', university_filter)
         return
 
-    department_price_list = []
-    for price in filtered_prices:
-        price_amount = price.price_amount if price.price_amount is not None else None
-        if not price.department_name or not price.department_name.strip():
-            continue
-        department_price_list.append({
-            'university_name': price.university_name,
-            'department_name': price.department_name,
-            'score_type': price.score_type,
-            'quota': price.quota,
-            'score': price.score,
-            'ranking': price.ranking,
-            'price_amount': price_amount,
-        })
+    price_list = _build_price_records(filtered_prices)
 
     if department_filter.lower() != 'all':
-        department_price_list = [
-            item for item in department_price_list
+        price_list = [
+            item for item in price_list
             if department_filter.lower() in item.get('department_name', '').lower()
         ]
 
-    if not department_price_list:
-        logger.warning(f'No prices found for department filter: {department_filter}')
+    if not price_list:
+        logger.warning('No prices found for department filter: %s', department_filter)
         return
 
-    try:
-        from util.school_list import scholarship_rates
-        scholarship_rate_map = {university: rate for university, rate in scholarship_rates}
-    except Exception:
-        scholarship_rate_map = {}
-
-    normalized_scholarship_rates = {
-        normalize_turkish_text(key): value
-        for key, value in scholarship_rate_map.items()
-    }
-
-    for price_record in department_price_list:
-        normalized_university_name = normalize_turkish_text(price_record['university_name'])
-        discount_rate = normalized_scholarship_rates.get(normalized_university_name)
-        current_price = price_record.get('price_amount')
-        
-        price_record['original_price'] = current_price
-
-        if discount_rate and isinstance(current_price, (int, float)):
-            discounted_price = round(current_price * (1 - discount_rate / 100), 2)
-            price_record['has_preference_discount'] = True
-            price_record['preference_discount_rate'] = discount_rate
-            price_record['preference_discounted_price'] = discounted_price
-            price_record['preference_discount_info'] = f"A preference discount of {discount_rate}% is available (price after discount: {discounted_price})."
-        elif discount_rate:
-            price_record['has_preference_discount'] = True
-            price_record['preference_discount_rate'] = discount_rate
-            price_record['preference_discounted_price'] = None
-            price_record['preference_discount_info'] = f"A preference discount of {discount_rate}% is available."
-        else:
-            price_record['has_preference_discount'] = False
-            price_record['preference_discount_rate'] = 0
-            price_record['preference_discounted_price'] = None
-            price_record['preference_discount_info'] = "No preference discount available."
+    scholarship_rate = _load_scholarship_rates()
+    _apply_discounts(price_list, scholarship_rate)
 
     if price_option == 'half':
-        for price_record in department_price_list:
-            if isinstance(price_record.get('price_amount'), (int, float)):
-                price_record['price_amount'] = price_record['price_amount'] * 0.5
-                price_record['original_price'] = price_record['price_amount']
-                if price_record.get('preference_discounted_price') is not None:
-                    price_record['preference_discounted_price'] = price_record['preference_discounted_price'] * 0.5
+        _apply_half_price(price_list)
 
-    if should_apply_preference_discount:
-        csv_field_names = [
-            'University',
-            'Department',
-            'Score Type',
-            'Quota',
-            'Score',
-            'Ranking',
-            'Price',
-            'Discount Rate (%)',
-            'Discounted Price',
-            'Discount Info'
-        ]
-    else:
-        csv_field_names = [
-            'University',
-            'Department',
-            'Score Type',
-            'Quota',
-            'Score',
-            'Ranking',
-            'Price'
-        ]
+    export_records = _create_export_records(price_list, should_apply_preference_discount)
 
-    sanitized_records = []
-    for price_record in department_price_list:
-        record = {
-            'University': price_record.get('university_name', ''),
-            'Department': price_record.get('department_name', ''),
-            'Score Type': price_record.get('score_type', '') or '',
-            'Quota': price_record.get('quota', '') or '',
-            'Score': price_record.get('score', '') if price_record.get('score') is not None else 'Dolmadı',
-            'Ranking': price_record.get('ranking', '') if price_record.get('ranking') is not None else 'Dolmadı',
-            'Price': price_record.get('original_price', None),
-        }
-        if should_apply_preference_discount:
-            record['Discount Rate (%)'] = price_record.get('preference_discount_rate', 0) or 0
-            record['Discounted Price'] = price_record.get('preference_discounted_price', None)
-            record['Discount Info'] = price_record.get('preference_discount_info', 'No preference discount available.')
-        sanitized_records.append(record)
-
-    if not sanitized_records:
+    if not export_records:
         logger.error('No records found to export.')
         return
-    
-    df = pd.DataFrame(sanitized_records)
-    
-    xlsx_file = output_filename.replace(".csv", ".xlsx") if output_filename.endswith(".csv") else output_filename + ".xlsx"
-    pdf_file = output_filename.replace(".csv", ".pdf") if output_filename.endswith(".csv") else output_filename + ".pdf"
 
-    convert_to_excel(df, xlsx_file)
-    convert_to_pdf(df, pdf_file)
+    dataframe = pd.DataFrame(export_records)
 
-    logger.info(f'{len(sanitized_records)} records exported to Excel and PDF.')
+    if output_filename.endswith(".csv"):
+        xlsx_file = output_filename.replace(".csv", ".xlsx")
+        pdf_file = output_filename.replace(".csv", ".pdf")
+    else:
+        xlsx_file = output_filename + ".xlsx"
+        pdf_file = output_filename + ".pdf"
+
+    convert_to_excel(dataframe, xlsx_file)
+    convert_to_pdf(dataframe, pdf_file)
+
+    logger.info('%d records exported to Excel and PDF.', len(export_records))
 
 
-def main():
-    argument_parser = argparse.ArgumentParser(
-        description='Scrape university tuition prices and export to CSV.',
+def _create_argument_parser() -> argparse.ArgumentParser:
+    """Create and configure the argument parser.
+
+    Returns:
+        Configured ArgumentParser instance.
+    """
+    parser = argparse.ArgumentParser(
+        description='Scrape university tuition prices and export to Excel/PDF.',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Scrape all universities and export to CSV
   python main.py --scrape --export
-
-  # List all universities in database
   python main.py --list
-
-  # Export specific university
   python main.py --export --university "İstinye Üniversitesi"
-
-  # Export with half scholarship price
   python main.py --export --university "all" --price-option half
-
-  # Export with preference discount applied
   python main.py --export --university "İstinye Üniversitesi" --apply-preference-discount
-
-  # Show notifications
   python main.py --show-notifications
         """
     )
-    
-    action_group = argument_parser.add_argument_group('Actions')
+
+    action_group = parser.add_argument_group('Actions')
     action_group.add_argument(
-        '--scrape',
-        action='store_true',
+        '--scrape', action='store_true',
         help='Run the scraping step to fetch prices from web'
     )
     action_group.add_argument(
-        '--list',
-        action='store_true',
+        '--list', action='store_true',
         help='List all universities in the database'
     )
     action_group.add_argument(
-        '--export',
-        action='store_true',
-        help='Export prices to CSV file'
+        '--export', action='store_true',
+        help='Export prices to Excel/PDF files'
     )
     action_group.add_argument(
-        '--show-notifications',
-        action='store_true',
+        '--show-notifications', action='store_true',
         help='Fetch and display notifications from NOTIFY_TOPIC'
     )
-    
-    scrape_group = argument_parser.add_argument_group('Scraping Options')
+
+    scrape_group = parser.add_argument_group('Scraping Options')
     scrape_group.add_argument(
-        '--scrape-delay',
-        type=float,
-        default=0.0,
+        '--scrape-delay', type=float, default=0.0,
         help='Delay between scrape requests in seconds (default: 0.0)'
     )
     scrape_group.add_argument(
-        '--start-index',
-        type=int,
-        default=0,
+        '--start-index', type=int, default=0,
         help='Start index when scraping the universities list (default: 0)'
     )
     scrape_group.add_argument(
-        '--stop-index',
-        type=int,
-        default=None,
+        '--stop-index', type=int, default=None,
         help='Stop index (exclusive) when scraping the universities list'
     )
-    
-    export_group = argument_parser.add_argument_group('Export Options')
-    export_group.add_argument(
-        '--university',
-        type=str,
-        default='all',
-        help='University name to filter, use "all" for all universities (default: all)'
-    )
-    export_group.add_argument(
-        '--department',
-        type=str,
-        default='all',
-        help='Department name to filter, use "all" for all departments (default: all)'
-    )
-    export_group.add_argument(
-        '--price-option',
-        choices=['full', 'half'],
-        default='full',
-        help='Price option: "full" for full price, "half" for 50%% scholarship (default: full)'
-    )
-    export_group.add_argument(
-        '--apply-preference-discount',
-        action='store_true',
-        help='Apply preference discount to prices when available'
-    )
-    export_group.add_argument(
-        '--output',
-        type=str,
-        default='university_department_prices',
-        help='Output filename without extension (default: university_department_prices)'
-    )
-    
-    parsed_args = argument_parser.parse_args()
 
-    if not any([parsed_args.scrape, parsed_args.list, parsed_args.export, parsed_args.show_notifications]):
-        argument_parser.print_help()
-        logger.error('Please specify at least one action (--scrape, --list, --export, or --show-notifications)')
+    export_group = parser.add_argument_group('Export Options')
+    export_group.add_argument(
+        '--university', type=str, default='all',
+        help='University name to filter, use "all" for all (default: all)'
+    )
+    export_group.add_argument(
+        '--department', type=str, default='all',
+        help='Department name to filter, use "all" for all (default: all)'
+    )
+    export_group.add_argument(
+        '--price-option', choices=['full', 'half'], default='full',
+        help='Price option: "full" or "half" for 50%% scholarship (default: full)'
+    )
+    export_group.add_argument(
+        '--apply-preference-discount', action='store_true',
+        help='Include preference discount columns in export'
+    )
+    export_group.add_argument(
+        '--output', type=str, default='university_department_prices',
+        help='Output filename without extension'
+    )
+
+    return parser
+
+
+def _handle_scrape(args: argparse.Namespace) -> None:
+    """Handle the scrape action.
+
+    Args:
+        args: Parsed command line arguments.
+    """
+    logger.info('Starting scraping process...')
+    try:
+        total, inserted, updated, failed = scrape_universities_from_list(
+            save=True,
+            delay=args.scrape_delay,
+            start_index=args.start_index,
+            stop_index=args.stop_index
+        )
+        logger.info(
+            'Scraping completed. Scraped: %d, Inserted: %d, Updated: %d, Failed: %d',
+            total, inserted, updated, failed
+        )
+    except (ConnectionError, TimeoutError):
+        logger.exception('Scraping failed due to connection error')
+
+
+def _handle_notifications() -> None:
+    """Handle the show-notifications action."""
+    notification_topic = os.environ.get('NOTIFY_TOPIC')
+    if not notification_topic:
+        logger.error(
+            'NOTIFY_TOPIC environment variable not set. '
+            'Please set it to your ntfy topic.'
+        )
         return
 
-    if parsed_args.scrape:
-        logger.info('Starting scraping process...')
-        try:
-            total_scraped, total_inserted, total_updated, total_failed = scrape_universities_from_list(
-                save=True,
-                delay=parsed_args.scrape_delay,
-                start_index=parsed_args.start_index,
-                stop_index=parsed_args.stop_index
-            )
-            logger.info(f'Scraping completed. Scraped: {total_scraped}, Inserted: {total_inserted}, Updated: {total_updated}, Failed: {total_failed}')
-        except Exception:
-            logger.exception('Scraping failed')
+    try:
+        logger.info('Fetching notifications from topic: %s', notification_topic)
+        events = fetch_notifications(notification_topic, poll_duration=1)
+        logger.info('--- Notifications from topic: %s ---', notification_topic)
+        print_notifications(events)
+    except (ImportError, ConnectionError) as err:
+        logger.error('Failed to fetch notifications: %s', err)
 
-    if parsed_args.list:
+
+def main() -> None:
+    """Main entry point for the CLI application."""
+    parser = _create_argument_parser()
+    args = parser.parse_args()
+
+    has_action = any([
+        args.scrape, args.list, args.export, args.show_notifications
+    ])
+
+    if not has_action:
+        parser.print_help()
+        logger.error(
+            'Please specify at least one action '
+            '(--scrape, --list, --export, or --show-notifications)'
+        )
+        return
+
+    if args.scrape:
+        _handle_scrape(args)
+
+    if args.list:
         list_universities()
 
-    if parsed_args.export:
+    if args.export:
         export_prices(
-            university_filter=parsed_args.university,
-            department_filter=parsed_args.department,
-            price_option=parsed_args.price_option,
-            should_apply_preference_discount=parsed_args.apply_preference_discount,
-            output_filename=parsed_args.output
+            university_filter=args.university,
+            department_filter=args.department,
+            price_option=args.price_option,
+            should_apply_preference_discount=args.apply_preference_discount,
+            output_filename=args.output
         )
 
-    if parsed_args.show_notifications:
-        notification_topic = os.environ.get('NOTIFY_TOPIC')
-        if not notification_topic:
-            logger.error('NOTIFY_TOPIC environment variable not set. Please set it to your ntfy topic.')
-        else:
-            try:
-                from util.notifications import fetch_notifications, print_notifications
-                logger.info(f'Fetching notifications from topic: {notification_topic}')
-                notification_events = fetch_notifications(notification_topic, poll_duration=1)
-                logger.info(f'--- Notifications from topic: {notification_topic} ---')
-                print_notifications(notification_events)
-            except Exception as notification_error:
-                logger.error(f'Failed to fetch notifications: {notification_error}')
+    if args.show_notifications:
+        _handle_notifications()
 
 
 if __name__ == "__main__":

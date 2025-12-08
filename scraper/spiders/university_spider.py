@@ -23,6 +23,12 @@ class UniversityPriceSpider(scrapy.Spider):
         'CONCURRENT_REQUESTS_PER_DOMAIN': 2,
     }
     
+    # Special URL mappings for universities with non-standard URLs
+    SPECIAL_URLS = {
+        'Nuh Naci Yazgan Üniversitesi': 'https://www.universitego.com/nuh-naci-yazgan-universitesi/',
+        'İstanbul Şişli Meslek Yüksekokulu': 'https://www.universitego.com/istanbul-sisli-meslek-yusekokulu-ucretleri/',
+    }
+    
     def __init__(self, universities: list[str] | None = None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
@@ -42,8 +48,18 @@ class UniversityPriceSpider(scrapy.Spider):
     
     def start_requests(self) -> Generator[scrapy.Request, None, None]:
         for university_name in self.university_list:
-            slug = self._slugify_university_name(university_name)
-            url = f'https://www.universitego.com/{slug}-universitesi-ucretleri/'
+            # Check for special URL first
+            if university_name in self.SPECIAL_URLS:
+                url = self.SPECIAL_URLS[university_name]
+            else:
+                slug = self._slugify_university_name(university_name)
+                
+                # MYO'lar icin farkli URL formati kullan
+                name_lower = university_name.lower()
+                if 'meslek yüksekokulu' in name_lower or 'meslek yuksekokulu' in name_lower:
+                    url = f'https://www.universitego.com/{slug}-ucretleri/'
+                else:
+                    url = f'https://www.universitego.com/{slug}-universitesi-ucretleri/'
             
             yield scrapy.Request(
                 url=url,
